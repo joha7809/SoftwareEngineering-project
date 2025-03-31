@@ -59,3 +59,9 @@ surefire-reports/
 
 # Ignore dependency directories
 node_modules/
+target/surefire-reports/hellocucumber.RunCucumberTest.txt
+target/surefire-reports/hellocucumber.TestJUnit5.txt
+target/surefire-reports/io.cucumber.junit.platform.engine.CucumberTestEngine.txt
+target/surefire-reports/TEST-hellocucumber.RunCucumberTest.xml
+target/surefire-reports/TEST-hellocucumber.TestJUnit5.xml
+target/surefire-reports/TEST-io.cucumber.junit.platform.engine.CucumberTestEngine.xml
