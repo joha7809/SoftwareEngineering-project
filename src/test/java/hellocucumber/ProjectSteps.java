@@ -4,7 +4,7 @@ package hellocucumber;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import dtu.example.ui.Project;
+import dtu.example.model.Project;
 import dtu.example.ui.ProjectOrganizer;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,6 +22,6 @@ public class ProjectSteps {
     @Then("the Projects name {string}")
     public void theProjectsName(String string) 
     {
-        assertEquals(string, projectOrganizer.getProject().getName());
+        assertEquals(string, projectOrganizer.getProject().getProjectName());
     }
 }
