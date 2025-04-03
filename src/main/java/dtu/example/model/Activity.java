@@ -7,4 +7,8 @@ public class Activity {
         this.activityName = name;
     }
 
+    public String getActivityName(){
+        return this.activityName;
+    }
+
 }
