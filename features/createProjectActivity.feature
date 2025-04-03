@@ -1,5 +1,7 @@
 Feature: Create Project Activity
 
+  Nikolaj wrote this feature
+
   Scenario: Project leader creates activity for project
     Given a project called ”22001” exists
     And the user ”hga” is project leader for ”22001”

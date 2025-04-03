@@ -1,5 +1,7 @@
 Feature: Change project activity description
 
+  Nikolaj wrote this feature
+
   Scenario: Project leader changes activity description
     Given a project called ”22001” exists
     And user ”hga” is project leader for ”22001”

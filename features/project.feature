@@ -1,5 +1,7 @@
 Feature:Create Project
 
+    August wrote this feature
+
     Scenario: Create a Project with a name
         Given a user is logged in
         And there is no Project with the name "newProject"

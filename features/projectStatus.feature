@@ -1,5 +1,7 @@
 Feature: Project status
 
+  Adam wrote this feature
+
   Scenario: Project lead receives status report
     Given a project 22001 exist
     And "pete" is the project leader of the project

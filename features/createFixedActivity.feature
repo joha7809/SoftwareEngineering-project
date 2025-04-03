@@ -1,5 +1,7 @@
 Feature: Create fixed activity
 
+  Adam wrote this feature
+
   Scenario: User creates fixed activity
     Given Given user "pete" exists
     When user enters the timeStart 03022025 for the fixed activity

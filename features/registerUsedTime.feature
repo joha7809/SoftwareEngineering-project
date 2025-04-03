@@ -1,5 +1,7 @@
 Feature: Register used time
 
+  Kerem wrote this
+
   Scenario: A user registers used time on an activity
     Given an user has used a certain time on activity
     When user inputs used time on project

@@ -1,5 +1,7 @@
 Feature: Assign developers
 
+  Adam wrote this feature 
+  
   Scenario: Assign developers
     Given a "Pete" is the project leader
     And "Bob" is available
