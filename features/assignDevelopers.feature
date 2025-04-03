@@ -1,9 +1,9 @@
 Feature: Assign developers
 
   Scenario: Assign developers
-    Given a "Pete" is the project leader
+    Given "Pete" is the project leader
     And "Bob" is available
-    When the project leader assigns "Bob" to activity
+    When project leader assigns "Bob" to activity
     Then "Bob" is assigned to the activity
 
   Scenario: assign a different developer
