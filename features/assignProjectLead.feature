@@ -1,5 +1,7 @@
 Feature: Assign project lead
 
+  Johannes wrote this feature
+
   Scenario: Successfully assign project lead
     Given a project called ”22001” exists
     And a user called ”hga” exists.
