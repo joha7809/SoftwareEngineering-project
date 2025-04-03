@@ -1,19 +1,19 @@
 Feature: Assign developers
 
   Scenario: Assign developers
-    Given a developer is the project leader
-    And another developer is available
-    When the project leader assigns the other developer to activity
-    Then the developer is assigned to the activity
+    Given a "Pete" is the project leader
+    And "Bob" is available
+    When the "Pete" assigns "Bob" to activity
+    Then "Bob" is assigned to the activity
 
   Scenario: assign a different developer
-    Given a developer is the project leader
-    And another developer is unavailable
-    When the project leader assigns an other developer to activity
-    Then the developer status is unchanged
+    Given "Pete" is the project leader
+    And "Bob" is unavailable
+    When "Pete" assigns "Bob" to an activity
+    Then "Bob" status is unchanged
 
   Scenario: failing to assign a developer
-    Given a developer is the project leader
-    And no developer is unavailable
-    When the project leader assigns the developer to the activity
-    Then the developer status is unchanged
+    Given "Pete" is the project leader
+    And "Bob" is unavailable
+    When "Pete" assigns "Bob" to the activity
+    Then "Bob" status is unchanged
