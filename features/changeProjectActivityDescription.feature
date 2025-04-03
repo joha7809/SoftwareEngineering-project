@@ -1,8 +1,8 @@
 Feature: Change project activity description
 
   Scenario: Project leader changes activity description
-    Given a project called ”22001”exists
-    And user ”hga”is project leader for ”22001”
+    Given a project called ”22001” exists
+    And user ”hga” is project leader for ”22001”
     And an activity exists
     And text field ”Description”is not empty
     When button ”Update information”is clicked
