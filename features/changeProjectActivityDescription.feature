@@ -4,29 +4,29 @@ Feature: Change project activity description
     Given a project called ”22001” exists
     And user ”hga” is project leader for ”22001”
     And an activity exists
-    And text field ”Description”is not empty
-    When button ”Update information”is clicked
-    Then description is set to text field ”Update information”text
+    And the activity description is not empty
+    When the project leader changes the description
+    Then the description is updated
 
   Scenario: Project leader fails to change activity description
-    Given a project called ”22001”exists
-    And user ”hga”is project leader for ”22001”
+    Given a project called ”22001” exists
+    And user ”hga” is project leader for ”22001”
     And an activity exists
-    And text field ”Description”is empty
-    When button ”Update information”is clicked
-    Then the TextfieldIsEmpty error message is printed
+    And the activity description is empty
+    When the project leader changes the description to ""
+    Then a error message is printed
 
   Scenario: User updates activity description for leaderless project
-    Given a project called ”22001”exists
-    And project ”22001”has no project lead
-    And text field ”Description”is not empty
-    When button ”Update information”is clicked
-    Then description is set to text field ”Update information”text
+    Given a project called ”22001” exists
+    And project ”22001” has no project lead
+    And the activity description is not empty
+    When the project leader changes the description
+    Then the description is updated
 
   Scenario: User who is not project lead fails to update project activity description
-    Given a project called ”22001”exists
+    Given a project called ”22001” exists
     And the project has a project lead
-    And user ”hga”is not project leader for ”22001”
-    And text field ”Description”is not empty
-    When button ”Update information”is clicked
-    Then the NotProjectLeaderError error message is printed
+    And user ”hga” is not project leader for ”22001”
+    And the activity description is not empty
+    When When the project leader changes the description to ""
+    Then a error message is printed
