@@ -16,7 +16,7 @@ Feature: Create Project Activity
 
   Scenario: project lead fails to create activity for project
     Given a project called ”22001” exists
-    And the project lead for the project is called ”hga” exists
+    And the user ”hga” is project leader for ”22001”
     When the project lead creates a activity
     And does not give the activity a name
     Then a error message is printed
