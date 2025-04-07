@@ -31,16 +31,17 @@ public class Project {
         return activities;
     }
 
-    //public Activity getActivity(String name){
-      //  for (Activity activity : activities){
-        //    if (activity.getActivityName().equals(name)){
-              //  return activity;
-          //  } else 
-            //}
+    public Activity getActivity(String name){
+        for (Activity activity : activities){
+            if (activity.getActivityName().equals(name)){
+                return activity;
+            } else {
+            placeholder.errormessage("nullActivity"); 
+            }
 
-        //}
+        }
 
-    //}
+    }
 
     public void removeActivity(String activityName){
         for (Activity activity : activities){
