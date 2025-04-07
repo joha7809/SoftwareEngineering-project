@@ -7,7 +7,7 @@ public class Project {
 
     private String projectname;
     private User projectLead;
-    private List<Activity> activities;
+    private List<WorkActivity> activities;
 
     //Constructor
     public Project(String name)
@@ -23,7 +23,7 @@ public class Project {
         this.projectname = name;
     }
 
-    public void addActivity(Activity activity){
+    public void addActivity(WorkActivity activity){
         activities.add(activity);
     }
 
@@ -31,8 +31,8 @@ public class Project {
         return activities;
     }
 
-    public Activity getActivity(String name){
-        for (Activity activity : activities){
+    public WorkActivity getActivity(String name){
+        for (WorkActivity activity : activities){
             if (activity.getActivityName().equals(name)){
                 return activity;
             } else {
@@ -44,7 +44,7 @@ public class Project {
     }
 
     public void removeActivity(String activityName){
-        for (Activity activity : activities){
+        for (WorkActivity activity : activities){
             if (activity.getActivityName().equals(activityName)){
                 activities.remove(activity);
             }
