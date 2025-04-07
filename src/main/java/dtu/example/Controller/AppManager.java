@@ -15,7 +15,7 @@ public class AppManager {
         //Initialize arrayLists
         this.projects = new ArrayList<>();
         this.users = new ArrayList<>();
-        this.otherActivities = new ArrayList<>(otherActivities);
+        this.otherActivities = new ArrayList<>();
     }
 
 }
