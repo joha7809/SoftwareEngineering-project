@@ -24,4 +24,9 @@ public class ProjectSteps {
     {
         //assertEquals(string, projectOrganizer.getProject().getProjectName());
     }
+
+    @Given("a user {string} is logged in")
+    public void a_user_is_logged_in(String s) {
+        // Write code here that turns the phrase above into concrete actions
+    }
 }
