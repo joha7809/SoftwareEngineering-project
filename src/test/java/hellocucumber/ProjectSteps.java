@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.en.Given;
+
 public class ProjectSteps {
     
     //ProjectOrganizer projectOrganizer = new ProjectOrganizer();
@@ -36,6 +37,7 @@ public class ProjectSteps {
     }
 
     @When("a Project with name {string} is created")
+    public void a_Project_with_name_is_created(String s){
         // Write code here that turns the phrase above into concrete actions
     }
 
