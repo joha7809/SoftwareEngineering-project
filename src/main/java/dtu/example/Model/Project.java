@@ -1,5 +1,5 @@
 
-package dtu.example.Model;
+package dtu.example.model;
 import java.util.List;
 
 

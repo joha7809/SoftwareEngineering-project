@@ -2,15 +2,19 @@ package dtu.example.Controller;
 
 import java.util.ArrayList;
 
-import dtu.example.Model.OtherActivity;
-import dtu.example.Model.Project;
-import dtu.example.Model.User;
+import dtu.example.model.OtherActivity;
+import dtu.example.model.Project;
+import dtu.example.model.User;
 
 public class AppManager {
     private ArrayList<Project> projects;
     private ArrayList<User> users;
     private ArrayList<OtherActivity> otherActivities;
-    public User activeUser; // The user that is currently logged in
+    private User activeUser; // The user that is currently logged in
+
+    public User getActiveUser() {
+        return activeUser;
+    }
 
     public AppManager() {
         //Initialize arrayLists

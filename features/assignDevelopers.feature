@@ -2,7 +2,7 @@ Feature: Assign developers
 
   Adam wrote this feature 
   
-  Scenario: Assign developers
+  Scenario: Assign developershttps://learn.microsoft.com/en-us/training/browse/?resource_type=learning%20path
     Given "Pete" is the project leader
     And "Bob" is available
     When project leader assigns "Bob" to activity

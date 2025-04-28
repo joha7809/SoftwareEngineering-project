@@ -1,4 +1,4 @@
-package dtu.example.Model;
+package dtu.example.model;
 
 public interface ActivityInterface {
     String getDescription();
