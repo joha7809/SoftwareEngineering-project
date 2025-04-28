@@ -1,4 +1,4 @@
-package dtu.example.Model;
+package dtu.example.model;
 
 public class WorkActivity implements ActivityInterface {
     private String activityName;

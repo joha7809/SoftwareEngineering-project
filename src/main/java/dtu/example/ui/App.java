@@ -7,6 +7,14 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import dtu.example.Controller.AppManager;
+import dtu.example.View.AppUi;
+import dtu.example.model.Project;
+import dtu.example.model.User;
  
 /**
  * JavaFX App
@@ -32,7 +40,14 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        //init model
+        ArrayList<User> users = new ArrayList<>(Arrays.asList(new User("admin")));
+        ArrayList<Project> projects = new ArrayList<>();
+
+        AppManager manager = new AppManager(projects, users);
+        AppUi ui = new AppUi(manager);
+
+        ui.run();
     }
 
 }
