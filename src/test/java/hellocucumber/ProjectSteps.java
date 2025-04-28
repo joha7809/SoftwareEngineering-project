@@ -1,19 +1,32 @@
 package hellocucumber;
 
 
-import io.cucumber.java.en.Given;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+//import dtu.example.model.Project;
+//import dtu.example.ui.ProjectOrganizer;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class ProjectSteps {
     
-    @Given("a user is logged in")
-    public void a_user_is_logged_in() {
-        // Write code here that turns the phrase above into concrete actions
+    //ProjectOrganizer projectOrganizer = new ProjectOrganizer();
+
+    @When("a Project is created with a name {string}")
+    public void aProjectIsCreatedWithAName(String string) 
+    {
+       // projectOrganizer.createProject(string);
     }
 
-    @Given("there is no Project with the name {string}")
-    public void there_is_no_Project_with_the_name(String s) {
+    @Then("the Projects name {string}")
+    public void theProjectsName(String string) 
+    {
+        //assertEquals(string, projectOrganizer.getProject().getProjectName());
+    }
+
+    @Given("a user {string} is logged in")
+    public void a_user_is_logged_in(String s) {
         // Write code here that turns the phrase above into concrete actions
     }
 
@@ -27,19 +40,13 @@ public class ProjectSteps {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @When("a Project with the name {string} is created")
-    public void a_Project_with_the_name_is_created(String s) {
+    @Given("there is no Project with the name {string}")
+    public void there_is_no_Project_with_the_name(String s) {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @Given("there is a Project with the name {string}")
-    public void there_is_a_Project_with_the_name(String s) {
+    @Given("a user is logged in")
+    public void a_user_is_logged_in() {
         // Write code here that turns the phrase above into concrete actions
     }
-
-    @Then("an error message is printed")
-    public void an_error_message_is_printed() {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
 }
