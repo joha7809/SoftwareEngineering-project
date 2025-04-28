@@ -1,3 +1,4 @@
+@project
 Feature: Assign project lead
 
   Johannes wrote this feature
