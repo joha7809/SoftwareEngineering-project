@@ -1,3 +1,4 @@
+@project
 Feature:Create Project
 
     August wrote this feature
@@ -16,7 +17,7 @@ Feature:Create Project
 
     Scenario: Fail in creating a Project with no name
         Given a user is logged in
-        When a Project with the name "" is created
+        When a Project with name "" is created
         Then an error message is printed
         
 
