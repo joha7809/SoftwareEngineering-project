@@ -28,12 +28,28 @@ public class ProjectLeadCommand implements CommandInterface<String> {
         String project = args[0];
         String projectLead = args[1];
 
-        if (manager.getProject(project).getProjectLead().getUserID() == projectLead) {
-            return new CommandResult<>(ReturnTypes.STRING, "Project lead " + projectLead + " already assigned.");
-            
+
+        if(manager.getProject(project) == null && manager.getUser(projectLead) == null) {
+            return new CommandResult<>(ReturnTypes.STRING, "Invalid argument, neither user nor project does exist.");
         }
 
-        manager.getProject(project).setProjectLead(manager.getUser(projectLead));;
+        if(manager.getProject(project) == null){
+            return new CommandResult<>(ReturnTypes.STRING, "Invalid argument, project does not exist.");
+        }
+
+        if(manager.getUser(projectLead) == null){
+            return new CommandResult<>(ReturnTypes.STRING, "Invalid argument, user does not exist.");
+        }
+
+  
+        
+        if(manager.getProject(project).getProjectLead() != null){
+        if (manager.getProject(project).getProjectLead().getUserID().equals(projectLead)) {
+            return new CommandResult<>(ReturnTypes.STRING, "Project lead " + projectLead + " already assigned.");
+            
+        }}
+    
+        manager.getProject(project).setProjectLead(manager.getUser(projectLead));
         return new CommandResult<>(ReturnTypes.STRING, "Project lead " + projectLead + " successfully assigned.");
     }
 }
