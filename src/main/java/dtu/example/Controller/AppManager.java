@@ -89,10 +89,10 @@ public class AppManager {
         if (this.getProjectByName(projectName) == null) {
             this.projectCount++;
             int currentYear = Year.now().getValue() % 100; // Get last two digits of the year
-            String ID = Integer.toString(currentYear) + Integer.toString(this.projectCount);
+            String ID = String.format("%02d%03d", currentYear, this.projectCount);
             Project project = new Project(ID, projectName);
             this.projects.put(ID, project);
-            return new StatusMessage(true, "Project with name " + projectName + " was successfuly created!");
+            return new StatusMessage(true, "Project with name " + projectName + "and id: " + ID + " was successfuly created!");
         }
 
         // TODO: Implement error messages
