@@ -1,7 +1,7 @@
-package dtu.example.model;
+package dtu.example.Controller.command_returns;
 
 
-public class StatusMessage {
+public class StatusMessage{
     public boolean success;
     public String message;
 

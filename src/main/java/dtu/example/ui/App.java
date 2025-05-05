@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import dtu.example.Controller.AppManager;
-import dtu.example.View.AppUi;
+import dtu.example.View.UIController;
 import dtu.example.model.Project;
 import dtu.example.model.User;
  
@@ -45,9 +45,11 @@ public class App extends Application {
         ArrayList<Project> projects = new ArrayList<>();
 
         AppManager manager = new AppManager(projects, users);
-        AppUi ui = new AppUi(manager);
+        UIController ui = new UIController(manager);
 
         ui.run();
-    }
 
+        // once finished close
+        System.exit(0);
+    }
 }
