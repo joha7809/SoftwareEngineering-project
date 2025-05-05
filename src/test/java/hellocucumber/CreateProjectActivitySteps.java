@@ -16,7 +16,7 @@ public class CreateProjectActivitySteps {
     public void a_project_called_exists(String s) {
         // Write code here that turns the phrase above into concrete actions
         appManager.createProject(s);
-        assertTrue(appManager.getProject(s) != null);
+        assertTrue(appManager.getProjectByName(s) != null);
     }
 
     @Given("user {string} is not project leader for {string}")

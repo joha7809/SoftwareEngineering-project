@@ -10,6 +10,10 @@ public class StatusMessage{
         this.message = statusMessage;
     }
     
+    public static StatusMessage uneexpectedArguments(String cmdDesc){
+        return new StatusMessage(false, "Error: Unexpected amount of args" + "\n" + cmdDesc);
+    }
+    
 }
 
 

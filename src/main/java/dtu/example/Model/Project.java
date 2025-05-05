@@ -5,19 +5,35 @@ import java.util.List;
 
 public class Project {
     private String projectID;
+    private String projectName;
+    private String description = null;
     private User projectLead;
     private List<WorkActivity> activities;
 
     //Constructor
-    public Project(String projectID)
+    public Project(String projectID, String projectName)
     {
         this.projectID = projectID;
+        this.projectName = projectName;
     }
     
     //Getters and Setters:
     public String getProjectID(){
         return projectID;
     }
+
+    public String getProjectName(){
+        return this.projectName;
+    }
+
+    public String getDescription(){
+        return this.description;
+    }
+
+    public void setDescription(String desc){
+        this.description = desc;
+    }
+
 
     public void addActivity(WorkActivity activity){
         activities.add(activity);
@@ -26,27 +42,6 @@ public class Project {
     public List getAllActivities(){
         return activities;
     }
-    
-
-    //public Activity getActivity(String name){
-      //  for (Activity activity : activities){
-        //    if (activity.getActivityName().equals(name)){
-              //  return activity;
-          //  } else 
-            //}
-
-        //}
-
-    //}
-
-    // public void removeActivity(String activityName){
-    //     for (WorkActivity activity : activities){
-    //         if (activity.getActivityName().equals(activityName)){
-    //             activities.remove(activity);
-    //         }
-
-    //     }
-    // }
 
     public void setProjectLead(User projectLead){
         this.projectLead = projectLead;

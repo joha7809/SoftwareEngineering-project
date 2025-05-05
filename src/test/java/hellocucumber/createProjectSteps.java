@@ -39,7 +39,7 @@ public class createProjectSteps {
 	public void there_is_no_project_with_the_name(String name) {
 		// Assert that there doesnt exist a project with name={name} in project list of
 		// appManager
-		Project project = appManager.getProject(name);
+		Project project = appManager.getProjectByName(name);
 		assertTrue(project == null);
 	}
 
@@ -53,7 +53,7 @@ public class createProjectSteps {
 	public void the_project_is_added_to_the_list_of_projects() {
 		// Write code here that turns the phrase above into concrete actions
 		assertTrue(result.success);
-		assertTrue(appManager.getProject(projectToBeAddedName) != null);
+		assertTrue(appManager.getProjectByName(projectToBeAddedName) != null);
 	}
 
 	@Then("an error message is printed")

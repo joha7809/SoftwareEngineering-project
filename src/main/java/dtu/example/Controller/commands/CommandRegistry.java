@@ -10,18 +10,25 @@ public class CommandRegistry {
         // Init all commands
         Login login = new Login(controller);
         CreateProject createProject = new CreateProject(controller);
-        ProjectLeadCommand projectLead = new ProjectLeadCommand(controller);
-        CreateActivity createActivity = new CreateActivity(controller);
+        //ProjectLeadCommand projectLead = new ProjectLeadCommand(controller);
+        //CreateActivity createActivity = new CreateActivity(controller);
 
         this.registerCommand(login);
         this.registerCommand(createProject);
-        this.registerCommand(projectLead);
-        this.registerCommand(createActivity);
+        // TODO: uncomment
+        //this.registerCommand(projectLead);
+        //this.registerCommand(createActivity);
 
     }
 
     public void registerCommand(CommandInterface<?> command){
         this.commands.put(command.getName(), command);
+    }
+
+    public void registerCommand(CommandInterface<?> command, String[] names){
+        for (String name : names) {
+            this.commands.put(name, command);
+        }
     }
 
 }

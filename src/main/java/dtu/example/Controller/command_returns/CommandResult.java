@@ -1,5 +1,7 @@
 package dtu.example.Controller.command_returns;
 
+import java.io.ObjectInputFilter.Status;
+
 //Written by Johannes
 
 /**
@@ -42,5 +44,11 @@ public class CommandResult<T> {
      */
     public T getValue() {
         return this.value;
+    }
+
+    // Static factories for easier returns
+
+    public static CommandResult<StatusMessage> statusMessageResult(StatusMessage msg){
+        return new CommandResult<StatusMessage>(ReturnTypes.STATUS_MESSAGE, msg);
     }
 }
