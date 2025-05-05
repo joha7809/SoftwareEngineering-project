@@ -15,7 +15,7 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Given;
 
 public class createProjectSteps {
-	public User user = new User("huba");
+	public User user;
 	public String projectToBeAddedName;
 	public StatusMessage result;
 
@@ -30,6 +30,12 @@ public class createProjectSteps {
 	@Given("a user is logged in")
 	public void a_user_is_logged_in() {
 		// Write code here that turns the phrase above into concrete actions
+
+		var msg = appManager.createUser("huba");
+		assertTrue(msg.success);
+		user = appManager.getUser("huba");
+
+
 		appManager.setActiveUser(user);
 		assertTrue(appManager.getActiveUser() == user);
 
@@ -70,4 +76,24 @@ public class createProjectSteps {
 		assertFalse(result.success);
 		System.out.println(result.message);
 	}
+
+	@Given("no projects exist")
+    public void no_projects_exist() {
+        // Write code here that turns the phrase above into concrete actions
+		assertTrue(appManager.getProjectById("25001") == null);
+    }
+
+    @Then("the project with the name {string} has id {string}")
+    public void the_project_with_the_name_has_id(String name, String id) {
+        assertTrue(appManager.getProjectByName(name).getProjectID().equals(id));
+		assertTrue(appManager.getProjectByName(name) == appManager.getProjectById(id));
+    }
+
+    
+
+
+
+	// unit testing idk
+
+
 }
