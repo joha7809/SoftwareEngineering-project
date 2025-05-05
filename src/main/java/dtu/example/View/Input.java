@@ -1,6 +1,9 @@
 package dtu.example.View;
 
 public class Input {
+    // This class is used to represent user input. The class is used by the UI-controller for passing input from a scanner
+    // to this data-type. This makes calling commands easier.
+    
     public String name;
     public String[] args;
 
