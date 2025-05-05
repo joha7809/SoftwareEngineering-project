@@ -55,7 +55,7 @@ public class UIController {
         }
     }
 
-
+    //made by johannes. Splits input into two parts, first being commands, the rest are arguments. Returns Input
     public Input readLine(String input) {
         String[] parts = input.split("\\s+");
         String command = parts[0];
