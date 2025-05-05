@@ -17,4 +17,12 @@ public class View {
         }
 
     }
+
+    public void welcome(){
+        System.out.println(
+            """
+                Welcome! Please login by typing: login {username}
+                If not registered use: signup {username}
+            """);
+    }
 }
