@@ -13,10 +13,11 @@ import dtu.example.model.User;
 
 public class UIController {
     private AppManager appManager;
-    private View view = new View();
     private CommandRegistry registry;
-    private Scanner sc = new Scanner(System.in);
     private User activeUser;
+    private View view = new View();
+    private Scanner sc = new Scanner(System.in);
+    
 
     public UIController(AppManager manager) {
         this.appManager = manager;
