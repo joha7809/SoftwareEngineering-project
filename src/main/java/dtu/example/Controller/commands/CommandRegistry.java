@@ -10,9 +10,11 @@ public class CommandRegistry {
         // Init all commands
         Login login = new Login(controller);
         CreateProject createProject = new CreateProject(controller);
+        ProjectLeadCommand projectLead = new ProjectLeadCommand(controller);
 
         this.registerCommand(login);
         this.registerCommand(createProject);
+        this.registerCommand(projectLead);
     }
 
     public void registerCommand(CommandInterface<?> command){
