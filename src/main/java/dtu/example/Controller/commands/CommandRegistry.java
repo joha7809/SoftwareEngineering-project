@@ -10,9 +10,12 @@ public class CommandRegistry {
         // Init all commands
         Login login = new Login(controller);
         CreateProject createProject = new CreateProject(controller);
+        CreateActivity createActivity = new CreateActivity(controller);
 
         this.registerCommand(login);
         this.registerCommand(createProject);
+        this.registerCommand(createActivity);
+
     }
 
     public void registerCommand(CommandInterface<?> command){

@@ -1,10 +1,23 @@
 package hellocucumber;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import dtu.example.Controller.AppManager;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class CreateProjectActivitySteps {
+
+    AppManager appManager = new AppManager();
+    
+
+    @Given("a project called {string} exists")
+    public void a_project_called_exists(String s) {
+        // Write code here that turns the phrase above into concrete actions
+        appManager.createProject(s);
+        assertTrue(appManager.getProject(s) != null);
+    }
 
     @Given("user {string} is not project leader for {string}")
     public void user_is_not_project_leader_for(String s, String s2) {
@@ -16,10 +29,7 @@ public class CreateProjectActivitySteps {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @Given("a project called {string} exists")
-    public void a_project_called_exists(String s) {
-        // Write code here that turns the phrase above into concrete actions
-    }
+   
 
     @Given("the project has a project leader for {string}")
     public void the_project_has_a_project_leader_for(String s) {

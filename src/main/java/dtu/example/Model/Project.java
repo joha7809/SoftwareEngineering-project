@@ -26,6 +26,7 @@ public class Project {
     public List getAllActivities(){
         return activities;
     }
+    
 
     //public Activity getActivity(String name){
       //  for (Activity activity : activities){
