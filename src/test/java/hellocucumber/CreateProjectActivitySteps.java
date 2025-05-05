@@ -8,9 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class CreateProjectActivitySteps {
-
-    AppManager appManager = new AppManager();
-    
+    private final AppManager appManager = new AppManager();
 
     @Given("a project called {string} exists")
     public void a_project_called_exists(String s) {

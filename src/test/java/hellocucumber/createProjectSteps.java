@@ -15,10 +15,17 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Given;
 
 public class createProjectSteps {
-	public AppManager appManager = new AppManager();
 	public User user = new User("huba");
 	public String projectToBeAddedName;
 	public StatusMessage result;
+
+	private final SharedContext sharedContext;
+    private final AppManager appManager;
+
+    public createProjectSteps(SharedContext sharedContext) {
+        this.sharedContext = sharedContext;
+        this.appManager = sharedContext.getAppManager();
+    }
 
 	@Given("a user is logged in")
 	public void a_user_is_logged_in() {
@@ -31,6 +38,7 @@ public class createProjectSteps {
 	@Given("there is a project with the name {string}")
 	public void there_is_a_project_with_the_name(String projectName) {
 		// Initialize and add project to project_list in appManager.
+		System.out.println("Creating project with name: " + projectName);
 		result = appManager.createProject(projectName);
 		assertTrue(result.success); // Was the project created?
 	}
