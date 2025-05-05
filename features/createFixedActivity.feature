@@ -1,3 +1,4 @@
+@fixedactivity
 Feature: Create fixed activity
 
   Adam wrote this feature
