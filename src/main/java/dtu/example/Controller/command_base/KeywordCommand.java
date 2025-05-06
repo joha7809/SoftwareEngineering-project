@@ -1,3 +1,4 @@
+
 package dtu.example.Controller.command_base;
 
 import java.util.HashMap;
@@ -6,6 +7,13 @@ import java.util.Map;
 import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 
+
+/**
+ * This abstract class is to be used for more advanced commands, such as editing projects, activities and so on.
+ * The class automatically tries to parses the String[] input to its PositionalArguents and KeywordArguments. 
+ * 
+ * @author Johannes
+ */
 public abstract class KeywordCommand<T> implements CommandInterface<T>{
     
     // Override normal command and pass arguments correctly

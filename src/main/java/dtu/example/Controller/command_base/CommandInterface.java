@@ -17,29 +17,8 @@ import dtu.example.Controller.command_returns.CommandResult;
  */
 public interface CommandInterface<T> {
 
-    /**
-     * Returns the name of the command.
-     * 
-     * <p>
-     * The name is used to identify the command and should be unique across all commands.
-     * It is typically used in user input to invoke the command.
-     * </p>
-     * 
-     * @return The name of the command as a {@code String}.
-     */
-    String getName();
-
-    /**
-     * Returns the description of the command.
-     * 
-     * <p>
-     * The description provides information about the command's purpose and usage.
-     * It is typically displayed in help menus or documentation to assist users.
-     * </p>
-     * 
-     * @return The description of the command as a {@code String}.
-     */
-    String getDescription();
+    String getName(); // Mame of the function: used to match input string to function name
+    String getDescription(); // String for printing in the help command
 
     /**
      * Executes the command with the given arguments.
