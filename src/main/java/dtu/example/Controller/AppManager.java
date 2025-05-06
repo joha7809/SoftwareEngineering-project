@@ -92,7 +92,7 @@ public class AppManager {
             String ID = String.format("%02d%03d", currentYear, this.projectCount);
             Project project = new Project(ID, projectName);
             this.projects.put(ID, project);
-            return new StatusMessage(true, "Project with name " + projectName + "and id: " + ID + " was successfuly created!");
+            return new StatusMessage(true, "Project with name " + projectName + " and id: " + ID + " was successfully created!");
         }
 
         // TODO: Implement error messages
