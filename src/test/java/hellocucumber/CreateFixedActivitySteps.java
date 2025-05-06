@@ -3,51 +3,38 @@ package hellocucumber;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-
+import dtu.example.Controller.AppManager;
+import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.User;
 
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
 public class CreateFixedActivitySteps {
-    public User user = new User("pete");
+    User user;
+    
 
-
-    @Given("Given user {string} exists")
-    public void Given_user_exists(String s) {
-        // Write code here that turns the phrase above into concrete actions
-        assertTrue(user.getUserID() == "pete");
+    @Given("user {string} exists")
+    public void user_exists(String username) {
+        user = new User(username);
+        assertTrue(user.getUserID() == username);
+        // TODO: Implement logic to ensure the user exists
     }
 
-    @When("user enters the type {string} for the fixed activity")
-    public void user_enters_the_type_for_the_fixed_activity(String s) {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @When("user enters the timeEnd {string} for the fixed activity")
-    public void user_enters_the_timeEnd_for_the_fixed_activity(String s) {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @When("user enters the timeStart {string} for the fixed activity")
-    public void user_enters_the_timeStart_for_the_fixed_activity(String s) {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @When("user enters the timeEnd {int} for the fixed activity")
-    public void user_enters_the_timeEnd_for_the_fixed_activity(int i) {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @When("user enters the timeStart {int} for the fixed activity")
-    public void user_enters_the_timeStart_for_the_fixed_activity(int i) {
-        // Write code here that turns the phrase above into concrete actions
+    @When("the user types the command {string} and arguments {string} {string} {string}")
+    public void the_user_types_the_command_createFixedActivity(String command, String timeStart, String timeEnd, String type) {
+        // TODO: Implement logic to handle the command
+        
     }
 
     @Then("a fixed activity is created with the user {string}, start date {string}, end date {string} and type {string}")
-    public void a_fixed_activity_is_created_with_the_user_start_date_end_date_and_type(String s, String s2, String s3, String s4) {
-        // Write code here that turns the phrase above into concrete actions
+    public void a_fixed_activity_is_created_with_the_user_start_date_end_date_and_type(String username, String timeStart, String timeEnd, String type) {
+        // TODO: Implement logic to verify the fixed activity creation
+    }
+
+    @Then("the system displays an error message: {string}")
+    public void the_system_displays_an_error_message(String expectedMessage) {
+        // TODO: Implement logic to verify the error message
     }
 
 }

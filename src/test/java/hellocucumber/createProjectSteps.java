@@ -15,14 +15,27 @@ import io.cucumber.java.en.When;
 import io.cucumber.java.en.Given;
 
 public class createProjectSteps {
-	public AppManager appManager = new AppManager();
-	public User user = new User("huba");
+	public User user;
 	public String projectToBeAddedName;
 	public StatusMessage result;
+
+	private final SharedContext sharedContext;
+    private final AppManager appManager;
+
+    public createProjectSteps(SharedContext sharedContext) {
+        this.sharedContext = sharedContext;
+        this.appManager = sharedContext.getAppManager();
+    }
 
 	@Given("a user is logged in")
 	public void a_user_is_logged_in() {
 		// Write code here that turns the phrase above into concrete actions
+
+		var msg = appManager.createUser("huba");
+		assertTrue(msg.success);
+		user = appManager.getUser("huba");
+
+
 		appManager.setActiveUser(user);
 		assertTrue(appManager.getActiveUser() == user);
 
@@ -31,6 +44,7 @@ public class createProjectSteps {
 	@Given("there is a project with the name {string}")
 	public void there_is_a_project_with_the_name(String projectName) {
 		// Initialize and add project to project_list in appManager.
+		System.out.println("Creating project with name: " + projectName);
 		result = appManager.createProject(projectName);
 		assertTrue(result.success); // Was the project created?
 	}
@@ -39,7 +53,7 @@ public class createProjectSteps {
 	public void there_is_no_project_with_the_name(String name) {
 		// Assert that there doesnt exist a project with name={name} in project list of
 		// appManager
-		Project project = appManager.getProject(name);
+		Project project = appManager.getProjectByName(name);
 		assertTrue(project == null);
 	}
 
@@ -53,7 +67,7 @@ public class createProjectSteps {
 	public void the_project_is_added_to_the_list_of_projects() {
 		// Write code here that turns the phrase above into concrete actions
 		assertTrue(result.success);
-		assertTrue(appManager.getProject(projectToBeAddedName) != null);
+		assertTrue(appManager.getProjectByName(projectToBeAddedName) != null);
 	}
 
 	@Then("an error message is printed")
@@ -62,4 +76,24 @@ public class createProjectSteps {
 		assertFalse(result.success);
 		System.out.println(result.message);
 	}
+
+	@Given("no projects exist")
+    public void no_projects_exist() {
+        // Write code here that turns the phrase above into concrete actions
+		assertTrue(appManager.getProjectById("25001") == null);
+    }
+
+    @Then("the project with the name {string} has id {string}")
+    public void the_project_with_the_name_has_id(String name, String id) {
+        assertTrue(appManager.getProjectByName(name).getProjectID().equals(id));
+		assertTrue(appManager.getProjectByName(name) == appManager.getProjectById(id));
+    }
+
+    
+
+
+
+	// unit testing idk
+
+
 }

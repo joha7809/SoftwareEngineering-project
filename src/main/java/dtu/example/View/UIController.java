@@ -7,7 +7,7 @@ import dtu.example.Controller.AppManager;
 import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.commands.CommandInterface;
 import dtu.example.Controller.commands.CommandRegistry;
-import dtu.example.Controller.commands.Login;
+import dtu.example.Controller.commands.LoginCommand;
 import dtu.example.model.User;
 
 

@@ -1,5 +1,6 @@
 package dtu.example.Controller;
 
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -7,10 +8,12 @@ import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.*;
 
 public class AppManager {
-    private ArrayList<Project> projects;
+    //private ArrayList<Project> projects;
+    private HashMap<String, Project> projects;
     private HashMap<String, User> users; // Change to HashMap instead?
     private ArrayList<OtherActivity> otherActivities;
     private User activeUser; // The user that is currently logged in
+    private int projectCount;
 
     public User getActiveUser() {
         return activeUser;
@@ -36,43 +39,60 @@ public class AppManager {
 
     public AppManager() {
         // Initialize arrayLists
-        this.projects = new ArrayList<>();
+        this.projects = new HashMap<>();
         this.users = new HashMap<>();
         this.otherActivities = new ArrayList<>();
     }
 
     public AppManager(ArrayList<Project> projects, ArrayList<User> users) {
         // Initialize arrayLists for testing or predifined data.
-        this.projects = projects;
+        this.projects = new HashMap<>();
         this.users = new HashMap<>();
+        this.otherActivities = new ArrayList<>();
+
         for (User user : users) {
             this.users.put(user.getUserID().toLowerCase(), user); // Populate HashMap
         }
-        this.otherActivities = new ArrayList<>();
+
+        for (Project project : projects) {
+            this.projects.put(project.getProjectID(), project);
+        }
+
+        
     }
 
     public void setActiveUser(User user) {
         this.activeUser = user;
     }
 
-    public Project getProject(String projectID) {
-        for (Project project : projects) {
-            if (project.getProjectID().equals(projectID)) {
-                return project;
+    public Project getProjectById(String projectID) {
+        return projects.get(projectID);
+    }
+
+    public Project getProjectByName(String projectName) {
+        for (var entry: this.projects.entrySet()){
+            // in this case the keu is project id and value is our projects.
+            if (entry.getValue().getProjectName().equals(projectName)){
+                return entry.getValue();
             }
         }
         return null;
+        
     }
 
     public StatusMessage createProject(String projectName) {
+        // project id should be of form: {yr}{number} -> "22001"
         if (projectName.equals("")) { // guard clause
             return new StatusMessage(false, "Project name cannot be empty!");
         }
 
-        if (this.getProject(projectName) == null) {
-            Project project = new Project(projectName);
-            this.projects.add(project);
-            return new StatusMessage(true, "Project with name " + projectName + " was successfuly created!");
+        if (this.getProjectByName(projectName) == null) {
+            this.projectCount++;
+            int currentYear = Year.now().getValue() % 100; // Get last two digits of the year
+            String ID = String.format("%02d%03d", currentYear, this.projectCount);
+            Project project = new Project(ID, projectName);
+            this.projects.put(ID, project);
+            return new StatusMessage(true, "Project with name " + projectName + " and id: " + ID + " was successfully created!");
         }
 
         // TODO: Implement error messages

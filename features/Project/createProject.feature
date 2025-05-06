@@ -19,3 +19,18 @@ Feature:Create Project
         Given a user is logged in
         When a project with the name "" is created
         Then an error message is printed
+    
+    Scenario: Test create project and incremental id
+        Given no projects exist
+        When a project with the name "test" is created
+        Then the project with the name "test" has id "25001"
+    
+    Scenario: Test creation of multiple project and id
+        Given no projects exist
+        When a project with the name "test" is created
+        And a project with the name "test2" is created
+        And a project with the name "test3" is created
+        Then the project with the name "test" has id "25001"
+        Then the project with the name "test2" has id "25002"
+        Then the project with the name "test3" has id "25003"
+

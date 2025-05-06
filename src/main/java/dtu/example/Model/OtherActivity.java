@@ -1,5 +1,6 @@
 package dtu.example.model;
 
+//is the same as fixed activity. Maybe it should be renamed?
 public class OtherActivity implements ActivityInterface {
 
     private String activityName;
@@ -24,6 +25,5 @@ public class OtherActivity implements ActivityInterface {
     public Boolean isActive() {
         return null;
     }
-
 
 }

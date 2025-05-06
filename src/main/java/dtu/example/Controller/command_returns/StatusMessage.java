@@ -10,6 +10,11 @@ public class StatusMessage{
         this.message = statusMessage;
     }
     
+    public static StatusMessage uneexpectedArguments(String cmdDesc){
+        return new StatusMessage(false, "Error: Unexpected amount of args" + "\n" + cmdDesc);
+    }
+
+    public static final StatusMessage PROJECT_NOT_FOUND = new StatusMessage(false, "Error: Project not found");
+    public static final StatusMessage USER_NOT_FOUND = new StatusMessage(false, "Error: User not found");
+    
 }
-
-
