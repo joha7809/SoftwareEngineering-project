@@ -1,4 +1,4 @@
-package dtu.example.Controller.commands;
+package dtu.example.Controller.command_base;
 
 import dtu.example.Controller.command_returns.CommandResult;
 

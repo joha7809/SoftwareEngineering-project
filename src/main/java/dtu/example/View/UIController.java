@@ -4,9 +4,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 import dtu.example.Controller.AppManager;
+import dtu.example.Controller.command_base.CommandInterface;
+import dtu.example.Controller.command_base.CommandRegistry;
 import dtu.example.Controller.command_returns.CommandResult;
-import dtu.example.Controller.commands.CommandInterface;
-import dtu.example.Controller.commands.CommandRegistry;
+import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.commands.LoginCommand;
 import dtu.example.model.User;
 
@@ -50,8 +51,14 @@ public class UIController {
                 System.out.println("COMMAND NOT FOUND");
                 continue;
             }
-
-            CommandResult<?> result = command.execute(cmd.args);
+            CommandResult<?> result;
+            try {
+                 result = command.execute(cmd.args);
+            } catch (Exception e) {
+                // TODO: handle exception
+                result = new CommandResult<String>(ReturnTypes.STRING, e.getMessage()); 
+            }
+            
             view.render(result);
         }
     }
