@@ -11,8 +11,10 @@ public class CommandRegistry {
         Login login = new Login(controller);
         CreateProject createProject = new CreateProject(controller);
         ProjectLeadCommand projectLead = new ProjectLeadCommand(controller);
+        SignUpCommand signup = new SignUpCommand(controller);
 
         this.registerCommand(login);
+        this.registerCommand(signup);
         this.registerCommand(createProject);
         this.registerCommand(projectLead);
     }
