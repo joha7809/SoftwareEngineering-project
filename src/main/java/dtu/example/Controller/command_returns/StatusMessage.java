@@ -9,6 +9,15 @@ public class StatusMessage{
         this.success = status;
         this.message = statusMessage;
     }
+
+    @Override
+    public String toString() {
+        
+        return "StatusMessage{" +
+            "success=" + success +
+            ", message='" + message + '\'' +
+            '}';
+    }
     
     public static StatusMessage uneexpectedArguments(String cmdDesc){
         return new StatusMessage(false, "Error: Unexpected amount of args" + "\n" + cmdDesc);

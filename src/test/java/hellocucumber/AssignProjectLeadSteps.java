@@ -34,27 +34,37 @@ public class AssignProjectLeadSteps {
     @Given("there is a user with the name {string}")
     public void thereIsAUserWithTheName(String userID) {
         //Create a user and check for if there isn't a user with the userID
-        appManager.createUser(userID);
+        System.out.println("CREATING USER WITH NAME " + userID);
+        var result = appManager.createUser(userID);
+        System.out.println(result);
+        assertTrue(result.success);
         assertTrue(appManager.getUser(userID) != null);
     }
     
     @Given("Project with the name {string} has no project lead")
     public void projectWithTheNameHasNoProjectLead(String projectName) {
         // Check that the project does not have a project lead
-        assertTrue(appManager.getProjectByName(projectName).getProjectLead() == null);
+        assertTrue(appManager.getProject(projectName).getProjectLead() == null);
     }
 
 
     @Given("user {string} is project lead on project {string}")
     public void userIsProjectLeadOnProject(String userID, String projectName) {
         // Set user to project lead and check that the user is the project lead
-        appManager.getProjectByName(projectName).setProjectLead(appManager.getUser(userID));
-        assertTrue(appManager.getProjectByName(projectName).getProjectLead().getUserID().equals(userID));
+        User user = appManager.getUser(userID);
+        System.out.println("TRYING TO GET USER" + user);
+        assertTrue(user != null);
+        Project project = appManager.getProject(projectName);
+        assertTrue(project != null);
+
+        project.setProjectLead(user);
+        assertTrue(project.getProjectLead() == user);
+        assertTrue(appManager.getProject(projectName).getProjectLead().getUserID().equals(userID));
     }
 
     @When("The user {string} is assigned as project lead on project {string}")
     public void theUserIsAssignedAsProjectLeadOnProject(String userID, String projectName) {
-        project = appManager.getProjectByName(projectName);
+        project = appManager.getProject(projectName);
 
         if (project == null) {
             result = StatusMessage.PROJECT_NOT_FOUND;
@@ -97,6 +107,6 @@ public class AssignProjectLeadSteps {
     public void theProjectHasProjectLead(String string, String string2) {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
-        assertTrue(appManager.getProjectByName(string).getProjectLead().getUserID().equals(string2));
+        assertTrue(appManager.getProject(string).getProjectLead().getUserID().equals(string2));
     }  
 }

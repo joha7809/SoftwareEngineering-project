@@ -65,11 +65,11 @@ public class AppManager {
         this.activeUser = user;
     }
 
-    public Project getProjectById(String projectID) {
+    private Project getProjectById(String projectID) {
         return projects.get(projectID);
     }
 
-    public Project getProjectByName(String projectName) {
+    private Project getProjectByName(String projectName) {
         for (var entry: this.projects.entrySet()){
             // in this case the keu is project id and value is our projects.
             if (entry.getValue().getProjectName().equals(projectName)){
@@ -99,4 +99,21 @@ public class AppManager {
         return new StatusMessage(false, "Project already exists!");
     }
 
+    public void createProjectActivity(String projectName, String activityName){
+        // getProjectByName(projectName).addActivity(activityName);
+    }
+
+    public Project getProject(String projectInput){
+        Project project;
+        // Accepts both id-format and project name
+
+        // Determines if the projectInput is string of 5 integers
+        if (projectInput.matches("\\d{5}")) {
+            project = this.getProjectById(projectInput);
+        } else {
+            project = this.getProjectByName(projectInput);
+        }
+
+        return project;
+    }
 }

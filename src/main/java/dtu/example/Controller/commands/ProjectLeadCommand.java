@@ -29,23 +29,10 @@ public class ProjectLeadCommand implements CommandInterface<String> {
         }
         String projectInput = args[0];
         String projectLead = args[1];
-        Project project;
         User user;
 
 
-        boolean searchByID = true;
-
-        // Determine if project provided is of type 5xint or a project name
-        if (!projectInput.matches("\\d{5}")) {
-            searchByID = false;
-        }
-
-        if (searchByID){
-            project = manager.getProjectById(projectInput);
-        } else {
-            project = manager.getProjectByName(projectInput);
-        }
-
+        Project project = manager.getProject(projectInput);
         user = manager.getUser(projectLead);
 
         if(project == null && user == null) {

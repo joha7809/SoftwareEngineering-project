@@ -46,6 +46,9 @@ public class createProjectSteps {
 		// Initialize and add project to project_list in appManager.
 		System.out.println("Creating project with name: " + projectName);
 		result = appManager.createProject(projectName);
+		Project p = appManager.getProject(projectName);
+		assertTrue(p != null);
+		sharedContext.setCurrentProject(p);
 		assertTrue(result.success); // Was the project created?
 	}
 
@@ -53,7 +56,7 @@ public class createProjectSteps {
 	public void there_is_no_project_with_the_name(String name) {
 		// Assert that there doesnt exist a project with name={name} in project list of
 		// appManager
-		Project project = appManager.getProjectByName(name);
+		Project project = appManager.getProject(name);
 		assertTrue(project == null);
 	}
 
@@ -67,7 +70,7 @@ public class createProjectSteps {
 	public void the_project_is_added_to_the_list_of_projects() {
 		// Write code here that turns the phrase above into concrete actions
 		assertTrue(result.success);
-		assertTrue(appManager.getProjectByName(projectToBeAddedName) != null);
+		assertTrue(appManager.getProject(projectToBeAddedName) != null);
 	}
 
 	@Then("an error message is printed")
@@ -80,13 +83,12 @@ public class createProjectSteps {
 	@Given("no projects exist")
     public void no_projects_exist() {
         // Write code here that turns the phrase above into concrete actions
-		assertTrue(appManager.getProjectById("25001") == null);
+		assertTrue(appManager.getProject("25001") == null);
     }
 
     @Then("the project with the name {string} has id {string}")
     public void the_project_with_the_name_has_id(String name, String id) {
-        assertTrue(appManager.getProjectByName(name).getProjectID().equals(id));
-		assertTrue(appManager.getProjectByName(name) == appManager.getProjectById(id));
+        assertTrue(appManager.getProject(name).getProjectID().equals(id));
     }
 
     
