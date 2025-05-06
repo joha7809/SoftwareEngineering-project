@@ -2,21 +2,21 @@ Feature: Assign developers
 
   Adam wrote this feature 
   
-  Scenario: Assign developershttps://learn.microsoft.com/en-us/training/browse/?resource_type=learning%20path
-    Given "Pete" is the project leader
-    And "Bob" is available
+  Scenario: Assign developers https://learn.microsoft.com/en-us/training/browse/?resource_type=learning%20path
+    Given user "kem" is project lead on project "existingProject"
+    And user "Bob" is available
     When project leader assigns "Bob" to activity
     Then "Bob" is assigned to the activity
 
 
   Scenario: assign a different developer
-    Given "Pete" is the project leader
+    Given user "kem" is project lead on project "existingProject"
     And "Bob" is unavailable
     When project leader assigns "Bob" to an activity
     Then "Bob" status is unchanged
 
   Scenario: failing to assign a developer
-    Given "Pete" is the project leader
+    Given user "kem" is project lead on project "existingProject"
     And "Bob" is unavailable
     When project leader assigns "Bob" to an activity
     Then "Bob" is not assigned to the activity
