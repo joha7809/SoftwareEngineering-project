@@ -5,11 +5,11 @@ import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
 
-public class CreateProject implements CommandInterface<StatusMessage> {
+public class CreateProjectCommand implements CommandInterface<StatusMessage> {
 
     private final AppManager manager;
 
-    public CreateProject(AppManager manager) {
+    public CreateProjectCommand(AppManager manager) {
         this.manager = manager;
     }
     

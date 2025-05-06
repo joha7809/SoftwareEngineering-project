@@ -8,8 +8,8 @@ public class CommandRegistry {
 
     public CommandRegistry(AppManager controller){
         // Init all commands
-        Login login = new Login(controller);
-        CreateProject createProject = new CreateProject(controller);
+        LoginCommand login = new LoginCommand(controller);
+        CreateProjectCommand createProject = new CreateProjectCommand(controller);
         ProjectLeadCommand projectLead = new ProjectLeadCommand(controller);
         //CreateActivity createActivity = new CreateActivity(controller);
 

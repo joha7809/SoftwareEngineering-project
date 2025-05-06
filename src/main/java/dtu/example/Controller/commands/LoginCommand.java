@@ -5,11 +5,11 @@ import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.model.User;
 
-public class Login implements CommandInterface<String> { // TODO: USE GENERICS AND RESULT WRAPPER
+public class LoginCommand implements CommandInterface<String> { // TODO: USE GENERICS AND RESULT WRAPPER
 
     private final AppManager manager;
 
-    public Login(AppManager manager) {
+    public LoginCommand(AppManager manager) {
         this.manager = manager;
     }
 
