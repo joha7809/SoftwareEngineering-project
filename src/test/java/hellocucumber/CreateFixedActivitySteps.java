@@ -11,14 +11,20 @@ import dtu.example.model.User;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateFixedActivitySteps {
+    User user;
+    
+
     @Given("user {string} exists")
     public void user_exists(String username) {
+        user = new User(username);
+        assertTrue(user.getUserID() == username);
         // TODO: Implement logic to ensure the user exists
     }
 
     @When("the user types the command {string} and arguments {string} {string} {string}")
     public void the_user_types_the_command_createFixedActivity(String command, String timeStart, String timeEnd, String type) {
         // TODO: Implement logic to handle the command
+        
     }
 
     @Then("a fixed activity is created with the user {string}, start date {string}, end date {string} and type {string}")
