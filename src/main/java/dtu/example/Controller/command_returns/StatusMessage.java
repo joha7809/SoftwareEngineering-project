@@ -25,5 +25,12 @@ public class StatusMessage{
 
     public static final StatusMessage PROJECT_NOT_FOUND = new StatusMessage(false, "Error: Project not found");
     public static final StatusMessage USER_NOT_FOUND = new StatusMessage(false, "Error: User not found");
+
+    public static StatusMessage error(String message){
+        return new StatusMessage(false, message);
+    }
     
+    public static StatusMessage success(String message){
+        return new StatusMessage(true, message);
+    }
 }

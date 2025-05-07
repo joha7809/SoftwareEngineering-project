@@ -20,12 +20,6 @@ public class AppManager {
     }
 
     public User getUser(String userName) {
-        // for (User user : users) {
-        //     if (user.getUserID().equalsIgnoreCase(userName)) { // ignore case if you want
-        //         return user;
-        //     }
-        // }
-        // return null; // not found
         return users.get(userName.toLowerCase());
     }
 
@@ -100,6 +94,10 @@ public class AppManager {
     }
 
     public StatusMessage createProjectActivity(String projectName, String activityName){
+        if (getActiveUser() == null) {
+            return new StatusMessage(false, "Error: No user is logged in.");
+        }
+
         if(projectName.equals("")){
             return new StatusMessage(false, "Error: Project name cannot be empty!");
         } 

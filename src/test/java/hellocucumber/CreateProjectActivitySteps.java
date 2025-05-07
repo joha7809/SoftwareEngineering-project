@@ -75,8 +75,6 @@ public class CreateProjectActivitySteps {
         // Write code here that turns the phrase above into concrete actions
         Project project = sharedContext.getCurrentProject();
         assertTrue(project.getActivity(this.activityName) != null);
-
-
     }
 
     
