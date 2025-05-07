@@ -44,6 +44,12 @@ public class FixedActivity implements ActivityInterface {
     public String getActivityDescription(){
         return this.activityDescription;
     }
+
+    @Override
+
+    public void setEndDate(String endDate){
+        this.endDate = endDate;
+    }
     
 
 

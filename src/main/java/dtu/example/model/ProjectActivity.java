@@ -1,9 +1,15 @@
 package dtu.example.model;
 
+import java.util.ArrayList;
+
 public class ProjectActivity implements ActivityInterface {
     private String name;
     private String startDate;
+    private String endDate;
     private String activityDescription;
+    private float allottedTime;
+    private Boolean isActive;
+    private ArrayList<TimeRegistration> registrations = new ArrayList();
 
     public ProjectActivity(String activityName){
         this.name = activityName;
@@ -16,15 +22,15 @@ public class ProjectActivity implements ActivityInterface {
     }
     @Override
     public String getStartDate() {
-        return null;
+        return this.startDate;
     }
     @Override
     public String getEndDate() {
-        return null;
+        return this.endDate;
     }
     @Override
     public Boolean isActive() {
-        return null;
+        return isActive;
     }
 
     @Override 
@@ -46,6 +52,24 @@ public class ProjectActivity implements ActivityInterface {
     public String getActivityDescription(){
         return this.activityDescription;
     }
+
+    @Override
+    public void setEndDate(String endDate){
+        this.endDate = endDate;
+    }
+
+    public void setAllottedTime(float allottedTime){
+        this.allottedTime = allottedTime;
+    }
+
+    public float getAllottedTime(){
+        return this.allottedTime;
+    }
+
+    public ArrayList<TimeRegistration> getRegistrations(){
+        return registrations;
+    }
+
     
 
 

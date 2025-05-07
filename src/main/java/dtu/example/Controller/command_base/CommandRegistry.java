@@ -2,13 +2,8 @@ package dtu.example.Controller.command_base;
 import java.util.HashMap;
 
 import dtu.example.Controller.AppController;
-import dtu.example.Controller.commands.CreateActivityCommand;
-import dtu.example.Controller.commands.CreateProjectCommand;
-import dtu.example.Controller.commands.HelpCommand;
-import dtu.example.Controller.commands.LoginCommand;
-import dtu.example.Controller.commands.ProjectLeadCommand;
-import dtu.example.Controller.commands.SignUpCommand;
-import dtu.example.Controller.commands.TestKeywordCommand;
+import dtu.example.Controller.commands.*;
+
 
 public class CommandRegistry {
     public HashMap<String, CommandInterface<?>> commands = new HashMap<>();
@@ -22,6 +17,8 @@ public class CommandRegistry {
         HelpCommand help = new HelpCommand(this);
         TestKeywordCommand test = new TestKeywordCommand();
         CreateActivityCommand createActivity = new CreateActivityCommand(controller);
+        RegisterTimeCommand registerTime = new RegisterTimeCommand(controller);
+        
 
         this.registerCommand(login);
         this.registerCommand(signup);
@@ -30,6 +27,7 @@ public class CommandRegistry {
         this.registerCommand(projectLead);
         this.registerCommand(test);
         this.registerCommand(createActivity);
+        this.registerCommand(registerTime);
     }
 
     public void registerCommand(CommandInterface<?> command) {

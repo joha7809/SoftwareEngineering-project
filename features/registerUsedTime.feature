@@ -3,6 +3,7 @@ Feature: Register used time
   Kerem wrote this
 
   Scenario: A user registers used time on an activity
+    Given there is a user with the name "huba"
     Given an user has used a certain time on activity
     When user inputs used time on project
     Then the time used is registered on the activity

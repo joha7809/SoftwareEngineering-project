@@ -8,6 +8,7 @@ public interface ActivityInterface {
     Boolean isActive();
     void setName(String name);
     void setStartDate(String startDate);
+    void setEndDate(String endDate);
     void setActivtyDescription(String activityDescription);
 
 }
