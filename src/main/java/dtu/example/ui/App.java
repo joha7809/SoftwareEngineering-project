@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import dtu.example.Controller.AppController;
-import dtu.example.Controller.AppState;
 import dtu.example.View.UIController;
+import dtu.example.model.AppState;
 import dtu.example.model.Project;
 import dtu.example.model.User;
  

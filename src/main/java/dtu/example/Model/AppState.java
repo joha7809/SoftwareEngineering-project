@@ -1,8 +1,7 @@
-package dtu.example.Controller;
+package dtu.example.model;
 
 import java.util.HashMap;
 import java.util.ArrayList;
-import dtu.example.model.*;
 
 public class AppState {
     private final HashMap<String, Project> projects;
