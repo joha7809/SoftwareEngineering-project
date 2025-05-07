@@ -78,7 +78,7 @@ public class AppController {
         return new StatusMessage(true, "Activity " + activityName + " been successfully created.");
     }
 
-    public StatusMessage createTimeRegistration(String projectName, String activityName, float workHours){
+    public StatusMessage createTimeRegistration(String projectName, String activityName, String workHours){
         //Validation
         if (state.getActiveUser() == null) {
             return new StatusMessage(false, "Error: No user is logged in.");
@@ -96,9 +96,16 @@ public class AppController {
             return StatusMessage.ACTIVITY_NOT_FOUND;
         }
 
+        //Idk: 
+        float hours = Float.valueOf(workHours);
+
+        if (hours % 0.5 != 0){
+            return new StatusMessage(false, "Error: Hours not in half-hour interval.");
+        }
+
         //Hvordan skal date passses?
 
-        TimeRegistration registration = new TimeRegistration(null, workHours, getActiveUser());
+        TimeRegistration registration = new TimeRegistration(null, hours, getActiveUser());
         getProjectActivity(projectName, activityName).addRegistration(registration);;
         return new StatusMessage(true, workHours + "Work hours registered on activity.");
     }

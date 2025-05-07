@@ -1,11 +1,14 @@
 package hellocucumber;
 
+import java.sql.Time;
+
 //import dtu.example.Controller.AppManager;
 import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
 import dtu.example.model.User;
 import dtu.example.model.ProjectActivity;
+import dtu.example.model.TimeRegistration;
 
 public class SharedContext {
     private final AppController controller;
@@ -13,6 +16,7 @@ public class SharedContext {
     private User currentUser;
     private StatusMessage result;
     private ProjectActivity projectactivity;
+    private TimeRegistration registration;
 
     public SharedContext() {
         this.controller = new AppController();
@@ -50,6 +54,14 @@ public class SharedContext {
 
     public ProjectActivity getProjectActivity(){
         return projectactivity;
+    }
+
+    public TimeRegistration getTimeRegistration(){
+        return registration;
+    }
+
+    public void setTimeRegistration(TimeRegistration registration){
+        this.registration = registration;
     }
 
 }

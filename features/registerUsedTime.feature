@@ -7,5 +7,5 @@ Feature: Register used time
     And user "huba" is logged in
     And there is a project with the name "existingProject"
     And there is an activity with the name "projectActivity" for project "existingProject"
-    When the user logs their time on the activity 
+    When the user logs "6.5" hours on the activity 
     Then the time used is registered on the activity
