@@ -97,10 +97,6 @@ public class AppManager {
         if (getActiveUser() == null) {
             return new StatusMessage(false, "Error: No user is logged in.");
         }
-
-        if(projectName.equals("")){
-            return new StatusMessage(false, "Error: Project name cannot be empty!");
-        } 
         
         if (activityName.equals("")){
             return new StatusMessage(false, "Error: Activity name cannot be empty!");
