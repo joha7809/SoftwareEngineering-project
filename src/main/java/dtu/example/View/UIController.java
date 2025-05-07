@@ -54,7 +54,7 @@ public class UIController {
             CommandResult<?> result;
             try {
                  result = command.execute(cmd.args);
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 // TODO: handle exception
                 result = new CommandResult<String>(ReturnTypes.STRING, e.getMessage()); 
             }
