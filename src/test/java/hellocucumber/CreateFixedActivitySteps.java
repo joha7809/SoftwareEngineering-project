@@ -3,7 +3,6 @@ package hellocucumber;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import dtu.example.Controller.AppManager;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.User;
 

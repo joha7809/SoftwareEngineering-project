@@ -9,13 +9,11 @@ public class AppState {
     private final HashMap<String, User> users;
     private final ArrayList<FixedActivity> otherActivities;
     private User activeUser;
-    private int projectCount;
 
     public AppState() {
         this.projects = new HashMap<>();
         this.users = new HashMap<>();
         this.otherActivities = new ArrayList<>();
-        this.projectCount = 0;
     }
 
     // Getters
@@ -52,17 +50,8 @@ public class AppState {
         return otherActivities;
     }
 
-    public int getProjectCount() {
-        return projectCount;
-    }
-
-    // Setters
     public void setActiveUser(User user) {
         this.activeUser = user;
-    }
-
-    public void incrementProjectCount() {
-        this.projectCount++;
     }
 
     public void addUser(User user) {

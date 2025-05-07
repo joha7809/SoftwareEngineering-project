@@ -3,7 +3,7 @@ package hellocucumber;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import dtu.example.Controller.AppManager;
+import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
 import dtu.example.model.User;
@@ -14,13 +14,13 @@ import io.cucumber.java.en.When;
 
 public class AssignProjectLeadSteps {
     
-    private final AppManager appManager;
+    private final AppController controller;
     private final SharedContext sharedContext;
     private Project project;
 
     public AssignProjectLeadSteps(SharedContext sharedContext) {
         this.sharedContext = sharedContext;
-        this.appManager = sharedContext.getAppManager();
+        this.controller = sharedContext.getController();
     }
 
     public StatusMessage result;
@@ -28,57 +28,57 @@ public class AssignProjectLeadSteps {
     @Given("there is no user with the name {string}")
     public void thereIsNoUserWithTheName(String userID) {
         // Check for if there is a user with the userID
-        assertTrue(appManager.getUser(userID) == null);
+        assertTrue(controller.getUser(userID) == null);
     }
 
     @Given("there is a user with the name {string}")
     public void thereIsAUserWithTheName(String userID) {
         //Create a user and check for if there isn't a user with the userID
         System.out.println("CREATING USER WITH NAME " + userID);
-        var result = appManager.createUser(userID);
+        var result = controller.createUser(userID);
         System.out.println(result);
         assertTrue(result.success);
-        assertTrue(appManager.getUser(userID) != null);
+        assertTrue(controller.getUser(userID) != null);
     }
     
     @Given("Project with the name {string} has no project lead")
     public void projectWithTheNameHasNoProjectLead(String projectName) {
         // Check that the project does not have a project lead
-        assertTrue(appManager.getProject(projectName).getProjectLead() == null);
+        assertTrue(controller.getProject(projectName).getProjectLead() == null);
     }
 
 
     @Given("user {string} is project lead on project {string}")
     public void userIsProjectLeadOnProject(String userID, String projectName) {
         // Set user to project lead and check that the user is the project lead
-        User user = appManager.getUser(userID);
+        User user = controller.getUser(userID);
         System.out.println("TRYING TO GET USER" + user);
         assertTrue(user != null);
-        Project project = appManager.getProject(projectName);
+        Project project = controller.getProject(projectName);
         assertTrue(project != null);
 
         project.setProjectLead(user);
         assertTrue(project.getProjectLead() == user);
-        assertTrue(appManager.getProject(projectName).getProjectLead().getUserID().equals(userID));
+        assertTrue(controller.getProject(projectName).getProjectLead().getUserID().equals(userID));
     }
 
     @When("The user {string} is assigned as project lead on project {string}")
     public void theUserIsAssignedAsProjectLeadOnProject(String userID, String projectName) {
-        project = appManager.getProject(projectName);
+        project = controller.getProject(projectName);
 
         if (project == null) {
             result = StatusMessage.PROJECT_NOT_FOUND;
             return;
         }
 
-        User user = appManager.getUser(userID);
+        User user = controller.getUser(userID);
         if (user == null) {
             result = StatusMessage.USER_NOT_FOUND;
             return;
         }
         project.setProjectLead(user);
         result = new StatusMessage(true, "Project lead assigned successfully");
-        //result = appManager.getProjectByName(projectName).setProjectLead(appManager.getUser(userID));
+        //result = controller.getProjectByName(projectName).setProjectLead(controller.getUser(userID));
     }
 
     
@@ -89,6 +89,7 @@ public class AssignProjectLeadSteps {
         result = (result != null) ? result : sharedContext.getResult();
         System.out.println("RESULT: " + result);
         if (!result.success) {
+            System.out.println("Expecte: " + string + " Got: " + result.message);
             assertTrue(result.message.equals(string));
         } else {
             assertTrue(result.success);
@@ -109,6 +110,6 @@ public class AssignProjectLeadSteps {
     public void theProjectHasProjectLead(String string, String string2) {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
-        assertTrue(appManager.getProject(string).getProjectLead().getUserID().equals(string2));
+        assertTrue(controller.getProject(string).getProjectLead().getUserID().equals(string2));
     }  
 }

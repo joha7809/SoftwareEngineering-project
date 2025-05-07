@@ -1,5 +1,6 @@
 
 package dtu.example.model;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,11 @@ public class Project {
     private List<ProjectActivity> activities = new ArrayList<>();
 
     //Constructor
-    public Project(String projectID, String projectName)
-    {
-        this.projectID = projectID;
+    public Project(String projectName, String ID)
+    {   
         this.projectName = projectName;
+        this.projectID = ID; // of form 25001
+        
     }
     
     //Getters and Setters:

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-import dtu.example.Controller.AppManager;
+import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.Controller.commands.CreateProjectCommand;
@@ -14,13 +14,13 @@ import org.junit.jupiter.api.Test;
 
 public class CreateProjectTest {
 
-    private AppManager mockManager;
+    private AppController mockManager;
     private CreateProjectCommand createProjectCommand;
 
     @BeforeEach
     public void setUp() {
         // Mock the AppManager
-        mockManager = mock(AppManager.class);
+        mockManager = mock(AppController.class);
         createProjectCommand = new CreateProjectCommand(mockManager);
     }
 

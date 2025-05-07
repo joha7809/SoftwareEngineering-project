@@ -16,6 +16,10 @@ public class AppController {
     }
 
     public StatusMessage createUser(String userID) {
+        if (userID.isBlank()){
+            return new StatusMessage(false, "Error creating user. User ID cannot be empty.");
+        }
+
         if (state.getUser(userID) != null) {
             return new StatusMessage(false, "Error creating user. User with ID: " + userID + " already exists.");
         }
@@ -32,11 +36,13 @@ public class AppController {
         if (state.getProjectByName(projectName) != null) {
             return new StatusMessage(false, "Project already exists!");
         }
+        Integer projectCount = state.getProjects().size()+1;
+        // Make the id
+        int currentYear = Year.now().getValue() % 100; // Returns the current year in the format 25 for 2025
+        String ID = String.format("%02d%03d", currentYear, projectCount); // Ensures current year is with 2 decimals and count is with 3.
 
-        state.incrementProjectCount();
-        int currentYear = Year.now().getValue() % 100;
-        String ID = String.format("%02d%03d", currentYear, state.getProjectCount());
-        Project project = new Project(ID, projectName);
+
+        Project project = new Project(projectName, ID);
         state.addProject(project);
         return new StatusMessage(true, "Project with name " + projectName + " and id: " + ID + " was successfully created!");
     }
@@ -67,7 +73,7 @@ public class AppController {
         // Business Logic
         ProjectActivity activity = new ProjectActivity(activityName);
         project.addActivity(activity);
-        return new StatusMessage(true, "Activity has been created.");
+        return new StatusMessage(true, "Activity " + activityName + " been successfully created.");
     }
 
     public Project getProject(String projectInput) {

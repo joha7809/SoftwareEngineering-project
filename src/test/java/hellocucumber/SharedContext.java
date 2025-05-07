@@ -1,22 +1,23 @@
 package hellocucumber;
 
-import dtu.example.Controller.AppManager;
+//import dtu.example.Controller.AppManager;
+import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
 import dtu.example.model.User;
 
 public class SharedContext {
-    private final AppManager appManager;
+    private final AppController controller;
     private Project currentProject;
     private User currentUser;
     private StatusMessage result;
 
     public SharedContext() {
-        this.appManager = new AppManager();
+        this.controller = new AppController();
     }
 
-    public AppManager getAppManager() {
-        return appManager;
+    public AppController getController() {
+        return controller;
     }
     
     public Project getCurrentProject() {

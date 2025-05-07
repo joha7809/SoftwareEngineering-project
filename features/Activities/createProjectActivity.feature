@@ -33,4 +33,4 @@ Feature: Create Project Activity
     And the project has a project leader for "existingProject"
     And user "hga" is not project leader for "existingProject"
     When the user creates a project activity with the name "BuildABud"
-    Then the "Error: Logged in user not projectleader." error message is given
+    Then the "Error: Logged in user not project leader." error message is given
