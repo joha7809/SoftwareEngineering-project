@@ -34,7 +34,7 @@ public class CreateProjectActivitySteps {
         assertTrue(project != null);
         assertTrue(user != null);
         
-        assertFalse(project.getProjectLead().equals(user));
+        assertFalse(project.getProjectLead() == (user));
     }
    
 

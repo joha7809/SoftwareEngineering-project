@@ -1,5 +1,6 @@
 package dtu.example.Controller;
 
+import java.io.ObjectInputFilter.Status;
 import java.time.Year;
 import dtu.example.model.*;
 import dtu.example.Controller.command_returns.StatusMessage;
@@ -58,8 +59,9 @@ public class AppController {
         }
 
         Project project = getProject(projectName);
+        
         if (project == null) {
-            return new StatusMessage(false, "Error: Project does not exist!");
+            return StatusMessage.PROJECT_NOT_FOUND;
         }
         
         if (project.getProjectLead() != null && state.getActiveUser() != project.getProjectLead()) {
@@ -95,4 +97,38 @@ public class AppController {
     public User getUser(String userName) {
         return state.getUser(userName);
     }
+
+    public StatusMessage setActivityDescription(String project, String activity, String newDescription){
+        Project p = this.getProject(project);
+        if (p == null){
+            return StatusMessage.PROJECT_NOT_FOUND;
+        }
+        
+        ProjectActivity act = p.getActivity(activity);
+
+        if (act == null) {
+            return StatusMessage.error("Error: Activity not found.");
+        }
+
+        if (p.getProjectLead() != null && p.getProjectLead() != state.getActiveUser()){
+            return StatusMessage.error("Error: You are not project lead.");
+        }
+
+        act.setActivtyDescription(newDescription);
+        return StatusMessage.success("Activity description succesfully set to: " + newDescription);
+    }
+
+    public ProjectActivity getProjectActivity(String projectName, String activityName){
+        Project project = state.getProjectByName(projectName);
+        if(project != null) {
+        ProjectActivity act = project.getActivity(activityName);
+        return act;
+        }
+       
+        else {
+            return null;
+        }
+        
+    }
+
 } 

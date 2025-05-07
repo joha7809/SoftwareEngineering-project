@@ -1,9 +1,9 @@
 package dtu.example.model;
 
 public class ProjectActivity implements ActivityInterface {
-    private String activityName;
     private String name;
     private String startDate;
+    private String activityDescription;
 
     public ProjectActivity(String activityName){
         this.name = activityName;
@@ -36,6 +36,17 @@ public class ProjectActivity implements ActivityInterface {
     public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
+
+    @Override
+    public void setActivtyDescription(String newDescription) {
+        this.activityDescription = newDescription;
+    }
+
+    @Override
+    public String getActivityDescription(){
+        return this.activityDescription;
+    }
+    
 
 
 }

@@ -91,9 +91,8 @@ public class AssignProjectLeadSteps {
         if (!result.success) {
             System.out.println("Expecte: " + string + " Got: " + result.message);
             assertTrue(result.message.equals(string));
-        } else {
-            assertTrue(result.success);
-        }
+        } 
+        assertFalse(result.success);
     }
 
     

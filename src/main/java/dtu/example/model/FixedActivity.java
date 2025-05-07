@@ -6,6 +6,7 @@ public class FixedActivity implements ActivityInterface {
     private String startDate;
     private String endDate;
     private Boolean isActive;
+    private String activityDescription;
     
 
     @Override
@@ -34,6 +35,16 @@ public class FixedActivity implements ActivityInterface {
         
     }
 
+    @Override
+    public void setActivtyDescription(String newDescription) {
+        this.activityDescription = newDescription;
+    }
+
+    @Override
+    public String getActivityDescription(){
+        return this.activityDescription;
+    }
+    
 
 
 }

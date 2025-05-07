@@ -5,12 +5,14 @@ import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
 import dtu.example.model.User;
+import dtu.example.model.ProjectActivity;
 
 public class SharedContext {
     private final AppController controller;
     private Project currentProject;
     private User currentUser;
     private StatusMessage result;
+    private ProjectActivity projectactivity;
 
     public SharedContext() {
         this.controller = new AppController();
@@ -41,4 +43,13 @@ public class SharedContext {
     public void setResult(StatusMessage result) {
         this.result = result;
     }
+
+    public void setProjectActivity(ProjectActivity newprojectactivity){
+        this.projectactivity = newprojectactivity;
+    }
+
+    public ProjectActivity getProjectActivity(){
+        return projectactivity;
+    }
+
 }

@@ -1,3 +1,4 @@
+@projectActivityDesc
 Feature: Change project activity description
 
   Nikolaj wrote this feature
@@ -5,34 +6,32 @@ Feature: Change project activity description
   
 
   Scenario: Project leader changes activity description
-    Given there is a project with the name "22001"
-    And user "kem" is project lead on project "22001"
-    And there is an activity with the name "existingActivity"
+    Given there is a project with the name "test_project"
+    And there is a user with the name "kem"
+    And user "kem" is logged in
+    And user "kem" is project lead on project "test_project"
+    And there is an activity with the name "existingActivity" for project "test_project"
     And the activity description is "" 
-    When the user "kem" changes the description of the activity
-    Then the activity description is updated
-
-  Scenario: Project leader fails to change activity description
-    Given there is a project with the name "22001"
-    And user "kem" is project lead on project "22001"
-    And there is an activity with the name "existingActivity"
-    And the activity description is ""
-    When the project leader changes the description to ""
-    Then the "" error message is given
+    When the user "kem" changes the description of the activity to "Valid Description"
+    Then the activity description is updated to "Valid Description"
 
   Scenario: User updates activity description for leaderless project
-    Given there is a project with the name "22001"
-    And Project with the name "22001" has no project lead
-    And there is an activity with the name "existingActivity"
-    And the activity description is not empty
-    When the user "kem" changes the description of the activity
-    Then the description is updated
+    Given there is a project with the name "test_project"
+    And there is a user with the name "kem"
+    And user "kem" is logged in
+    And Project with the name "test_project" has no project lead
+    And there is an activity with the name "existingActivity" for project "test_project"
+    And the activity description is ""
+    When the user "kem" changes the description of the activity to "test"
+    Then the activity description is updated to "test"
 
   Scenario: User who is not project lead fails to update project activity description
-    Given there is a project with the name "22001"
-    And the project has a project lead
-    And user ”hga” is not project leader for ”22001”
-    And there is an activity with the name "existingActivity"
-    And the activity description is not empty
-    When When the project leader changes the description to ""
-    Then the "" error message is given
+    Given there is a project with the name "test_project"
+    And there is a user with the name "hga"
+    And user "hga" is logged in
+    And user "hga" is not project leader for "test_project"
+    And the project has a project leader for "test_project"
+    And there is an activity with the name "existingActivity" for project "test_project"
+    And the activity description is ""
+    When the user "hga" changes the description of the activity to "test"
+    Then the "Error: You are not project lead." error message is given
