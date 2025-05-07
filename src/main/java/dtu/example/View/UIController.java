@@ -3,7 +3,7 @@ package dtu.example.View;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import dtu.example.Controller.AppManager;
+import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_base.CommandInterface;
 import dtu.example.Controller.command_base.CommandRegistry;
 import dtu.example.Controller.command_returns.CommandResult;
@@ -11,18 +11,17 @@ import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.commands.LoginCommand;
 import dtu.example.model.User;
 
-
 public class UIController {
-    private AppManager appManager;
+    private AppController controller;
     private CommandRegistry registry;
     private User activeUser;
     private View view = new View();
     private Scanner sc = new Scanner(System.in);
     
 
-    public UIController(AppManager manager) {
-        this.appManager = manager;
-        this.registry = new CommandRegistry(manager);
+    public UIController(AppController controller) {
+        this.controller = controller;
+        this.registry = new CommandRegistry(controller);
     }
 
     public void run() {

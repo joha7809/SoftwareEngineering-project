@@ -7,11 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import dtu.example.Controller.AppManager;
+import dtu.example.Controller.AppController;
+import dtu.example.Controller.AppState;
 import dtu.example.View.UIController;
 import dtu.example.model.Project;
 import dtu.example.model.User;
@@ -44,8 +44,16 @@ public class App extends Application {
         ArrayList<User> users = new ArrayList<>(Arrays.asList(new User("admin")));
         ArrayList<Project> projects = new ArrayList<>();
 
-        AppManager manager = new AppManager(projects, users);
-        UIController ui = new UIController(manager);
+        AppState state = new AppState();
+        for (User user : users) {
+            state.addUser(user);
+        }
+        for (Project project : projects) {
+            state.addProject(project);
+        }
+
+        AppController controller = new AppController(state);
+        UIController ui = new UIController(controller);
 
         ui.run();
 

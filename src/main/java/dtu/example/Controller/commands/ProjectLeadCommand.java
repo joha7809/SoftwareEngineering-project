@@ -1,62 +1,50 @@
 package dtu.example.Controller.commands;
 
-import dtu.example.Controller.AppManager;
+import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_base.CommandInterface;
 import dtu.example.Controller.command_returns.CommandResult;
-import dtu.example.Controller.command_returns.ReturnTypes;
+import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
-import dtu.example.model.User;
 
+public class ProjectLeadCommand implements CommandInterface<StatusMessage> {
 
-public class ProjectLeadCommand implements CommandInterface<String> {
+    private final AppController controller;
 
-    private final AppManager manager;
-
-    public ProjectLeadCommand(AppManager manager) {
-        this.manager = manager;
+    public ProjectLeadCommand(AppController controller) {
+        this.controller = controller;
     }
-    
-    public String getName(){
-        return "assignprojectlead";
+
+    public String getName() {
+        return "projectlead";
     }
 
     public String getDescription() {
-        return "assignprojectlead <projectID or projectName> <username> | Assign a project lead.";
+        return "projectlead <project> <username> | Set a user as project lead for a given project.";
     }
 
-    public CommandResult<String> execute(String[] args) {
+    public CommandResult<StatusMessage> execute(String[] args) {
         if (args.length != 2) {
-            return new CommandResult<>(ReturnTypes.STRING, "Invalid number of arguments. Usage: assign_projectlead <project> <username>");
-        }
-        String projectInput = args[0];
-        String projectLead = args[1];
-        User user;
-
-
-        Project project = manager.getProject(projectInput);
-        user = manager.getUser(projectLead);
-
-        if(project == null && user == null) {
-            return new CommandResult<>(ReturnTypes.STRING, "Invalid argument, neither user nor project does exist.");
+            var msg = StatusMessage.uneexpectedArguments(this.getDescription());
+            return CommandResult.statusMessageResult(msg);
         }
 
-        if(project == null){
-            return new CommandResult<>(ReturnTypes.STRING, "Invalid argument, project does not exist.");
+        String projectName = args[0];
+        String userName = args[1];
+
+        Project project = controller.getProject(projectName);
+        if (project == null) {
+            return CommandResult.statusMessageResult(StatusMessage.error("Project does not exist."));
         }
 
-        if(user == null){
-            return new CommandResult<>(ReturnTypes.STRING, "Invalid argument, user does not exist.");
+        if (controller.getUser(userName) == null) {
+            return CommandResult.statusMessageResult(StatusMessage.error("User does not exist."));
         }
 
-  
-        
-        if(project.getProjectLead() != null){
-            if (project.getProjectLead().getUserID().equals(projectLead)) {
-                return new CommandResult<>(ReturnTypes.STRING, "Project lead " + projectLead + " already assigned.");
-            }   
+        if (project.getProjectLead() != null) {
+            return CommandResult.statusMessageResult(StatusMessage.error("Project already has a project lead."));
         }
-        
-        project.setProjectLead(manager.getUser(projectLead));
-        return new CommandResult<>(ReturnTypes.STRING, "Project lead " + projectLead + " successfully assigned.");
+
+        project.setProjectLead(controller.getUser(userName));
+        return CommandResult.statusMessageResult(StatusMessage.success("Project lead set successfully."));
     }
 }

@@ -1,17 +1,16 @@
 package dtu.example.Controller.commands;
 
-import dtu.example.Controller.AppManager;
+import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_base.CommandInterface;
 import dtu.example.Controller.command_returns.CommandResult;
-import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
 
 public class CreateProjectCommand implements CommandInterface<StatusMessage> {
 
-    private final AppManager manager;
+    private final AppController controller;
 
-    public CreateProjectCommand(AppManager manager) {
-        this.manager = manager;
+    public CreateProjectCommand(AppController controller) {
+        this.controller = controller;
     }
     
     public String getName(){
@@ -19,14 +18,13 @@ public class CreateProjectCommand implements CommandInterface<StatusMessage> {
     }
 
     public String getDescription() {
-        return "createproject <projectname> | Create a new project.";
+        return "createproject <projectname> | Create a new project with a given name.";
     }
 
     public CommandResult<StatusMessage> execute(String[] args) {
         if (args.length != 1) {
             var msg = StatusMessage.uneexpectedArguments(this.getDescription());
             return CommandResult.statusMessageResult(msg);
-            //return new CommandResult<>(ReturnTypes.STRING, "Invalid number of arguments. Usage: createproject <projectname>");
         }
         String projectName = args[0];
 
@@ -35,7 +33,7 @@ public class CreateProjectCommand implements CommandInterface<StatusMessage> {
             
         // }
 
-        StatusMessage result = manager.createProject(projectName);
+        StatusMessage result = controller.createProject(projectName);
         return CommandResult.statusMessageResult(result);
         //return new CommandResult<>(ReturnTypes.STRING, "Project " + projectName + " successfully created.");
     }

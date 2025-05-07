@@ -1,18 +1,17 @@
 package dtu.example.Controller.commands;
 
-import dtu.example.Controller.AppManager;
+import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_base.CommandInterface;
 import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
-import dtu.example.model.User;
 
-public class SignUpCommand implements CommandInterface<StatusMessage> { // TODO: USE GENERICS AND RESULT WRAPPER
+public class SignUpCommand implements CommandInterface<StatusMessage> {
 
-    private final AppManager manager;
+    private final AppController controller;
 
-    public SignUpCommand(AppManager manager) {
-        this.manager = manager;
+    public SignUpCommand(AppController controller) {
+        this.controller = controller;
     }
 
     public String getName() {
@@ -20,18 +19,17 @@ public class SignUpCommand implements CommandInterface<StatusMessage> { // TODO:
     }
 
     public String getDescription() {
-        return "signup <username> | Sign Up to the system with a user.";
+        return "signup <username> | Create a new user in the system.";
     }
 
     public CommandResult<StatusMessage> execute(String[] args) {
         if (args.length != 1) {
-            var error = StatusMessage.error("Invalid number of arguments. Usage: " + getDescription());
-            return CommandResult.statusMessageResult(error);
+            var msg = StatusMessage.uneexpectedArguments(this.getDescription());
+            return CommandResult.statusMessageResult(msg);
         }
-        String userName = args[0];
 
-        var result = manager.createUser(userName);
+        String userName = args[0];
+        var result = controller.createUser(userName);
         return CommandResult.statusMessageResult(result);
     }
-
 }
