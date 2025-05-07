@@ -28,7 +28,7 @@ public class RegisterUsedTimeSteps {
     public StatusMessage result;
 
     @When("the user logs their time on the activity")
-        public void theUserLogsTheirTimeOnTheActivity(){
+        public void theUserLogsTheirTimeOnTheActivity() {
         User user = sharedContext.getCurrentUser();
 
     }

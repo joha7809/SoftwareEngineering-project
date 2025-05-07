@@ -68,7 +68,11 @@ public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
                 result = StatusMessage.success("Time registration cancelled.");
                 break;
             }
-            //controller.registerTime(activity, time);
+
+            //TODO: Loop bug når du ikke svarer nej eller ja spørger den om activity name bagefter
+
+
+            //controller.createTimeRegistration(project.getProjectName(), activity, Float.valueOf(time));
             System.out.println("Time registered for activity: " + activity + " with time: " + time);
             System.out.println("Do you want to register more time? (yes/no)");
             String response = scanner.nextLine();
@@ -79,6 +83,9 @@ public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
                 System.out.println("Invalid response. Please enter 'yes' or 'no'.");
             }
         }
+
+        //NOTE: Hvis man udkommenterer nedenstående sætning så crasher den hvis man svarer nej
+        //scanner.close();
         return result;
     }
 

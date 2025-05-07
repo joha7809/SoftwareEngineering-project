@@ -4,11 +4,8 @@ Feature: Register used time
 
   Scenario: A user registers used time on an activity
     Given there is a user with the name "huba"
-    Given an user has used a certain time on activity
-    When user inputs used time on project
-    Then the time used is registered on the activity
-
-  Scenario: A user falsely registers used time on an activity
-    Given an user has not used a certain time on activity
-    When user inputs used time on project
+    And user "huba" is logged in
+    And there is a project with the name "existingProject"
+    And there is an activity with the name "projectActivity" for project "existingProject"
+    When the user logs their time on the activity 
     Then the time used is registered on the activity

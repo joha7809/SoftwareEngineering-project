@@ -70,6 +70,10 @@ public class ProjectActivity implements ActivityInterface {
         return registrations;
     }
 
+    public void addRegistration(TimeRegistration registration){
+        registrations.add(registration);
+    }
+
     
 
 

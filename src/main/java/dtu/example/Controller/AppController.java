@@ -78,6 +78,31 @@ public class AppController {
         return new StatusMessage(true, "Activity " + activityName + " been successfully created.");
     }
 
+    public StatusMessage createTimeRegistration(String projectName, String activityName, float workHours){
+        //Validation
+        if (state.getActiveUser() == null) {
+            return new StatusMessage(false, "Error: No user is logged in.");
+        }
+        
+        Project project = getProject(projectName);
+
+        if (project == null) {
+            return StatusMessage.PROJECT_NOT_FOUND;
+        }
+        
+        ProjectActivity activity = getProjectActivity(projectName, activityName);
+
+        if (activity == null) {
+            return StatusMessage.ACTIVITY_NOT_FOUND;
+        }
+
+        //Hvordan skal date passses?
+
+        TimeRegistration registration = new TimeRegistration(null, workHours, getActiveUser());
+        getProjectActivity(projectName, activityName).addRegistration(registration);;
+        return new StatusMessage(true, workHours + "Work hours registered on activity.");
+    }
+
     public Project getProject(String projectInput) {
         if (projectInput.matches("\\d{5}")) {
             return state.getProjectById(projectInput);
