@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import dtu.example.Controller.AppManager;
+import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
 import dtu.example.model.User;
 import io.cucumber.java.en.Given;
@@ -16,6 +17,8 @@ public class CreateProjectActivitySteps {
 
     private final SharedContext sharedContext;
     private final AppManager appManager;
+    private StatusMessage result;
+    private String activityName;
     
     
     public CreateProjectActivitySteps(SharedContext sharedContext) {
@@ -50,32 +53,33 @@ public class CreateProjectActivitySteps {
         assertTrue(p.getProjectLead() == null);
     }
 
-    @When("the project leader creates a project activity with the name {string}")
-    public void the_project_leader_creates_a_project_activity_with_the_name(String activityName) {
-        // Write code here that turns the phrase above into concrete actions
-        Project project = sharedContext.getCurrentProject();
-        
+    @Given("user {string} is logged in")
+    public void user_is_logged_in(String userID) {
+        User user = appManager.getUser(userID);
+        assertTrue(user != null);
+        appManager.setActiveUser(user);
+        assertTrue(appManager.getActiveUser().equals(user));
     }
 
-    @When("does not give the activity a name")
-    public void does_not_give_the_activity_a_name() {
+    @When("the user creates a project activity with the name {string}")
+    public void the_user_creates_a_project_activity_with_the_name(String activityName) {
         // Write code here that turns the phrase above into concrete actions
-    }
-
-    @When("the user creates a project activity")
-    public void the_user_creates_a_project_activity() {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @Then("a error message is printed")
-    public void a_error_message_is_printed() {
-        // Write code here that turns the phrase above into concrete actions
+        this.activityName = activityName;
+        String projectName = sharedContext.getCurrentProject().getProjectName();
+        result = appManager.createProjectActivity(projectName, activityName);
+        sharedContext.setResult(result);
     }
 
     @Then("a new activity is added to the project with the name")
     public void a_new_activity_is_added_to_the_project_with_the_name() {
         // Write code here that turns the phrase above into concrete actions
+        Project project = sharedContext.getCurrentProject();
+        assertTrue(project.getActivity(this.activityName) != null);
+
+
     }
+
+    
 
   
 

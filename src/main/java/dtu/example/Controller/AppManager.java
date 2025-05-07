@@ -11,7 +11,7 @@ public class AppManager {
     //private ArrayList<Project> projects;
     private HashMap<String, Project> projects;
     private HashMap<String, User> users; // Change to HashMap instead?
-    private ArrayList<OtherActivity> otherActivities;
+    private ArrayList<FixedActivity> otherActivities;
     private User activeUser; // The user that is currently logged in
     private int projectCount;
 
@@ -99,8 +99,26 @@ public class AppManager {
         return new StatusMessage(false, "Project already exists!");
     }
 
-    public void createProjectActivity(String projectName, String activityName){
-        // getProjectByName(projectName).addActivity(activityName);
+    public StatusMessage createProjectActivity(String projectName, String activityName){
+        if(projectName.equals("")){
+            return new StatusMessage(false, "Error: Project name cannot be empty!");
+        } 
+        
+        if (activityName.equals("")){
+            return new StatusMessage(false, "Error: Activity name cannot be empty!");
+        }
+
+        if (getProject(projectName) == null) {
+            return new StatusMessage(false, "Error: Project does not exist!");
+        }
+        
+        if (getProject(projectName).getProjectLead() != null && getActiveUser() != getProject(projectName).getProjectLead()) {
+            return new StatusMessage(false, "Error: Logged in user not projectleader.");
+        }
+
+        ProjectActivity activity = new ProjectActivity(activityName);
+        getProjectByName(projectName).addActivity(activity);
+        return new StatusMessage(true, "Activity has been created.");
     }
 
     public Project getProject(String projectInput){
@@ -116,4 +134,6 @@ public class AppManager {
 
         return project;
     }
+
+
 }

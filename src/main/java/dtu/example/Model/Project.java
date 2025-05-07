@@ -1,5 +1,6 @@
 
 package dtu.example.model;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -8,7 +9,7 @@ public class Project {
     private String projectName;
     private String description = null;
     private User projectLead;
-    private List<WorkActivity> activities;
+    private List<ProjectActivity> activities = new ArrayList<>();
 
     //Constructor
     public Project(String projectID, String projectName)
@@ -34,8 +35,7 @@ public class Project {
         this.description = desc;
     }
 
-
-    public void addActivity(WorkActivity activity){
+    public void addActivity(ProjectActivity activity){
         activities.add(activity);
     }
 
@@ -49,6 +49,15 @@ public class Project {
 
     public User getProjectLead(){
         return this.projectLead;
+    }
+
+    public ProjectActivity getActivity(String activityName){
+        for (ProjectActivity activity : activities) {
+            if (activity.getName().equals(activityName)){
+                return activity;
+            }
+        }
+        return null;
     }
 
 }

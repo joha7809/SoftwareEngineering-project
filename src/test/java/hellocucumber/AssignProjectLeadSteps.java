@@ -86,6 +86,8 @@ public class AssignProjectLeadSteps {
     public void theErrorMessageIsGiven(String string) {
         // Write code here that turns the phrase above into concrete actions
         //throw new io.cucumber.java.PendingException();
+        result = (result != null) ? result : sharedContext.getResult();
+        System.out.println("RESULT: " + result);
         if (!result.success) {
             assertTrue(result.message.equals(string));
         } else {
