@@ -2,7 +2,10 @@ package dtu.example.Controller;
 
 import java.io.ObjectInputFilter.Status;
 import java.lang.reflect.Array;
+import java.time.LocalDate;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 import dtu.example.model.*;
@@ -190,6 +193,61 @@ public class AppController {
             return null;
         }
         
+    }
+
+     //Adam wrote this. It creates a fixed activity, and returns a status message regarding missing arguments
+    public StatusMessage createFixedActivity(String command, String startDate, String endDate, String typeCause){
+        String createFixedActivityCommand = "createFixedActivity";
+        String createFixedActivityType = "sick";
+        boolean commandPass = command.equalsIgnoreCase(createFixedActivityCommand);
+        boolean startDatePass = isDateFormat(startDate);
+        boolean endDatePass = isDateFormat(endDate);
+        boolean typeCausePass = typeCause.equalsIgnoreCase(createFixedActivityType);
+
+        if(!commandPass){
+            return new StatusMessage(commandPass, "First argument is invalid");
+        }else if(!startDatePass){
+            return new StatusMessage(startDatePass, "Second argument is invalid");
+        }else if(!endDatePass){
+            return new StatusMessage(endDatePass, "Third argument is invalid");
+        }else if (!typeCausePass){
+            return new StatusMessage(typeCausePass, "Fourth argument is invalid");
+        }
+
+        try {
+            fixedActivities.add(new FixedActivity(startDate, endDate, typeCause));
+            return new StatusMessage(true, "Arguments accepted");
+        } catch (Exception e) {
+            // TODO: handle exception
+            throw new Error("An error occured");
+        }
+
+        
+        
+    }
+
+    //Adam wrote this. Helps determine whether a date is of the date format
+    public boolean isDateFormat(String dateString){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        try {
+            LocalDate.parse(dateString, formatter);
+            return true;
+        } catch (DateTimeParseException e) {
+            // TODO: handle exception
+            return false;
+        }
+    }
+
+    //Adam wrote this. Finds a fixed activity with a given name
+    public StatusMessage findFixedActivity(String type, String timeStart, String timeEnd){
+        for (int i = 0; i < getFixedActivities().size(); i++){
+            //if(getFixedActivities().get(i).getStartDate().equalsIgnoreCase(name)){//gets problematic once there are multiple fixed activities named the same e. g. sick
+            if(getFixedActivities().get(i).getActivityName().equalsIgnoreCase(type) && getFixedActivities().get(i).getStartDate().equalsIgnoreCase(timeStart) && getFixedActivities().get(i).getEndDate().equalsIgnoreCase(timeEnd)){//gets problematic once there are multiple fixed activities named the same e. g. sick
+                    
+                return new StatusMessage(true, "Fixed Activity was succesfully created");
+            }
+        }
+        return new StatusMessage(false, "Could not find fixed activity");
     }
 
 } 

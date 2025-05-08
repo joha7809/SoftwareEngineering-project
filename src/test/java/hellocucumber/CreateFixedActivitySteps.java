@@ -3,6 +3,7 @@ package hellocucumber;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.User;
 
@@ -10,25 +11,38 @@ import dtu.example.model.User;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateFixedActivitySteps {
-    User user;
+    private final SharedContext sharedContext;
+    private final AppController controller;
+    private StatusMessage result;
+
+    public CreateFixedActivitySteps(SharedContext sharedContext)
+    {
+        this.sharedContext = sharedContext;
+        this.controller = sharedContext.getController();
+
+    }
     
 
-    @Given("user {string} exists")
-    public void user_exists(String username) {
-        user = new User(username);
-        assertTrue(user.getUserID() == username);
-        // TODO: Implement logic to ensure the user exists
+    
+
+    @When("the user types the command {string} and arguments timeStart {string} timeEnd {string} type {string}")
+    public void the_user_types_the_command_and_arguments_timeStart_timeEnd_type(String command, String timeStart, String timeEnd, String type) {
+        // Write code here that turns the phrase above into concrete actions
+        controller.createFixedActivity(command, timeStart, timeEnd, type);
     }
 
-    @When("the user types the command {string} and arguments {string} {string} {string}")
-    public void the_user_types_the_command_createFixedActivity(String command, String timeStart, String timeEnd, String type) {
-        // TODO: Implement logic to handle the command
-        
-    }
-
-    @Then("a fixed activity is created with the user {string}, start date {string}, end date {string} and type {string}")
-    public void a_fixed_activity_is_created_with_the_user_start_date_end_date_and_type(String username, String timeStart, String timeEnd, String type) {
+    @Then("a fixed activity is created with the start date {string}, end date {string} and type {string}")
+    public void a_fixed_activity_is_created_with_the_user_start_date_end_date_and_type(String timeStart, String timeEnd, String type) {
         // TODO: Implement logic to verify the fixed activity creation
+        
+        
+        for (int i = 0; i < controller.getFixedActivities().size(); i++){
+            if(controller.getFixedActivities().get(i).getStartDate().equalsIgnoreCase(timeStart) && controller.getFixedActivities().get(i).getEndDate().equalsIgnoreCase(timeEnd) && controller.getFixedActivities().get(i).getActivityName().equalsIgnoreCase(type)){
+            //if(controller.getFixedActivities().get(i).getActivityName().equalsIgnoreCase(type)){
+                assertTrue(true);
+            }
+            
+        }
     }
 
     @Then("the system displays an error message: {string}")

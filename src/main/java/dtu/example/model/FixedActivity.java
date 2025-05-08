@@ -8,18 +8,24 @@ public class FixedActivity implements ActivityInterface {
     private Boolean isActive;
     private String activityDescription;
     
+    public FixedActivity(String startDate, String endDate, String type){
+        name = type;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
 
     @Override
     public String getName() {
-        return null;
+        return name;
     }
     @Override
     public String getStartDate() {
-        return null;
+        return startDate;
     }
     @Override
     public String getEndDate() {
-        return null;
+        return endDate;
     }
     @Override
     public Boolean isActive() {

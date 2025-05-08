@@ -6,13 +6,13 @@ import java.util.ArrayList;
 public class AppState {
     private final HashMap<String, Project> projects;
     private final HashMap<String, User> users;
-    private final ArrayList<FixedActivity> otherActivities;
+    private final ArrayList<FixedActivity> fixedActivities;
     private User activeUser;
 
     public AppState() {
         this.projects = new HashMap<>();
         this.users = new HashMap<>();
-        this.otherActivities = new ArrayList<>();
+        this.fixedActivities = new ArrayList<>();
     }
 
     // Getters
@@ -45,8 +45,8 @@ public class AppState {
         return users;
     }
 
-    public ArrayList<FixedActivity> getOtherActivities() {
-        return otherActivities;
+    public ArrayList<FixedActivity> getFixedActivities() {
+        return fixedActivities;
     }
 
     public void setActiveUser(User user) {
