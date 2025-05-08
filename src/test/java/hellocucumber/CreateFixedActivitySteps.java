@@ -53,9 +53,9 @@ public class CreateFixedActivitySteps {
         assertTrue(sharedContext.getResult().success);
     }
 
-    @Then("the system displays an error message: {string}")
-    public void the_system_displays_an_error_message(String expectedMessage) {
+    //@Then("the system displays an error message: {string}")
+    //public void the_system_displays_an_error_message(String expectedMessage) {
         // TODO: Implement logic to verify the error message
-    }
+    //}
 
 }
