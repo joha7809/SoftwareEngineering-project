@@ -1,10 +1,10 @@
 package dtu.example.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dtu.example.Controller.command_returns.StatusMessage;
-import dtu.example.model.AppState;
-import dtu.example.model.User;
+import dtu.example.model.*;
 
 public class UserService {
     private final AppState state;
@@ -44,13 +44,18 @@ public class UserService {
         return state.getUser(userName);
     }
 
-    public ArrayList<User> getAllAvailableUsers()
-    {
-        //ved ikke om et hashmap ville være bedre
+    public HashMap<String, User> getAllUsers(){
+        return state.getUsers();
+        
+    }
+    
+    public ArrayList<User> getAllAvailableUsers(String week) {
         ArrayList<User> allAvailableUsers = new ArrayList<>();
-        for (var entry : state.getUsers().entrySet()) {
-            User user = entry.getValue();
-            if (user.getJoinedActivities().size() < 20);{
+        for (User user : state.getUsers().values()) {
+            if (state.getActiveUser() != null && user.getUserID().equals(state.getActiveUser().getUserID())) {
+                continue; // Skip the active user
+            }
+            if (user.getJoinedActivities(week).size() < 20) {
                 allAvailableUsers.add(user);
             }
         }
@@ -63,5 +68,9 @@ public class UserService {
             return user.getJoinedActivities().size() < 20;
         }
         return false;
+    }
+
+    public void addUserToActivity(User user, ProjectActivity activity) {
+        user.joinActivity(activity);
     }
 }

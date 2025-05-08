@@ -4,14 +4,7 @@ Feature: Change end date of activity
 
   Scenario: Employee changes end date
     Given a user is logged in
-    And an activity exists
-    And the end date is set
-    When the user updates the end date
+    And there is a project with the name "existingProject"
+    And there is an activity with the name "existingActivity" for project "existingProject"
+    When the user updates the end date to "02022025"
     Then the end date is updated
-
-  Scenario: Employee fails to change end date
-    Given a user is logged in
-    And an activity exists
-    And the end date is not set
-    When the user updates the end date to "" 
-    Then a error message is printed

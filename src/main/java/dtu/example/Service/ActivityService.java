@@ -4,6 +4,7 @@ import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.AppState;
 import dtu.example.model.Project;
 import dtu.example.model.ProjectActivity;
+import dtu.example.model.User;
 
 public class ActivityService {
     private final AppState state;
@@ -66,10 +67,30 @@ public class ActivityService {
             return StatusMessage.ACTIVITY_NOT_FOUND;
         }
 
-        activity.setStartDate(date);
+        activity.setStartWeek(date);
 
         return StatusMessage.success("Activity start date successfully set to: " + date);
     }
+
+    public StatusMessage setActivityEndDate(Project project, ProjectActivity activity, String date){
+        if (project == null) {
+            return StatusMessage.PROJECT_NOT_FOUND;
+        }
+
+        if (project.getProjectLead() != null && state.getActiveUser() != project.getProjectLead()){
+            return new StatusMessage(false, "Error: You are not project lead.");
+        }
+
+
+        if (activity== null) {
+            return StatusMessage.ACTIVITY_NOT_FOUND;
+        }
+
+        activity.setEndWeek(date);
+
+        return StatusMessage.success("Activity start date successfully set to: " + date);
+    }
+
 
     public String getActivityStartDate(Project project, String activityName){
         ProjectActivity activity = getProjectActivity(project, activityName);
@@ -78,9 +99,21 @@ public class ActivityService {
             return null;
         }
         
-        return activity.getStartDate();
+        return activity.getStartWeek();
 
     }
+
+    public String getActivityEndDate(Project project, String activityName){
+        ProjectActivity activity = getProjectActivity(project, activityName);
+
+        if (activity == null){
+            return null;
+        }
+        
+        return activity.getEndWeek();
+
+    }
+
 
     public StatusMessage setActivityDescription(Project project, ProjectActivity activity, String newDescription){
         if (project == null){
@@ -98,6 +131,19 @@ public class ActivityService {
 
         activity.setActivtyDescription(newDescription);
         return StatusMessage.success("Activity description succesfully set to: " + newDescription);
+    }
+
+    public StatusMessage addUserToActivity(ProjectActivity activity , User user){
+        if (activity == null) {
+            return StatusMessage.ACTIVITY_NOT_FOUND;
+        }
+        if (user == null) {
+            return StatusMessage.USER_NOT_FOUND;
+        }
+
+        activity.addUser(user);
+        user.joinActivity(activity);
+        return StatusMessage.success("User " + user.getUserID() + " added to activity " + activity.getName());
     }
 
 

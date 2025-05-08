@@ -2,60 +2,56 @@ package dtu.example.model;
 
 import java.util.ArrayList;
 
-public class ProjectActivity implements ActivityInterface {
+public class ProjectActivity {
     private String name;
-    private String startDate;
-    private String endDate;
+    private String startWeek;
+    private String endWeek;
     private String activityDescription;
     private float allottedTime;
     private Boolean isActive;
-    private ArrayList<TimeRegistration> registrations = new ArrayList<TimeRegistration>(0);
+    private ArrayList<TimeRegistration> registrations = new ArrayList<>();
+    private ArrayList<User> assignedUsers = new ArrayList<>();
 
     public ProjectActivity(String activityName){
         this.name = activityName;
         
     }
 
-    @Override
     public String getName() {
         return this.name;
     }
-    @Override
-    public String getStartDate() {
-        return this.startDate;
+
+    public String getStartWeek() {
+        return this.startWeek;
     }
-    @Override
-    public String getEndDate() {
-        return this.endDate;
+
+    public String getEndWeek() {
+        return this.endWeek;
     }
-    @Override
+
     public Boolean isActive() {
         return isActive;
     }
 
-    @Override 
     public void setName(String name){
         this.name = name;
     }
 
-    @Override
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
+
+    public void setStartWeek(String startDate) {
+        this.startWeek = startDate;
     }
 
-    @Override
     public void setActivtyDescription(String newDescription) {
         this.activityDescription = newDescription;
     }
 
-    @Override
     public String getActivityDescription(){
         return this.activityDescription;
     }
 
-    @Override
-    public void setEndDate(String endDate){
-        this.endDate = endDate;
+    public void setEndWeek(String endDate){
+        this.endWeek = endDate;
     }
 
     public void setAllottedTime(float allottedTime){
@@ -74,7 +70,9 @@ public class ProjectActivity implements ActivityInterface {
         registrations.add(registration);
     }
 
-    
+    public void addUser(User user) {
+        this.assignedUsers.add(user);
+    }
 
 
 }

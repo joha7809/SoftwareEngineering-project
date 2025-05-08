@@ -7,6 +7,7 @@ import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dtu.example.model.*;
 import dtu.example.Controller.command_returns.StatusMessage;
@@ -82,22 +83,17 @@ public class AppController {
 
     //Ved ik hvordan jeg ellers skal gøre. Skal bruge det til at holde styr hvor mange 
     //activities en user er på: Nikolaj
-    public void addUserToActivity(ProjectActivity activity , User user){
-        if(user.getJoinedActivities().size()<20){
-            user.joinActivity(activity);
-        }
-        else {
-            //error message !!!
-            //fjern user.joinActivity(activity);
-            user.joinActivity(activity);
-        }
-        
+    public StatusMessage addUserToActivity(String projectName, String activityName, String userID){
+        Project project = projectService.getProject(projectName);
+        ProjectActivity activity = activityService.getProjectActivity(project, activityName);
+        User user = userService.getUser(userID);
+        return activityService.addUserToActivity(activity, user);
     }
 
-    public ArrayList<User> getAllAvailableUsers()
-    {
-        return userService.getAllAvailableUsers();
-    }
+    // public ArrayList<User> getAllAvailableUsers()
+    // {
+    //     return userService.getAllAvailableUsers();
+    // }
 
     public boolean isUserAvailable(String userID) {
         return userService.isAvailable(userID);
@@ -150,9 +146,32 @@ public class AppController {
 
     }
 
+    public StatusMessage setActivityEndDate(String projectName, String activityName, String date){
+        Project project = projectService.getProject(projectName);
+        ProjectActivity activity = activityService.getProjectActivity(project, activityName);
+        StatusMessage result = activityService.setActivityEndDate(project, activity, date);
+        return result;
+            
+
+
+    }
+
     public String getActivityStartDate(String projectName, String activityName){
         Project project = projectService.getProject(projectName);
         return activityService.getActivityStartDate(project, activityName);
     }
 
+    public String getActivityEndDate(String projectName, String activityName){
+        Project project = projectService.getProject(projectName);
+        return activityService.getActivityEndDate(project, activityName);
+    }
+
+    public HashMap<String, User> getAllUsers(){
+        return userService.getAllUsers();
+    }
+
+    // Function for getting all availble users for given week
+    public ArrayList<User> getAvailableUsers(String week) {
+        return userService.getAllAvailableUsers(week);
+    }
 } 

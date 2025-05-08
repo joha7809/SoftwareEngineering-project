@@ -24,12 +24,6 @@ public class ChangeStartDateOfActivitySteps {
     }
      public StatusMessage result;
 
-    @When("user updates the start date")
-        public void userUpdatesTheStartDate() {
-        project = sharedContext.getCurrentProject();
-        ProjectActivity activity = sharedContext.getProjectActivity();
-    }
-
     @When("the user updates the start date to {string}")
         public void theUserUpdatesTheStartDateTo(String newStartDate) {
         result = controller.setActivityStartDate(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), newStartDate); 

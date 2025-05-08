@@ -6,7 +6,7 @@ public class User {
 
     private String userID;
 
-    private ArrayList<ProjectActivity> joinedActivities = new ArrayList();
+    private ArrayList<ProjectActivity> joinedActivities = new ArrayList<>();
 
     //User Constructor
     public User(String userID){
@@ -26,6 +26,14 @@ public class User {
     public ArrayList<ProjectActivity> getJoinedActivities(){
         return joinedActivities;
     }
-    
 
+    public ArrayList<ProjectActivity> getJoinedActivities(String week) {
+        ArrayList<ProjectActivity> activitiesInWeek = new ArrayList<>();
+        for (ProjectActivity activity : joinedActivities) {
+            if (activity.getStartWeek().equals(week)) {
+                activitiesInWeek.add(activity);
+            }
+        }
+        return activitiesInWeek;
+    }
 }

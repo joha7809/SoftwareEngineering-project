@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_returns.StatusMessage;
@@ -21,12 +22,7 @@ public class GetAvailableDevelopersSteps {
     
     private final SharedContext sharedContext;
     private final AppController controller;
-    private StatusMessage result;
-
-    private String projectName = "Ikea";
-    private String activityName = "Replanish";
-    private String userName = "Bob";
-    
+    private ArrayList<User> result;
 
     public GetAvailableDevelopersSteps(SharedContext sharedContext)
     {
@@ -34,60 +30,181 @@ public class GetAvailableDevelopersSteps {
         this.controller = sharedContext.getController();
     }
 
-    private Project project;
-    private ProjectActivity activity;
+    @Given("there are {string} users in the system")
+    public void there_are_users_in_the_system(String numberOfUsers) {
+        int number = Integer.valueOf(numberOfUsers);
 
-    @Given("there are multiple users which is available")
-    public void there_are_multiple_users_which_is_available() {
-        // Write code here that turns the phrase above into concrete actions
+        for (int i = 0; i < number; i++) {
+            controller.createUser("user" + i);
+        }
 
-        //laver et project, activity og to users
-        controller.createProject(projectName);
-        controller.createProjectActivity(projectName, activityName);
+    }
 
-        activity = controller.getProjectActivity(projectName, activityName);
+    @Given("each user has fewer than {string} activities assigned in week {string}")
+    public void each_user_has_fewer_than_activities_assigned_in_week(String maxActivities, String week) {
+        Project project = sharedContext.getCurrentProject();
+        HashMap<String, User> users = controller.getAllUsers();
+        int maxActivityCount = Integer.valueOf(maxActivities);
 
-        controller.createUser(userName);
-        controller.createUser(userName + "1");
-        controller.addUserToActivity(activity, controller.getUser(userName));
-        controller.addUserToActivity(activity, controller.getUser(userName+"1"));
+        // Create a fixed set of activities for the project
+        ArrayList<ProjectActivity> activities = new ArrayList<>();
+        for (int i = 1; i <= maxActivityCount; i++) {
+            ProjectActivity activity = new ProjectActivity("Activity" + i);
+            activity.setStartWeek(week);
+            project.addActivity(activity);
+            activities.add(activity);
+        }
 
-        //laver en bool og en counter
-        Boolean multipleAvailableUsers = false;
-        int counter = 0;
-        //chekker at der er to navne der passer med vores users, som er en del af listen med
-        //available users
-        for (User user : controller.getAllAvailableUsers()) {
-            if(controller.getUser(userName).equals(user.getUserID()) || controller.getUser(userName+"1").equals(user.getUserID())){
-                counter++;
+        // Assign each user to the activities
+        for (User user : users.values()) {
+            if (user.getUserID().equals(controller.getActiveUser().getUserID())) {
+                continue; // Ignore the logged-in user from the background
+            }
+
+            for (int i = 0; i < maxActivityCount - 1; i++) { // Ensure fewer than maxActivities
+                ProjectActivity activity = activities.get(i);
+                var msg = controller.addUserToActivity(project.getProjectName(), activity.getName(), user.getUserID());
+                assertTrue(msg.success);
             }
         }
-        //ser og der var mere end 1 hit
-        if(counter>1){
-            multipleAvailableUsers = true;
+    }
+
+    @Given("{string} users have {string} or more activities assigned in week {string}")
+    public void users_have_or_more_activities_assigned_in_week(String numUsers, String minActivities, String week) {
+        Project project = sharedContext.getCurrentProject();
+        HashMap<String, User> users = controller.getAllUsers();
+        int numberOfUsers = Integer.parseInt(numUsers);
+        int minimumActivities = Integer.parseInt(minActivities);
+
+        // Create a fixed set of activities for the project
+        ArrayList<ProjectActivity> activities = new ArrayList<>();
+        for (int i = 1; i <= minimumActivities + 5; i++) { // Ensure we have enough activities
+            ProjectActivity activity = new ProjectActivity("Activity" + i);
+            activity.setStartWeek(week);
+            project.addActivity(activity);
+            activities.add(activity);
         }
-        //GIVER FEJL -_- idk?
-        assertTrue(multipleAvailableUsers);
 
+        // Assign the specified number of users to the activities
+        int assignedUsers = 0;
+        for (User user : users.values()) {
+            if (assignedUsers >= numberOfUsers) {
+                break; // Stop once we've assigned the required number of users
+            }
 
+            if (user.getUserID().equals(controller.getActiveUser().getUserID())) {
+                continue; // Ignore the logged-in user from the background
+            }
+
+            for (int i = 0; i < minimumActivities; i++) { // Assign the minimum number of activities
+                ProjectActivity activity = activities.get(i);
+                var msg = controller.addUserToActivity(project.getProjectName(), activity.getName(), user.getUserID());
+                assertTrue(msg.success);
+            }
+
+            assignedUsers++;
+        }
+
+    // Ensure we assigned the correct number of users
+    assertTrue(assignedUsers == numberOfUsers, "Expected " + numberOfUsers + " users to be assigned, but got " + assignedUsers);
     }
 
-    @When("the user request a list of available users")
-    public void the_user_request_a_list_of_available_users() {
+    @Given("each user has {string} or more activities assigned in week {string}")
+    public void each_user_has_or_more_activities_assigned_in_week(String minActivities, String week) {
         // Write code here that turns the phrase above into concrete actions
+        Project project = sharedContext.getCurrentProject();
+        HashMap<String, User> users = controller.getAllUsers();
+        int maxActivityCount = Integer.valueOf(minActivities)+5;
 
-        //IDK
-        assertTrue(controller.getAllAvailableUsers() == ArrayList<User>)
+        // Create a fixed set of activities for the project
+        ArrayList<ProjectActivity> activities = new ArrayList<>();
+        for (int i = 0; i <= maxActivityCount; i++) { // ensure we are above number
+            ProjectActivity activity = new ProjectActivity("Activity" + i);
+            activity.setStartWeek(week);
+            project.addActivity(activity);
+            activities.add(activity);
+        }
+
+        // Assign each user to the activities
+        for (User user : users.values()) {
+            if (user.getUserID().equals(controller.getActiveUser().getUserID())) {
+                continue; // Ignore the logged-in user from the background
+            }
+
+            for (int i = 0; i <= maxActivityCount; i++) { 
+                ProjectActivity activity = activities.get(i);
+                var msg = controller.addUserToActivity(project.getProjectName(), activity.getName(), user.getUserID());
+                assertTrue(msg.success);
+            }
+        }
     }
 
-    @Then("the user gets all a list of all available users")
-    public void the_user_gets_all_a_list_of_all_available_users() {
+    @Given("user {string} has {string} activities assigned in week {string}")
+    public void user_has_activities_assigned_in_week(String userName, String numActivities, String week) {
         // Write code here that turns the phrase above into concrete actions
+        User user = controller.getUser(userName);
+        assertTrue(user != null, "User " + userName + " not found");
+        Project project = sharedContext.getCurrentProject();
+        int number = Integer.valueOf(numActivities);
+        for (int i = 0; i < number; i++) {
+            ProjectActivity activity = new ProjectActivity("Activity" + i);
+            activity.setStartWeek(week);
+            project.addActivity(activity);
+            var msg = controller.addUserToActivity(project.getProjectName(), activity.getName(), user.getUserID());
+            assertTrue(msg.success);
+        }
+        // Check that the user has the correct number of activities
+        int activityCount = 0;
+        for (ProjectActivity activity : user.getJoinedActivities()) {
+            if (activity.getStartWeek().equals(week)) {
+                activityCount++;
+            }
+        }
+        assertTrue(activityCount == number, "User " + userName + " does not have " + numActivities + " activities assigned in week " + week);
+    }
+    
+    @When("the user requests the list of available users for week {string}")
+    public void the_user_requests_the_list_of_available_users_for_week(String week) {
+        result = controller.getAvailableUsers(week);
     }
 
-    @Given("there are no users available")
-    public void there_are_no_users_available() {
+    @Then("the user receives a list of {string} available users")
+    public void the_user_receives_a_list_of_available_users(String s) {
         // Write code here that turns the phrase above into concrete actions
+        int number = Integer.valueOf(s);
+        assertTrue(result.size() == number, "Expected " + number + " available users, but got " + result.size());
+    }
+
+    @Then("the user receives an empty list of available users")
+    public void the_user_receives_an_empty_list_of_available_users() {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(result.isEmpty(), "Expected an empty list of available users, but got " + result.size());
+    }
+
+    @Then("user {string} is not included in the list of available users")
+    public void user_is_not_included_in_the_list_of_available_users(String s) {
+        // Write code here that turns the phrase above into concrete actions
+        boolean userFound = false;
+        for (User user : result) {
+            if (user.getUserID().equals(s)) {
+                userFound = true;
+                break;
+            }
+        }
+        assertFalse(userFound, "User " + s + " should not be in the list of available users");
+    }
+
+    @Then("user {string} is included in the list of available users")
+    public void user_is_included_in_the_list_of_available_users(String s) {
+        // Write code here that turns the phrase above into concrete actions
+        boolean userFound = false;
+        for (User user : result) {
+            if (user.getUserID().equals(s)) {
+                userFound = true;
+                break;
+            }
+        }
+        assertTrue(userFound, "User " + s + " should be in the list of available users");
     }
 }
 

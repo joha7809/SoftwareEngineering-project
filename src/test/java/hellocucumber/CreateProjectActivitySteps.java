@@ -78,6 +78,12 @@ public class CreateProjectActivitySteps {
         assertTrue(project.getActivity(this.activityName) != null);
     }
 
+    @Given("no user is logged in")
+    public void no_user_is_logged_in() {
+        // Write code here that turns the phrase above into concrete actions
+        assertTrue(controller.getActiveUser() == null, "User is logged in");
+    }
+
     
 
   

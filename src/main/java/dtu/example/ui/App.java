@@ -40,20 +40,8 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        //init model
-        ArrayList<User> users = new ArrayList<>(Arrays.asList(new User("admin")));
-        ArrayList<Project> projects = new ArrayList<>();
-        projects.add(new Project("test", "25001"));
-
-        AppState state = new AppState();
         
-        for (User user : users) {
-            state.addUser(user);
-        }
-        for (Project project : projects) {
-            state.addProject(project);
-        }
-
+        AppState state = setup();
         AppController controller = new AppController(state);
         UIController ui = new UIController(controller);
 
@@ -61,5 +49,23 @@ public class App extends Application {
 
         // once finished close
         System.exit(0);
+    }
+
+    private static AppState setup() {
+        //init model
+        ArrayList<User> users = new ArrayList<>(Arrays.asList(new User("admin")));
+        ArrayList<Project> projects = new ArrayList<>();
+        projects.add(new Project("test", "25001"));
+
+        AppState state = new AppState();
+
+        for (User user : users) {
+            state.addUser(user);
+        }
+        for (Project project : projects) {
+            state.addProject(project);
+        }
+
+        return state;
     }
 }
