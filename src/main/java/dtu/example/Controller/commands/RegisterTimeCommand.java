@@ -7,7 +7,7 @@ import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.*;
-import dtu.example.model.User;
+
 
 public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
 
@@ -23,12 +23,12 @@ public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
     }
 
     public String getDescription() {
-        return "registertime <project> | Used to register time on a project, user is prompted for activity, time";
+        return "registertime <project> <activityname> | Used to register time on a project, user is prompted for activity, time";
     }
 
     public CommandResult<StatusMessage> execute(String[] args) {
         if (args.length != 1) {
-            var msg = StatusMessage.error("Invalid number of arguments. Usage: registertime <project>");
+            var msg = StatusMessage.error("Invalid number of arguments. Usage: registertime <project> <activtyname>");
             return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
         }
         String projectName = args[0];
@@ -43,6 +43,12 @@ public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
             return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
         }
 
+        // check if activities exist for project.
+        if (project.getAllActivities() == null || project.getAllActivities().isEmpty()) {
+            var msg = StatusMessage.error("No activity found.");
+            return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
+        }
+
         StatusMessage status = loop(project);
         return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, status);
     }
@@ -54,14 +60,15 @@ public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
             System.out.println("Enter activity name (or 'exit' to finish): ");
             String activity = scanner.nextLine();
             ProjectActivity projectActivity = controller.getProjectActivity(project.getProjectName(), activity);
-            if (projectActivity == null) {
-                System.out.println("Activity not found. Please try again.");
-                continue;
-            }
             if (activity.equalsIgnoreCase("exit")) {
                 result = StatusMessage.success("Time registration cancelled.");
                 break;
             }
+            if (projectActivity == null) {
+                System.out.println("Activity not found. Please try again.");
+                continue;
+            }
+            
             System.out.println("Enter time spent on activity as decimal: ");
             String time = scanner.nextLine();
             if (time.equalsIgnoreCase("exit")) {
