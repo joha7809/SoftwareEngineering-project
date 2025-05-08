@@ -3,8 +3,13 @@ package hellocucumber;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
+
 import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_returns.StatusMessage;
+import dtu.example.model.Project;
+import dtu.example.model.ProjectActivity;
+import dtu.example.model.User;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -29,66 +34,61 @@ public class GetAvailableDevelopersSteps {
         this.controller = sharedContext.getController();
     }
 
-    //lavet forkert NIKOLAJ
+    private Project project;
+    private ProjectActivity activity;
 
-    @Given("Users assigned to activities under a total of {int} activities a week")
-    public void Users_assigned_to_activities_under_a_total_of_activities_a_week(int activities) {
+    @Given("there are multiple users which is available")
+    public void there_are_multiple_users_which_is_available() {
+        // Write code here that turns the phrase above into concrete actions
+
+        //laver et project, activity og to users
         controller.createProject(projectName);
         controller.createProjectActivity(projectName, activityName);
+
+        activity = controller.getProjectActivity(projectName, activityName);
+
         controller.createUser(userName);
+        controller.createUser(userName + "1");
+        controller.addUserToActivity(activity, controller.getUser(userName));
+        controller.addUserToActivity(activity, controller.getUser(userName+"1"));
 
-
-        assertTrue(controller.getUser(userName).getJoinedActivities().size() < activities);
-    }
-
-    @Given("Users assigned to activities over a total of {int} activities a week")
-    public void Users_assigned_to_activities_over_a_total_of_activities_a_week(int activities) {
-        
-        
-        controller.createProject(projectName);
-        controller.createUser(userName);
-       
-        for(int j = 0; j < 25; j++){
-            controller.createProjectActivity(projectName, activityName + "" + j);
-            controller.addUserToActivity(controller.getProjectActivity(projectName, activityName + "" + j), controller.getUser("1"));
+        //laver en bool og en counter
+        Boolean multipleAvailableUsers = false;
+        int counter = 0;
+        //chekker at der er to navne der passer med vores users, som er en del af listen med
+        //available users
+        for (User user : controller.getAllAvailableUsers()) {
+            if(controller.getUser(userName).equals(user.getUserID()) || controller.getUser(userName+"1").equals(user.getUserID())){
+                counter++;
+            }
         }
+        //ser og der var mere end 1 hit
+        if(counter>1){
+            multipleAvailableUsers = true;
+        }
+        //GIVER FEJL -_- idk?
+        assertTrue(multipleAvailableUsers);
 
-        assertFalse(controller.getUser(userName).getJoinedActivities().size() < activities);
+
     }
 
-    @When("Duration needed for the activty is entered")
-    public void Duration_needed_for_the_activty_is_entered() {
+    @When("the user request a list of available users")
+    public void the_user_request_a_list_of_available_users() {
         // Write code here that turns the phrase above into concrete actions
-        
+
+        //IDK
+        assertTrue(controller.getAllAvailableUsers() == ArrayList<User>)
     }
 
-    @When("Duration is updated")
-    public void Duration_is_updated() {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    
-    @Then("Return all available users")
-    public void Return_all_available_users() {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    
-    @Then("Return a string stating that no user is currently available")
-    public void Return_a_string_stating_that_no_user_is_currently_available() {
+    @Then("the user gets all a list of all available users")
+    public void the_user_gets_all_a_list_of_all_available_users() {
         // Write code here that turns the phrase above into concrete actions
     }
 
-    @Then("Return all available user, that wants to work over the given {int} activities a week")
-    public void Return_all_available_user_that_want_s_to_work_over_the_given_activities_a_week(int i) {
+    @Given("there are no users available")
+    public void there_are_no_users_available() {
         // Write code here that turns the phrase above into concrete actions
     }
-
-
-
-
-
-  
-
- 
 }
+
+    
