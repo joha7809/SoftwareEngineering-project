@@ -13,20 +13,20 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class ChangeEndDateOfActivitySteps {
+public class ChangeEndWeekOfActivitySteps {
     private final AppController controller;
     private final SharedContext sharedContext;
     private Project project;
     
-    public ChangeEndDateOfActivitySteps(SharedContext sharedContext) {
+    public ChangeEndWeekOfActivitySteps(SharedContext sharedContext) {
         this.sharedContext = sharedContext;
         this.controller = sharedContext.getController();
     }
      public StatusMessage result;
 
 
-    @When("the user updates the end date to {string}")
-    public void theUserUpdatesTheEndDateTo(String newEndDate) {
+    @When("the user updates the end week to {string}")
+    public void theUserUpdatesTheEndWeekTo(String newEndWeek) {
         var project = sharedContext.getCurrentProject();
         var activity = sharedContext.getProjectActivity();
 
@@ -34,17 +34,17 @@ public class ChangeEndDateOfActivitySteps {
         String projectName = (project != null && project.getProjectName() != null) ? project.getProjectName() : null;
         String activityName = (activity != null && activity.getName() != null) ? activity.getName() : null;
 
-        result = controller.setActivityEndDate(projectName, activityName, newEndDate); 
+        result = controller.setActivityEndWeek(projectName, activityName, newEndWeek); 
         sharedContext.setResult(result);
     }
 
-    @Then("the end date is updated")
+    @Then("the end week is updated")
     public void theEndDateIsUpdated() {
         assertTrue(sharedContext.getResult().success);
     }
 
-    @Then("the end date is {string}")
-    public void the_end_date_is(String s) {
+    @Then("the end week is {string}")
+    public void the_end_week_is(String s) {
         // Write code here that turns the phrase above into concrete actions
         ProjectActivity act = sharedContext.getProjectActivity();
         Project project = sharedContext.getCurrentProject();

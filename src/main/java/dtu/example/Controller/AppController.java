@@ -141,20 +141,20 @@ public class AppController {
     }
 
 
-    public StatusMessage setActivityStartDate(String projectName, String activityName, String date){
+    public StatusMessage setActivityStartWeek(String projectName, String activityName, String week){
         Project project = projectService.getProject(projectName);
         ProjectActivity activity = activityService.getProjectActivity(project, activityName);
-        StatusMessage result = activityService.setActivityStartDate(project, activity, date);
+        StatusMessage result = activityService.setActivityStartDate(project, activity, week);
         return result;
             
 
 
     }
 
-    public StatusMessage setActivityEndDate(String projectName, String activityName, String date){
+    public StatusMessage setActivityEndWeek(String projectName, String activityName, String week){
         Project project = projectService.getProject(projectName);
         ProjectActivity activity = activityService.getProjectActivity(project, activityName);
-        StatusMessage result = activityService.setActivityEndDate(project, activity, date);
+        StatusMessage result = activityService.setActivityEndWeek(project, activity, week);
         return result;
             
 

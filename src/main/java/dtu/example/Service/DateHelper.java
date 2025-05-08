@@ -16,4 +16,22 @@ public class DateHelper {
             return false;
         }
     }
+
+    public static boolean isWeekFormat(String week) {
+        // Chek if the week is in week format: "WW"
+        if (week == null || week.length() != 2) {
+            return false;
+        }
+        try {
+            var num = Integer.parseInt(week);
+            // Check if the number is between 1 and 52
+            if (num < 1 || num > 52) {
+                return false;
+            }
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+
+    }
 }

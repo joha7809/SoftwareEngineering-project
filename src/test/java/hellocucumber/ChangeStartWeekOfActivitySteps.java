@@ -13,19 +13,19 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class ChangeStartDateOfActivitySteps {
+public class ChangeStartWeekOfActivitySteps {
     private final AppController controller;
     private final SharedContext sharedContext;
     private Project project;
     
-    public ChangeStartDateOfActivitySteps(SharedContext sharedContext) {
+    public ChangeStartWeekOfActivitySteps(SharedContext sharedContext) {
         this.sharedContext = sharedContext;
         this.controller = sharedContext.getController();
     }
      public StatusMessage result;
 
-    @When("the user updates the start date to {string}")
-        public void theUserUpdatesTheStartDateTo(String newStartDate) {
+    @When("the user updates the start week to {string}")
+        public void theUserUpdatesTheStartWeekTo(String newStartDate) {
         var project = sharedContext.getCurrentProject();
         var activity = sharedContext.getProjectActivity();
 
@@ -33,17 +33,17 @@ public class ChangeStartDateOfActivitySteps {
         String projectName = (project != null && project.getProjectName() != null) ? project.getProjectName() : null;
         String activityName = (activity != null && activity.getName() != null) ? activity.getName() : null;
 
-        result = controller.setActivityStartDate(projectName, activityName, newStartDate); 
+        result = controller.setActivityStartWeek(projectName, activityName, newStartDate); 
         sharedContext.setResult(result);
     }
 
-    @Then("the start date is updated")
-    public void theStartDateIsUpdated() {
-        assertTrue(sharedContext.getResult().success);
+    @Then("the start week is updated")
+    public void theStartWeekIsUpdated() {
+        assertTrue(sharedContext.getResult().success, result.message);
     }
 
-    @Then("the start date is {string}")
-    public void the_start_date_is(String s) {
+    @Then("the start week is {string}")
+    public void the_start_week_is(String s) {
         // Write code here that turns the phrase above into concrete actions
         ProjectActivity act = sharedContext.getProjectActivity();
         Project project = sharedContext.getCurrentProject();

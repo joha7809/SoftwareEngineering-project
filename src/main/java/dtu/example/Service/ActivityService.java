@@ -73,8 +73,8 @@ public class ActivityService {
         }
 
         // Validate date
-        if (!DateHelper.isDateFormat(date)) {
-            return StatusMessage.error("Error: Invalid date format. Please use YYYY-MM-DD.");
+        if (!DateHelper.isWeekFormat(date)) {
+            return StatusMessage.error("Error: Invalid week format. Please use: WW");
         }
 
         activity.setStartWeek(date);
@@ -82,7 +82,7 @@ public class ActivityService {
         return StatusMessage.success("Activity start date successfully set to: " + date);
     }
 
-    public StatusMessage setActivityEndDate(Project project, ProjectActivity activity, String date){
+    public StatusMessage setActivityEndWeek(Project project, ProjectActivity activity, String week){
         if (state.getActiveUser() == null) {
             return new StatusMessage(false, "Error: No user is logged in.");
         }
@@ -101,13 +101,13 @@ public class ActivityService {
         }
 
         // Validate date
-        if (!DateHelper.isDateFormat(date)) {
-            return StatusMessage.error("Error: Invalid date format. Please use YYYY-MM-DD.");
+        if (!DateHelper.isWeekFormat(week)) {
+            return StatusMessage.error("Error: Invalid week format. Please use: WW");
         }
 
-        activity.setEndWeek(date);
+        activity.setEndWeek(week);
 
-        return StatusMessage.success("Activity start date successfully set to: " + date);
+        return StatusMessage.success("Activity start date successfully set to: " + week);
     }
 
 

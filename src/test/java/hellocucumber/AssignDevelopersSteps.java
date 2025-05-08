@@ -38,9 +38,13 @@ public class AssignDevelopersSteps {
 
         String projectName = sharedContext.getCurrentProject().getProjectName();
 
-        controller.setActivityStartDate(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), startWeek); 
-        controller.setActivityEndDate(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), endWeek);
+        var res1 = controller.setActivityStartWeek(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), startWeek); 
+        var res2 = controller.setActivityEndWeek(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), endWeek);
         
+        assertTrue(res1.success, res1.message);
+        assertTrue(res2.success, res2.message);
+
+
         assertTrue(controller.getProjectActivity(projectName, activityName).getStartWeek().equals(startWeek));
         assertTrue(controller.getProjectActivity(projectName, activityName).getEndWeek().equals(endWeek));
 
