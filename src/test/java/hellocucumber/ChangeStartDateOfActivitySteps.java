@@ -1,65 +1,44 @@
 // package hellocucumber;
 
-// import io.cucumber.java.en.Given;
-// import io.cucumber.java.en.Then;
-// import io.cucumber.java.en.When;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// public class ChangeStartDateOfActivitySteps {
 
-//     private boolean userLoggedIn;
-//     private boolean activityExists;
-//     private String startDate;
-//     private String errorMessage;
+import dtu.example.Controller.AppController;
+import dtu.example.Controller.command_returns.StatusMessage;
+import dtu.example.model.Project;
+import dtu.example.model.ProjectActivity;
+import dtu.example.model.User;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-//     @Given("user is logged in")
-//     public void userIsLoggedIn() {
-//         this.userLoggedIn = true;
-//     }
+public class ChangeStartDateOfActivitySteps {
+    private final AppController controller;
+    private final SharedContext sharedContext;
+    private Project project;
+    
+    public ChangeStartDateOfActivitySteps(SharedContext sharedContext) {
+        this.sharedContext = sharedContext;
+        this.controller = sharedContext.getController();
+    }
+     public StatusMessage result;
 
-//     @Given("an activity exists")
-//     public void anActivityExists() {
-//         this.activityExists = true;
-//     }
+    @When("user updates the start date")
+        public void userUpdatesTheStartDate() {
+        project = sharedContext.getCurrentProject();
+        ProjectActivity activity = sharedContext.getProjectActivity();
+    }
 
-//     @Given("start date is set")
-//     public void startDateIsSet() {
-//         this.startDate = "2025-04-01"; // Example initial start date
-//     }
+    @When("the user updates the start date to {string}")
+    public void theUserUpdatesTheStartDateTo(String newStartDate) {
+    
+    }
 
-//     @Given("start date is not set")
-//     public void startDateIsNotSet() {
-//         this.startDate = null;
-//     }
+    @Then("the start date is updated")
+    public void theStartDateIsUpdated() {
 
-//     @When("user updates the start date")
-//     public void userUpdatesTheStartDate() {
-//         if (userLoggedIn && activityExists && startDate != null) {
-//             startDate = "2025-04-10"; // Example updated start date
-//         } else {
-//             errorMessage = "Error: Cannot update start date";
-//         }
-//     }
-
-//     @When("the user updates the start date to {string}")
-//     public void theUserUpdatesTheStartDateTo(String newStartDate) {
-//         if (userLoggedIn && activityExists) {
-//             if (newStartDate.isEmpty()) {
-//                 errorMessage = "Error: Start date cannot be empty";
-//             } else {
-//                 startDate = newStartDate;
-//             }
-//         } else {
-//             errorMessage = "Error: Cannot update start date";
-//         }
-//     }
-
-//     @Then("the start date is updated")
-//     public void theStartDateIsUpdated() {
-//         assert startDate.equals("2025-04-10"); // Ensure the start date was updated
-//     }
-
-//     @Then("a error message is printed")
-//     public void aErrorMessageIsPrinted() {
-//         assert errorMessage != null && !errorMessage.isEmpty();
-//     }
-// }
+    }
+        
+}
+    

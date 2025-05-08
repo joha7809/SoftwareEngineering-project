@@ -10,6 +10,7 @@ public class Project {
     private String projectName;
     private String description = null;
     private User projectLead;
+
     private List<ProjectActivity> activities = new ArrayList<>();
 
     //Constructor
@@ -21,23 +22,23 @@ public class Project {
     }
     
     //Getters and Setters:
-    public String getProjectID(){
+    public String getProjectID() {
         return projectID;
     }
 
-    public String getProjectName(){
+    public String getProjectName() {
         return this.projectName;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 
-    public void setDescription(String desc){
+    public void setDescription(String desc) {
         this.description = desc;
     }
 
-    public void addActivity(ProjectActivity activity){
+    public void addActivity(ProjectActivity activity) {
         activities.add(activity);
     }
 
@@ -45,7 +46,7 @@ public class Project {
         return activities;
     }
 
-    public void setProjectLead(User projectLead){
+    public void setProjectLead(User projectLead) {
         this.projectLead = projectLead;
     }
 
@@ -53,7 +54,7 @@ public class Project {
         return this.projectLead;
     }
 
-    public ProjectActivity getActivity(String activityName){
+    public ProjectActivity getActivity(String activityName) {
         for (ProjectActivity activity : activities) {
             if (activity.getName().equals(activityName)){
                 return activity;
@@ -61,5 +62,7 @@ public class Project {
         }
         return null;
     }
+
+
 
 }
