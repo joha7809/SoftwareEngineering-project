@@ -1,6 +1,6 @@
 package hellocucumber;
 
-import java.sql.Time;
+//import java.sql.Time;
 
 //import dtu.example.Controller.AppManager;
 import dtu.example.Controller.AppController;

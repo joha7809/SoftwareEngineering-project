@@ -154,12 +154,21 @@ public class AppController {
     {
         //ved ikke om et hashmap ville være bedre
         ArrayList<User> allAvailableUsers = new ArrayList<>();
-        for (String user : state.getUsers().keySet()) {
-            if (getUser(user).getJoinedActivities().size() < 20);{
-                allAvailableUsers.add(getUser(user));
+        for (var entry : state.getUsers().entrySet()) {
+            User user = entry.getValue();
+            if (user.getJoinedActivities().size() < 20);{
+                allAvailableUsers.add(user);
             }
         }
         return allAvailableUsers;
+    }
+
+    public boolean isAvailable(String userID) {
+        User user = state.getUser(userID);
+        if (user != null) {
+            return user.getJoinedActivities().size() < 20;
+        }
+        return false;
     }
 
     public StatusMessage setActivityDescription(String project, String activity, String newDescription){
@@ -196,35 +205,35 @@ public class AppController {
     }
 
      //Adam wrote this. It creates a fixed activity, and returns a status message regarding missing arguments
-    public StatusMessage createFixedActivity(String command, String startDate, String endDate, String typeCause){
-        String createFixedActivityCommand = "createFixedActivity";
-        String createFixedActivityType = "sick";
-        boolean commandPass = command.equalsIgnoreCase(createFixedActivityCommand);
-        boolean startDatePass = isDateFormat(startDate);
-        boolean endDatePass = isDateFormat(endDate);
-        boolean typeCausePass = typeCause.equalsIgnoreCase(createFixedActivityType);
+    // public StatusMessage createFixedActivity(String command, String startDate, String endDate, String typeCause){
+    //     String createFixedActivityCommand = "createFixedActivity";
+    //     String createFixedActivityType = "sick";
+    //     boolean commandPass = command.equalsIgnoreCase(createFixedActivityCommand);
+    //     boolean startDatePass = isDateFormat(startDate);
+    //     boolean endDatePass = isDateFormat(endDate);
+    //     boolean typeCausePass = typeCause.equalsIgnoreCase(createFixedActivityType);
 
-        if(!commandPass){
-            return new StatusMessage(commandPass, "First argument is invalid");
-        }else if(!startDatePass){
-            return new StatusMessage(startDatePass, "Second argument is invalid");
-        }else if(!endDatePass){
-            return new StatusMessage(endDatePass, "Third argument is invalid");
-        }else if (!typeCausePass){
-            return new StatusMessage(typeCausePass, "Fourth argument is invalid");
-        }
+    //     if(!commandPass){
+    //         return new StatusMessage(commandPass, "First argument is invalid");
+    //     }else if(!startDatePass){
+    //         return new StatusMessage(startDatePass, "Second argument is invalid");
+    //     }else if(!endDatePass){
+    //         return new StatusMessage(endDatePass, "Third argument is invalid");
+    //     }else if (!typeCausePass){
+    //         return new StatusMessage(typeCausePass, "Fourth argument is invalid");
+    //     }
 
-        try {
-            fixedActivities.add(new FixedActivity(startDate, endDate, typeCause));
-            return new StatusMessage(true, "Arguments accepted");
-        } catch (Exception e) {
-            // TODO: handle exception
-            throw new Error("An error occured");
-        }
+    //     try {
+    //         fixedActivities.add(new FixedActivity(startDate, endDate, typeCause));
+    //         return new StatusMessage(true, "Arguments accepted");
+    //     } catch (Exception e) {
+    //         // TODO: handle exception
+    //         throw new Error("An error occured");
+    //     }
 
         
         
-    }
+    //}
 
     //Adam wrote this. Helps determine whether a date is of the date format
     public boolean isDateFormat(String dateString){
@@ -239,15 +248,15 @@ public class AppController {
     }
 
     //Adam wrote this. Finds a fixed activity with a given name
-    public StatusMessage findFixedActivity(String type, String timeStart, String timeEnd){
-        for (int i = 0; i < getFixedActivities().size(); i++){
-            //if(getFixedActivities().get(i).getStartDate().equalsIgnoreCase(name)){//gets problematic once there are multiple fixed activities named the same e. g. sick
-            if(getFixedActivities().get(i).getActivityName().equalsIgnoreCase(type) && getFixedActivities().get(i).getStartDate().equalsIgnoreCase(timeStart) && getFixedActivities().get(i).getEndDate().equalsIgnoreCase(timeEnd)){//gets problematic once there are multiple fixed activities named the same e. g. sick
+    // public StatusMessage findFixedActivity(String type, String timeStart, String timeEnd){
+    //     for (int i = 0; i < getFixedActivities().size(); i++){
+    //         //if(getFixedActivities().get(i).getStartDate().equalsIgnoreCase(name)){//gets problematic once there are multiple fixed activities named the same e. g. sick
+    //         if(getFixedActivities().get(i).getActivityName().equalsIgnoreCase(type) && getFixedActivities().get(i).getStartDate().equalsIgnoreCase(timeStart) && getFixedActivities().get(i).getEndDate().equalsIgnoreCase(timeEnd)){//gets problematic once there are multiple fixed activities named the same e. g. sick
                     
-                return new StatusMessage(true, "Fixed Activity was succesfully created");
-            }
-        }
-        return new StatusMessage(false, "Could not find fixed activity");
-    }
+    //             return new StatusMessage(true, "Fixed Activity was succesfully created");
+    //         }
+    //     }
+    //     return new StatusMessage(false, "Could not find fixed activity");
+    // }
 
 } 

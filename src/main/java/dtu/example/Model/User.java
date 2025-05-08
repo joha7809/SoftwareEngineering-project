@@ -26,6 +26,6 @@ public class User {
     public ArrayList<ProjectActivity> getJoinedActivities(){
         return joinedActivities;
     }
-
+    
 
 }
