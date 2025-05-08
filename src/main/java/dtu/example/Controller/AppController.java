@@ -73,6 +73,11 @@ public class AppController {
         return userService.setActiveUser(user);
     }
 
+    public StatusMessage logout(String userName) {
+        var user = userService.getUser(userName);
+        return userService.logout(user);
+    }
+
     public User getActiveUser() {
         return userService.getActiveUser();
     }

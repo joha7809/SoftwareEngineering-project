@@ -20,7 +20,7 @@ Feature: Create fixed activity
 
   Scenario: User enters two invalid dates
     Given there is a user with the name "hga"
-    When the user creates a fixed activity with timeStart "03022025" timeEnd "Banan" type "sick" 
+    When the user creates a fixed activity with timeStart "03022025231" timeEnd "Banan" type "sick" 
     Then the "Error: Neither dates are valid dates!" error message is given
 
 #  Scenario: User enters invalid type

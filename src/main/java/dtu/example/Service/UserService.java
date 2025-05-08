@@ -73,4 +73,12 @@ public class UserService {
     public void addUserToActivity(User user, ProjectActivity activity) {
         user.joinActivity(activity);
     }
+
+    public StatusMessage logout(User user) {
+        if (user == null) {
+            return StatusMessage.USER_NOT_FOUND;
+        }
+        state.setActiveUser(null);
+        return StatusMessage.success(user.getUserID() + " successfully logged out.");
+    }
 }

@@ -1,4 +1,4 @@
-package dtu.example.controller;
+package dtu.example.Commands;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;

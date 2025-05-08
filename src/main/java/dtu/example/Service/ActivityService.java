@@ -54,6 +54,11 @@ public class ActivityService {
     }
 
     public StatusMessage setActivityStartDate(Project project, ProjectActivity activity, String date){
+        // Validation
+        if (state.getActiveUser() == null) {
+            return new StatusMessage(false, "Error: No user is logged in.");
+        }
+
         if (project == null) {
             return StatusMessage.PROJECT_NOT_FOUND;
         }
@@ -65,6 +70,11 @@ public class ActivityService {
 
         if (activity== null) {
             return StatusMessage.ACTIVITY_NOT_FOUND;
+        }
+
+        // Validate date
+        if (!DateHelper.isDateFormat(date)) {
+            return StatusMessage.error("Error: Invalid date format. Please use YYYY-MM-DD.");
         }
 
         activity.setStartWeek(date);
@@ -73,6 +83,10 @@ public class ActivityService {
     }
 
     public StatusMessage setActivityEndDate(Project project, ProjectActivity activity, String date){
+        if (state.getActiveUser() == null) {
+            return new StatusMessage(false, "Error: No user is logged in.");
+        }
+        
         if (project == null) {
             return StatusMessage.PROJECT_NOT_FOUND;
         }
@@ -84,6 +98,11 @@ public class ActivityService {
 
         if (activity== null) {
             return StatusMessage.ACTIVITY_NOT_FOUND;
+        }
+
+        // Validate date
+        if (!DateHelper.isDateFormat(date)) {
+            return StatusMessage.error("Error: Invalid date format. Please use YYYY-MM-DD.");
         }
 
         activity.setEndWeek(date);

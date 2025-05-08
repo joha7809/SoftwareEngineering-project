@@ -30,16 +30,20 @@ public class FixedActivityService {
         //String createFixedActivityCommand = "createFixedActivity";
         String createFixedActivityType = typeCause;
         //boolean commandPass = command.equalsIgnoreCase(createFixedActivityCommand);
-        boolean startDatePass = isDateFormat(startDate);
-        boolean endDatePass = isDateFormat(endDate);
+        boolean startDatePass = DateHelper.isDateFormat(startDate);
+        boolean endDatePass = DateHelper.isDateFormat(endDate);
         //boolean typeCausePass = typeCause.equalsIgnoreCase(createFixedActivityType);
 
+        if (!startDatePass && !endDatePass){
+            return StatusMessage.error("Error: Neither dates are valid dates!");
+        }
+
         if(!startDatePass){
-            return StatusMessage.error("Error: Start date is not a date");
+            return StatusMessage.error("Error: Start date is not a valid date!");
         }
         
         if(!endDatePass){
-            return StatusMessage.error("Error: End date is not a date");
+            return StatusMessage.error("Error: End date is not a valid date!");
         }
 
         getFixedActivities().add(new FixedActivity(startDate, endDate, typeCause));
@@ -63,17 +67,7 @@ public class FixedActivityService {
     }
 
 
-    //Adam wrote this. Helps determine whether a date is of the date format
-    public boolean isDateFormat(String dateString){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
-        try {
-            LocalDate.parse(dateString, formatter);
-            return true;
-        } catch (DateTimeParseException e) {
-            // TODO: handle exception
-            return false;
-        }
-    }
+    
 
 
     }

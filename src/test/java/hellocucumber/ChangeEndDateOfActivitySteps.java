@@ -26,8 +26,15 @@ public class ChangeEndDateOfActivitySteps {
 
 
     @When("the user updates the end date to {string}")
-        public void theUserUpdatesTheEndDateTo(String newEndDate) {
-        result = controller.setActivityEndDate(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), newEndDate); 
+    public void theUserUpdatesTheEndDateTo(String newEndDate) {
+        var project = sharedContext.getCurrentProject();
+        var activity = sharedContext.getProjectActivity();
+
+        // Handle null cases explicitly
+        String projectName = (project != null && project.getProjectName() != null) ? project.getProjectName() : null;
+        String activityName = (activity != null && activity.getName() != null) ? activity.getName() : null;
+
+        result = controller.setActivityEndDate(projectName, activityName, newEndDate); 
         sharedContext.setResult(result);
     }
 
@@ -35,5 +42,26 @@ public class ChangeEndDateOfActivitySteps {
     public void theEndDateIsUpdated() {
         assertTrue(sharedContext.getResult().success);
     }
+
+    @Then("the end date is {string}")
+    public void the_end_date_is(String s) {
+        // Write code here that turns the phrase above into concrete actions
+        ProjectActivity act = sharedContext.getProjectActivity();
+        Project project = sharedContext.getCurrentProject();
+
+        String endDate = controller.getActivityEndDate(project.getProjectName(), act.getName());
+        assertTrue(endDate.equalsIgnoreCase(s));
+    }
+
+    @Given("there is no activity with the name {string} for project {string}")
+    public void there_is_no_activity_with_the_name_for_project(String activityName, String projectName) {
+        Project project = controller.getProject(projectName);
+        ProjectActivity act = controller.getProjectActivity(projectName, activityName);
+        sharedContext.setProjectActivity(act);
+        sharedContext.setCurrentProject(project);
+        assertTrue(project != null, "Project " + projectName + " does not exist");
+        assertTrue(act == null, "Activity with the name " + activityName + " already exists in project " + projectName);
+    }
+
         
 }
