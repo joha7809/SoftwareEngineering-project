@@ -154,12 +154,21 @@ public class AppController {
     {
         //ved ikke om et hashmap ville være bedre
         ArrayList<User> allAvailableUsers = new ArrayList<>();
-        for (String user : state.getUsers().keySet()) {
-            if (getUser(user).getJoinedActivities().size() < 20);{
-                allAvailableUsers.add(getUser(user));
+        for (var entry : state.getUsers().entrySet()) {
+            User user = entry.getValue();
+            if (user.getJoinedActivities().size() < 20);{
+                allAvailableUsers.add(user);
             }
         }
         return allAvailableUsers;
+    }
+
+    public boolean isAvailable(String userID) {
+        User user = state.getUser(userID);
+        if (user != null) {
+            return user.getJoinedActivities().size() < 20;
+        }
+        return false;
     }
 
     public StatusMessage setActivityDescription(String project, String activity, String newDescription){
@@ -244,6 +253,8 @@ public class AppController {
         }
         return new StatusMessage(false, "Could not find fixed activity");
     }
+
+
 
     public ArrayList<FixedActivity> getFixedActivities() {
         return state.getFixedActivities();

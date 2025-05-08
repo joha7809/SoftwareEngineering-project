@@ -21,19 +21,10 @@ public class CreateFixedActivitySteps {
         this.controller = sharedContext.getController();
 
     }
-    
-
-    // @When("the user types the command {string} and arguments timeStart {string} timeEnd {string} type {string}")
-    // public void the_user_types_the_command_and_arguments_timeStart_timeEnd_type(String command, String timeStart, String timeEnd, String type) {
-    //     // Write code here that turns the phrase above into concrete actions
-    //     result = controller.createFixedActivity(command, timeStart, timeEnd, type);
-    //     sharedContext.setResult(result);
-    // }
 
     @When("the user creates a fixed activity with timeStart {string} timeEnd {string} type {string}")
     public void the_user_types_the_command_and_arguments_timeStart_timeEnd_type(String timeStart, String timeEnd, String type) {
         // Write code here that turns the phrase above into concrete actions
-        //result = controller.createFixedActivity(command, timeStart, timeEnd, type);
         result = controller.createFixedActivity(timeStart, timeEnd, type);
         sharedContext.setResult(result);
     }
@@ -52,10 +43,5 @@ public class CreateFixedActivitySteps {
         }
         assertTrue(sharedContext.getResult().success);
     }
-
-    //@Then("the system displays an error message: {string}")
-    //public void the_system_displays_an_error_message(String expectedMessage) {
-        // TODO: Implement logic to verify the error message
-    //}
 
 }

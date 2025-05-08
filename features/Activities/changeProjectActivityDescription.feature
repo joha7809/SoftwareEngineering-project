@@ -1,4 +1,4 @@
-@projectActivityDesc
+@projectDesc
 Feature: Change project activity description
 
   Nikolaj wrote this feature

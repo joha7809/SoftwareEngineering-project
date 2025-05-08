@@ -36,7 +36,6 @@ public class AssignProjectLeadSteps {
         //Create a user and check for if there isn't a user with the userID
         System.out.println("CREATING USER WITH NAME " + userID);
         var result = controller.createUser(userID);
-        System.out.println(result);
         assertTrue(result.success);
         assertTrue(controller.getUser(userID) != null);
     }
