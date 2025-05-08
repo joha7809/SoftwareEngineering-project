@@ -9,7 +9,7 @@ public class ProjectActivity implements ActivityInterface {
     private String activityDescription;
     private float allottedTime;
     private Boolean isActive;
-    private ArrayList<TimeRegistration> registrations = new ArrayList();
+    private ArrayList<TimeRegistration> registrations = new ArrayList<TimeRegistration>(0);
 
     public ProjectActivity(String activityName){
         this.name = activityName;

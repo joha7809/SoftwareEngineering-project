@@ -46,6 +46,37 @@ public class Project {
         return activities;
     }
 
+    //Adam wrote this. Determines whether the project has time registrations(it does exactly what it says on the tin)
+    //Adam made an edit. Plz don't mess it up
+    public boolean hasTimeRegistrations(){
+        if(hasActivities()){
+            //if theyre undeclared, it's false, if they exist and hold a value, theyre true, otherwise if theyre declared, theyre false
+        for(int i = 0; i < activities.size(); i++){
+            //if(activities.get(i).getRegistrations() == null){
+            if(activities.get(i) == null){
+                return false;
+            }else if(!activities.get(i).getRegistrations().isEmpty()){
+                return true;
+            }
+        }
+        }
+        
+        return false;
+    }
+
+    //Adam wrote this. Determines whether the project has activities(it does exactly what it says on the tin)
+    public boolean hasActivities(){
+        if(activities == null){
+            return false;
+        } else{
+            if(activities.isEmpty()){
+                return false;
+            } else{
+                return true;
+            }
+        }
+    }
+
     public void setProjectLead(User projectLead) {
         this.projectLead = projectLead;
     }
