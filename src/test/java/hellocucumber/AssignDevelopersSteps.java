@@ -30,20 +30,6 @@ public class AssignDevelopersSteps {
     private User user;
     private ProjectActivity activity;
 
-    @Given("user {string} is project lead on project {string}")
-    public void isTheProjectLeader(String userInitials, String projectName) {
-        controller.createUser(userInitials);
-        controller.createProject(projectName);
-        controller.createProjectActivity(projectName, activityName);
-        controller.setActiveUser(controller.getUser(userInitials));
-
-        user = controller.getUser(userInitials);
-        project = controller.getProject(projectName);
-        activity = controller.getProjectActivity(projectName, activityName);
-
-        assertTrue(controller.getActiveUser().equals(userInitials));
-    }
-
     @Given("user {string} is unavailable")
     public void isUnavailable(String userInitials) {
         // Write code here that turns the phrase above into concrete actions
