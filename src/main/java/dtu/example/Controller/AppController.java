@@ -249,4 +249,35 @@ public class AppController {
         return state.getFixedActivities();
     }
 
+
+    public StatusMessage setActivityStartDate(String projectName, String activityName, String date){
+        if (getProject(projectName).getProjectLead() != null && getActiveUser() != getProject(projectName).getProjectLead()){
+            return new StatusMessage(false, "Error: Logged in user not project leader.");
+        }
+
+        var project = getProject(projectName);
+
+        if (project == null) {
+            return StatusMessage.PROJECT_NOT_FOUND;
+        }
+
+        var projectActivity = getProjectActivity(projectName, activityName);
+
+        if (projectActivity == null) {
+            return StatusMessage.ACTIVITY_NOT_FOUND;
+        }
+
+        projectActivity.setStartDate(date);
+        return StatusMessage.success("Activity start date successfully set to: " + date);
+
+
+    }
+
+    public String getActivityStartDate(String projectName, String activityName){
+        ProjectActivity activity = getProjectActivity(projectName, activityName);
+        
+        return activity.getStartDate();
+
+    }
+
 } 

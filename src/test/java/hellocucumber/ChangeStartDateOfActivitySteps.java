@@ -31,13 +31,14 @@ public class ChangeStartDateOfActivitySteps {
     }
 
     @When("the user updates the start date to {string}")
-    public void theUserUpdatesTheStartDateTo(String newStartDate) {
-    
+        public void theUserUpdatesTheStartDateTo(String newStartDate) {
+        result = controller.setActivityStartDate(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), newStartDate); 
+        sharedContext.setResult(result);
     }
 
     @Then("the start date is updated")
     public void theStartDateIsUpdated() {
-
+        assertTrue(sharedContext.getResult().success);
     }
         
 }

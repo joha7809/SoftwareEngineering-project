@@ -18,7 +18,7 @@ public class CommandRegistry {
         TestKeywordCommand test = new TestKeywordCommand();
         CreateActivityCommand createActivity = new CreateActivityCommand(controller);
         RegisterTimeCommand registerTime = new RegisterTimeCommand(controller);
-        
+        CreateFixedActivityCommand createFixedActivity = new CreateFixedActivityCommand(controller);
 
         this.registerCommand(login);
         this.registerCommand(signup);
@@ -28,6 +28,7 @@ public class CommandRegistry {
         this.registerCommand(test);
         this.registerCommand(createActivity);
         this.registerCommand(registerTime);
+        this.registerCommand(createFixedActivity);
     }
 
     public void registerCommand(CommandInterface<?> command) {
