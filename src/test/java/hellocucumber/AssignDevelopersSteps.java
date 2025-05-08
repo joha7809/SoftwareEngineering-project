@@ -35,11 +35,14 @@ public class AssignDevelopersSteps {
     public void theActivityStartsInWeekAndEndsInWeek(String activityName, String startWeek, String endWeek){
 
         //TODO: Lidt scuffed måde at få fat på activity / project etc men øh...
-        result = controller.setActivityStartDate(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), startWeek); 
-        //controller.setActivityEndDate(projectName, activityName, endWeek);
-        //System.out.println("ASLDAJSLD " + projectName + " " +activityName +" " + activity.getName() + " " +activity.getStartWeek() + " " + startWeek);
-        //assertTrue(controller.getProjectActivity(projectName, activityName).getStartWeek().equals(startWeek));
-        //assertTrue(activity.getEndWeek().equals(endWeek));
+
+        String projectName = sharedContext.getCurrentProject().getProjectName();
+
+        controller.setActivityStartDate(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), startWeek); 
+        controller.setActivityEndDate(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), endWeek);
+        
+        assertTrue(controller.getProjectActivity(projectName, activityName).getStartWeek().equals(startWeek));
+        assertTrue(controller.getProjectActivity(projectName, activityName).getEndWeek().equals(endWeek));
 
     }
 
