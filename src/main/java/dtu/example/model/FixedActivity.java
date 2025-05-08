@@ -1,6 +1,5 @@
 package dtu.example.model;
 
-//is the same as fixed activity. Maybe it should be renamed?
 public class FixedActivity implements ActivityInterface {
     private String name;
     private String startDate;
