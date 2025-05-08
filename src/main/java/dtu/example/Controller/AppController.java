@@ -174,4 +174,6 @@ public class AppController {
     public ArrayList<User> getAvailableUsers(String week) {
         return userService.getAllAvailableUsers(week);
     }
+
+
 } 

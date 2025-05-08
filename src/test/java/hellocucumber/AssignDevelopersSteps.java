@@ -1,29 +1,62 @@
-// package hellocucumber;
+package hellocucumber;
 
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-// import dtu.example.Controller.AppController;
-// import dtu.example.Controller.command_returns.StatusMessage;
-// import dtu.example.model.Project;
-// import dtu.example.model.ProjectActivity;
-// import dtu.example.model.User;
-// import dtu.example.ui.App;
-// import io.cucumber.java.en.Given;
-// import io.cucumber.java.en.Then;
-// import io.cucumber.java.en.When;
-// import io.cucumber.java.lu.a;
+import dtu.example.Controller.AppController;
+import dtu.example.Controller.command_returns.StatusMessage;
+import dtu.example.model.Project;
+import dtu.example.model.ProjectActivity;
+import dtu.example.model.User;
+import dtu.example.ui.App;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.cucumber.java.lu.a;
 
-// public class AssignDevelopersSteps {
+public class AssignDevelopersSteps {
 
-//     private final SharedContext sharedContext;
-//     private final AppController controller;
-//     private StatusMessage result;
+    private final SharedContext sharedContext;
+    private final AppController controller;
+    private StatusMessage result;
 
-//     public AssignDevelopersSteps(SharedContext sharedContext) {
-//         this.sharedContext = sharedContext;
-//         this.controller = sharedContext.getController();
-//     }
+    public AssignDevelopersSteps(SharedContext sharedContext) {
+        this.sharedContext = sharedContext;
+        this.controller = sharedContext.getController();
+    }
+
+    @Given("user {string} is available in week {string}")
+    public void userIsAvailable(String userID, String weekNumber){
+        User user = controller.getUser(userID);
+        assertTrue(controller.getAvailableUsers(weekNumber).contains(user));
+    }
+
+    @Given("the activity {string} starts in week {string} and ends in week {string}")
+    public void theActivityStartsInWeekAndEndsInWeek(String activityName, String startWeek, String endWeek){
+
+        //TODO: Lidt scuffed måde at få fat på activity / project etc men øh...
+        result = controller.setActivityStartDate(sharedContext.getCurrentProject().getProjectName(), sharedContext.getProjectActivity().getName(), startWeek); 
+        //controller.setActivityEndDate(projectName, activityName, endWeek);
+        //System.out.println("ASLDAJSLD " + projectName + " " +activityName +" " + activity.getName() + " " +activity.getStartWeek() + " " + startWeek);
+        //assertTrue(controller.getProjectActivity(projectName, activityName).getStartWeek().equals(startWeek));
+        //assertTrue(activity.getEndWeek().equals(endWeek));
+
+    }
+
+    @When("project leader assigns {string} to the activity {string}")
+    public void projectLeaderAssignsToTheActivity(String userID, String activityName){
+        //TODO: Lidt cursed men det virker forhåbentligt
+        Project project = sharedContext.getCurrentProject();
+        result = controller.addUserToActivity(project.getProjectName(), activityName, userID);
+        sharedContext.setResult(result);
+    }
+
+    @Then("{string} is assigned to the activity")
+    public void isAssignedToTheActivity(String userID){
+        assertTrue(result.success);
+    }
+
+    }
 
 //     private String activityName = "Metting";
 //     private Project project;

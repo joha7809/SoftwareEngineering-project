@@ -30,7 +30,7 @@ public class User {
     public ArrayList<ProjectActivity> getJoinedActivities(String week) {
         ArrayList<ProjectActivity> activitiesInWeek = new ArrayList<>();
         for (ProjectActivity activity : joinedActivities) {
-            if (activity.getStartWeek().equals(week)) {
+            if (Integer.valueOf(activity.getStartWeek())<=Integer.valueOf(week) && Integer.valueOf(week)<=Integer.valueOf(activity.getEndWeek())) {
                 activitiesInWeek.add(activity);
             }
         }

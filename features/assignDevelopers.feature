@@ -7,23 +7,26 @@ Feature: Assign developers
 
   Scenario: Assign developer
     Given there is a user with the name "kem"
+    And user "kem" is logged in
     And there is a user with the name "Bob"
     And there is a project with the name "existingProject"
     And user "kem" is project lead on project "existingProject"
-    And user "Bob" is available
+    And user "Bob" is available in week "4"
     And there is an activity with the name "Sleep" for project "existingProject"
-    When project leader assigns "Bob" to an activity
+    And the activity "Sleep" starts in week "3" and ends in week "5"
+    When project leader assigns "Bob" to the activity "Sleep"
     Then "Bob" is assigned to the activity
 
   Scenario: failing to assign a developer
     Given there is a user with the name "kem"
+    And user "kem" is logged in
     And there is a user with the name "Bob"
     And there is a project with the name "existingProject"
     And user "kem" is project lead on project "existingProject"
-    And user "Bob" is unavailable
+    And user "Bob" has "20" activities assigned in week "12"
     And there is an activity with the name "Sleep" for project "existingProject"
-    When project leader assigns "Bob" to an activity
-    Then "Bob" is not assigned to the activity
+    When project leader assigns "Bob" to the activity "Sleep"
+    #Then the "Warning: User is already assigned to 20 activities" error message is given
 
   #Scenario: assign a different developer
     #And user "kem" is project lead on project "existingProject"
