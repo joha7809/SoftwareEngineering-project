@@ -19,6 +19,8 @@ import io.cucumber.java.lu.ugeholl.ugeholls;
 
 
 public class GetAvailableDevelopersSteps {
+
+    //TODO: make test handle start AND end week, currently we pass same argument to both
     
     private final SharedContext sharedContext;
     private final AppController controller;
@@ -51,6 +53,7 @@ public class GetAvailableDevelopersSteps {
         for (int i = 1; i <= maxActivityCount; i++) {
             ProjectActivity activity = new ProjectActivity("Activity" + i);
             activity.setStartWeek(week);
+            activity.setEndWeek(week);
             project.addActivity(activity);
             activities.add(activity);
         }
@@ -81,6 +84,7 @@ public class GetAvailableDevelopersSteps {
         for (int i = 1; i <= minimumActivities + 5; i++) { // Ensure we have enough activities
             ProjectActivity activity = new ProjectActivity("Activity" + i);
             activity.setStartWeek(week);
+            activity.setEndWeek(week);
             project.addActivity(activity);
             activities.add(activity);
         }
@@ -121,6 +125,7 @@ public class GetAvailableDevelopersSteps {
         for (int i = 0; i <= maxActivityCount; i++) { // ensure we are above number
             ProjectActivity activity = new ProjectActivity("Activity" + i);
             activity.setStartWeek(week);
+            activity.setEndWeek(week);
             project.addActivity(activity);
             activities.add(activity);
         }
@@ -149,6 +154,7 @@ public class GetAvailableDevelopersSteps {
         for (int i = 0; i < number; i++) {
             ProjectActivity activity = new ProjectActivity("Activity" + i);
             activity.setStartWeek(week);
+            activity.setEndWeek(week);
             project.addActivity(activity);
             var msg = controller.addUserToActivity(project.getProjectName(), activity.getName(), user.getUserID());
             assertTrue(msg.success);

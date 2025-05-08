@@ -19,7 +19,7 @@ public class DateHelper {
 
     public static boolean isWeekFormat(String week) {
         // Chek if the week is in week format: "WW"
-        if (week == null || week.length() != 2) {
+        if (week == null) {
             return false;
         }
         try {
