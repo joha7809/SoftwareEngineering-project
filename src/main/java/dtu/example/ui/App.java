@@ -43,8 +43,10 @@ public class App extends Application {
         //init model
         ArrayList<User> users = new ArrayList<>(Arrays.asList(new User("admin")));
         ArrayList<Project> projects = new ArrayList<>();
+        projects.add(new Project("test", "25001"));
 
         AppState state = new AppState();
+        
         for (User user : users) {
             state.addUser(user);
         }
