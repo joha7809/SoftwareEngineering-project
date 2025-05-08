@@ -248,11 +248,11 @@ public class AppController {
             //if(getFixedActivities().get(i).getStartDate().equalsIgnoreCase(name)){//gets problematic once there are multiple fixed activities named the same e. g. sick
             if(getFixedActivities().get(i).getName().equalsIgnoreCase(type) && getFixedActivities().get(i).getStartDate().equalsIgnoreCase(timeStart) && getFixedActivities().get(i).getEndDate().equalsIgnoreCase(timeEnd)){//gets problematic once there are multiple fixed activities named the same e. g. sick
                     
-    //             return new StatusMessage(true, "Fixed Activity was succesfully created");
-    //         }
-    //     }
-    //     return new StatusMessage(false, "Could not find fixed activity");
-    // }
+                return new StatusMessage(true, "Fixed Activity was succesfully created");
+            }
+        }
+        return new StatusMessage(false, "Could not find fixed activity");
+    }
 
 
 
