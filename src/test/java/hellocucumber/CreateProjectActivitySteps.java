@@ -57,7 +57,8 @@ public class CreateProjectActivitySteps {
     public void user_is_logged_in(String userID) {
         User user = controller.getUser(userID);
         assertTrue(user != null);
-        controller.setActiveUser(user);
+        var result = controller.setActiveUser(userID);
+        assertTrue(result.success);
         assertTrue(controller.getActiveUser().equals(user));
     }
 

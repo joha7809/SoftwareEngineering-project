@@ -4,9 +4,10 @@ import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_base.CommandInterface;
 import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
+import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.User;
 
-public class LoginCommand implements CommandInterface<String> { // TODO: USE GENERICS AND RESULT WRAPPER
+public class LoginCommand implements CommandInterface<StatusMessage> { // TODO: USE GENERICS AND RESULT WRAPPER
 
     private final AppController controller;
 
@@ -22,18 +23,16 @@ public class LoginCommand implements CommandInterface<String> { // TODO: USE GEN
         return "login <username> | Login to the system with a user.";
     }
 
-    public CommandResult<String> execute(String[] args) {
+    public CommandResult<StatusMessage> execute(String[] args) {
         if (args.length != 1) {
-            return new CommandResult<>(ReturnTypes.STRING, "Invalid number of arguments. Usage: login <username>");
+            var msg = StatusMessage.error(("Invalid number of arguments. Usage: login <username>"));
+            return new CommandResult<>(ReturnTypes.STRING, msg);
         }
         String userName = args[0];
+        var msg = controller.setActiveUser(userName);
 
-        if (controller.getUser(userName) == null) {
-            return new CommandResult<>(ReturnTypes.STRING, "User not found. Please create a user first.");
-        }
 
-        controller.setActiveUser(controller.getUser(userName));
-        return new CommandResult<>(ReturnTypes.STRING, "User " + userName + " logged in successfully.");
+        return CommandResult.statusMessageResult(msg);
     }
 
 }

@@ -88,7 +88,7 @@ public class AssignProjectLeadSteps {
         result = (result != null) ? result : sharedContext.getResult();
         System.out.println("RESULT: " + result);
         if (!result.success) {
-            System.out.println("Expecte: " + string + " Got: " + result.message);
+            System.out.println("Expected: " + string + " Got: " + result.message);
             assertTrue(result.message.equals(string));
         } 
         assertFalse(result.success);

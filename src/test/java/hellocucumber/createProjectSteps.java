@@ -35,8 +35,7 @@ public class createProjectSteps {
 		assertTrue(msg.success);
 		user = controller.getUser("huba");
 
-
-		controller.setActiveUser(user);
+		controller.setActiveUser(user.getUserID());
 		assertTrue(controller.getActiveUser() == user);
 
 	}

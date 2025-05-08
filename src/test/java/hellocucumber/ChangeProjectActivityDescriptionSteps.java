@@ -49,7 +49,9 @@ public class ChangeProjectActivityDescriptionSteps {
         public void theUserChangesTheDescriptionOfTheActivity(String userID, String activityDescription){
             // User changes, means the user is the logged in user
             User user = controller.getUser(userID);
-            controller.setActiveUser(user);
+            var msg = controller.setActiveUser(userID);
+            assertTrue(msg.success);
+
             Project project = sharedContext.getCurrentProject();
             ProjectActivity act = sharedContext.getProjectActivity();
             var result = controller.setActivityDescription(project.getProjectName(), act.getName(), activityDescription);

@@ -65,7 +65,7 @@ public class AssignDevelopersSteps {
             }
             
         }
-        assertTrue(controller.isAvailable(userInitials));
+        assertTrue(controller.isUserAvailable(userInitials));
         assertTrue(userAvailable);
         //assertTrue(controller.getUser(userInitials).isAvailable());
     }
