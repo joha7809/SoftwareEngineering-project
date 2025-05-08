@@ -1,7 +1,10 @@
 package dtu.example.Controller;
 
 import java.io.ObjectInputFilter.Status;
+import java.lang.reflect.Array;
 import java.time.Year;
+import java.util.ArrayList;
+
 import dtu.example.model.*;
 import dtu.example.Controller.command_returns.StatusMessage;
 
@@ -128,6 +131,32 @@ public class AppController {
 
     public User getUser(String userName) {
         return state.getUser(userName);
+    }
+
+    //Ved ik hvordan jeg ellers skal gøre. Skal bruge det til at holde styr hvor mange 
+    //activities en user er på: Nikolaj
+    public void addUserToActivity(ProjectActivity activity , User user){
+        if(user.getJoinedActivities().size()<20){
+            user.joinActivity(activity);
+        }
+        else {
+            //error message !!!
+            //fjern user.joinActivity(activity);
+            user.joinActivity(activity);
+        }
+        
+    }
+
+    public ArrayList<User> getAllAvailableUsers()
+    {
+        //ved ikke om et hashmap ville være bedre
+        ArrayList<User> allAvailableUsers = new ArrayList<>();
+        for (String user : state.getUsers().keySet()) {
+            if (getUser(user).getJoinedActivities().size() < 20);{
+                allAvailableUsers.add(getUser(user));
+            }
+        }
+        return allAvailableUsers;
     }
 
     public StatusMessage setActivityDescription(String project, String activity, String newDescription){

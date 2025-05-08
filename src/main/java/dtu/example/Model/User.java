@@ -1,9 +1,12 @@
 package dtu.example.model;
 
+import java.util.ArrayList;
+
 public class User {
 
     private String userID;
 
+    private ArrayList<ProjectActivity> joinedActivities = new ArrayList();
 
     //User Constructor
     public User(String userID){
@@ -15,4 +18,14 @@ public class User {
     public String getUserID(){
         return this.userID;
     }
+    //Nikolaj
+    public void joinActivity(ProjectActivity activity){
+        joinedActivities.add(activity);
+    }
+    
+    public ArrayList<ProjectActivity> getJoinedActivities(){
+        return joinedActivities;
+    }
+
+
 }

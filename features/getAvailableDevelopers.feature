@@ -10,12 +10,12 @@ Kerem wrote this feature
 
   Scenario: Project lead fails to know which developers are available given an amount of work given week.
     Given Users assigned to activities over a total of 20 activities a week
-    When Duration needed is entered
+    When Duration needed for the activty is entered
     And Duration is updated
     Then Return a string stating that no user is currently available
 
   Scenario: Project lead sends request for overwork
     Given Users assigned to activities over a total of 20 activities a week
-    When Duration needed is entered
+    When Duration needed for the activty is entered
     And Duration is updated
-    Then Return all available user, that want's to work over the given 20 activities a week
+    Then Return all available user, that wants to work over the given 20 activities a week
