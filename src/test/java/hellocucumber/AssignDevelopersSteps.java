@@ -32,7 +32,7 @@ public class AssignDevelopersSteps {
     private User user;
     private ProjectActivity activity;
 
-    @Given("user {string} is project lead on project {String}")
+    @Given("user {string} is project lead on project {string}")
     public void isTheProjectLeader(String userInitials, String projectName) {
         controller.createUser(userInitials);
         controller.createProject(projectName);
