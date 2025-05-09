@@ -14,6 +14,7 @@ import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.Service.ActivityService;
 import dtu.example.Service.FixedActivityService;
 import dtu.example.Service.ProjectService;
+import dtu.example.Service.ServiceResult;
 import dtu.example.Service.TimeRegistrationService;
 import dtu.example.Service.UserService;
 
@@ -53,6 +54,7 @@ public class AppController {
         return result;
     }
 
+    //Returns a project with the name or ID projectInput
     public Project getProject(String projectInput) {
         return projectService.getProject(projectInput);
     }
@@ -178,6 +180,11 @@ public class AppController {
     // Function for getting all availble users for given week
     public ArrayList<User> getAvailableUsers(String week) {
         return userService.getAllAvailableUsers(week);
+    }
+
+    public ServiceResult<String> getProjectStatus(String projectName) {
+        Project project = projectService.getProject(projectName);
+        return projectService.getProjectStatus(project);
     }
 
 
