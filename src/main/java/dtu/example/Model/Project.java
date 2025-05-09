@@ -125,7 +125,6 @@ public class Project {
         
         return sb.toString();
     }
-}
 
     public String toString(){
         return "Project{" +
