@@ -24,6 +24,7 @@ public class CommandRegistry {
         GetAvailableDevelopersCommand getAvailableUsers = new GetAvailableDevelopersCommand(controller);
         ViewProjectCommand viewProject = new ViewProjectCommand(controller);
         GetReportCommand getReport = new GetReportCommand(controller);
+        EditProjectCommand editProject = new EditProjectCommand(controller);
 
         this.registerCommand(login);
         this.registerCommand(signup);
@@ -38,7 +39,7 @@ public class CommandRegistry {
         this.registerCommand(assignDeveloper);
         this.registerCommand(getAvailableUsers);
         this.registerCommand(viewProject);
-        
+        this.registerCommand(editProject);
         this.registerCommand(getReport);
     }
 

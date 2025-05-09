@@ -14,7 +14,6 @@ import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.Service.ActivityService;
 import dtu.example.Service.FixedActivityService;
 import dtu.example.Service.ProjectService;
-import dtu.example.Service.ServiceResult;
 import dtu.example.Service.TimeRegistrationService;
 import dtu.example.Service.UserService;
 

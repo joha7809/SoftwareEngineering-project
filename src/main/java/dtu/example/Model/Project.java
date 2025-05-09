@@ -152,4 +152,7 @@ public class Project {
         return projectDetails.toString();
     }
 
+    public void setName(String name) {
+        this.projectName = name;
+    }
 }

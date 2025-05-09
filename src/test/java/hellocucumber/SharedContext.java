@@ -5,7 +5,6 @@ package hellocucumber;
 //import dtu.example.Controller.AppManager;
 import dtu.example.Controller.AppController;
 import dtu.example.Controller.command_returns.StatusMessage;
-import dtu.example.Service.ServiceResult;
 import dtu.example.model.Project;
 import dtu.example.model.User;
 import dtu.example.model.ProjectActivity;

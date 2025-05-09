@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import dtu.example.Controller.AppController;
-import dtu.example.Service.ServiceResult;
 import dtu.example.model.Project;
 import dtu.example.model.ProjectActivity;
 import io.cucumber.java.en.Given;
