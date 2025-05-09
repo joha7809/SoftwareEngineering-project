@@ -4,8 +4,6 @@ import dtu.example.Controller.command_base.CommandInterface;
 import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.AppController;
-import dtu.example.model.Project;
-import dtu.example.model.ProjectActivity;
 
 public class ViewProjectCommand implements CommandInterface<String> {
     private final AppController controller;
@@ -31,37 +29,17 @@ public class ViewProjectCommand implements CommandInterface<String> {
         }
 
         if (args.length == 0) {
-            // List all projects in a limited readable way
-            StringBuilder allProjects = new StringBuilder("All projects:\n");
-            for (Project project : controller.getAllProjects()) {
-                allProjects.append("- Name: ").append(project.getProjectName())
-                           .append(", ID: ").append(project.getProjectID())
-                           .append("\n");
-            }
-            return new CommandResult<>(ReturnTypes.STRING, allProjects.toString());
+            // Delegate to AppController to get all projects in a readable format
+            String allProjects = controller.getAllProjectsSummary();
+            return new CommandResult<>(ReturnTypes.STRING, allProjects);
         }
 
         String projectId = args[0];
-        Project project = controller.getProject(projectId);
-        if (project == null) {
+        String projectDetails = controller.getProjectDetails(projectId);
+        if (projectDetails == null) {
             return new CommandResult<>(ReturnTypes.STRING, "Project not found.");
         }
 
-        // Elaborate details of the project in a readable way
-        StringBuilder projectDetails = new StringBuilder();
-        projectDetails.append("Project Details:\n")
-                      .append("Name: ").append(project.getProjectName()).append("\n")
-                      .append("ID: ").append(project.getProjectID()).append("\n")
-                      .append("Description: ").append(project.getDescription() != null ? project.getDescription() : "No description").append("\n")
-                      .append("Project Lead: ").append(project.getProjectLead() != null ? project.getProjectLead().getUserID() : "No project lead").append("\n")
-                      .append("Activities:\n");
-
-        for (ProjectActivity activity : project.getAllActivities()) {
-            projectDetails.append("  - Activity Name: ").append(activity.getName()).append("\n")
-                          .append("    Allotted Time: ").append(activity.getAllottedTime()).append(" hours\n")
-                          .append("    Total Hours Spent: ").append(activity.getTotalHoursSpent()).append(" hours\n");
-        }
-
-        return new CommandResult<>(ReturnTypes.STRING, projectDetails.toString());
+        return new CommandResult<>(ReturnTypes.STRING, projectDetails);
     }
 }

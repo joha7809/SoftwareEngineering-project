@@ -90,5 +90,15 @@ public class ProjectService {
         return state.getAllProjects();
     }
 
+    public String getAllProjectsSummary() {
+        StringBuilder allProjects = new StringBuilder("All projects:\n");
+        for (Project project : getAllProjects()) {
+            allProjects.append("- Name: ").append(project.getProjectName())
+                       .append(", ID: ").append(project.getProjectID())
+                       .append("\n");
+        }
+        return allProjects.toString();
+    }
+
 }
 

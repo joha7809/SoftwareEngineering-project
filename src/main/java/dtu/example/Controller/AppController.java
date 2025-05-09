@@ -187,4 +187,15 @@ public class AppController {
         return projectService.getAllProjects();
     }
 
-} 
+    public String getAllProjectsSummary() {
+        return projectService.getAllProjectsSummary();
+    }
+
+    public String getProjectDetails(String projectId) {
+        Project project = projectService.getProject(projectId);
+        if (project == null) {
+            return null;
+        }
+        return project.getDetailedDescription();
+    }
+}
