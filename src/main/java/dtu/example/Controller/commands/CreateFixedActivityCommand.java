@@ -38,9 +38,13 @@ public class CreateFixedActivityCommand implements CommandInterface<StatusMessag
         String startDate = args[0];
         String endDate = args[1];
         String type = args[2];
+        
+
+
 
         StatusMessage result = controller.createFixedActivity(startDate, endDate, type);
         return CommandResult.statusMessageResult(result);
 
     }
 }
+

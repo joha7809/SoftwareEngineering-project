@@ -41,4 +41,10 @@ public class User {
         }
         return activitiesInWeek;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID='" + userID + '\'' +'}';
+    }
 }

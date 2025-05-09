@@ -53,8 +53,10 @@ public class AssignDevelopersSteps {
     @When("project leader assigns {string} to the activity {string}")
     public void projectLeaderAssignsToTheActivity(String userID, String activityName){
         //TODO: Lidt cursed men det virker forhåbentligt
-        Project project = sharedContext.getCurrentProject();
-        result = controller.addUserToActivity(project.getProjectName(), activityName, userID);
+        Project project = (sharedContext.getCurrentProject());
+        project = project != null ? project : null;
+        String projectName = project != null ? project.getProjectName() : null;
+        result = controller.addUserToActivity(projectName, activityName, userID);
         sharedContext.setResult(result);
     }
 

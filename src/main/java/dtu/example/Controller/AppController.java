@@ -97,11 +97,6 @@ public class AppController {
         return activityService.addUserToActivity(activity, user);
     }
 
-    // public ArrayList<User> getAllAvailableUsers()
-    // {
-    //     return userService.getAllAvailableUsers();
-    // }
-
     public boolean isUserAvailable(String userID) {
         return userService.isAvailable(userID);
     }
@@ -187,5 +182,20 @@ public class AppController {
         return projectService.getProjectStatus(project);
     }
 
+    // get all projects
+    public ArrayList<Project> getAllProjects() {
+        return projectService.getAllProjects();
+    }
 
-} 
+    public String getAllProjectsSummary() {
+        return projectService.getAllProjectsSummary();
+    }
+
+    public String getProjectDetails(String projectId) {
+        Project project = projectService.getProject(projectId);
+        if (project == null) {
+            return null;
+        }
+        return project.getDetailedDescription();
+    }
+}

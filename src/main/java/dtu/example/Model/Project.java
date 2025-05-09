@@ -1,4 +1,3 @@
-
 package dtu.example.model;
 import java.time.Year;
 import java.util.ArrayList;
@@ -106,7 +105,6 @@ public class Project {
         for(ProjectActivity activity : this.getAllActivities()){
             if(!activity.getRegistrations().isEmpty()){
                 thereAreTimeRegistrations = true;
-                System.out.println("Insdide loop"+ activity);
             }
         }
 
@@ -127,4 +125,34 @@ public class Project {
         
         return sb.toString();
     }
+}
+
+    public String toString(){
+        return "Project{" +
+                "projectID='" + projectID + '\'' +
+                ", projectName='" + projectName + '\'' +
+                ", description='" + description + '\'' +
+                ", projectLead=" + projectLead +
+                ", activities=" + activities +
+                '}';
+    }
+
+    public String getDetailedDescription() {
+        StringBuilder projectDetails = new StringBuilder();
+        projectDetails.append("Project Details:\n")
+                      .append("Name: ").append(getProjectName()).append("\n")
+                      .append("ID: ").append(getProjectID()).append("\n")
+                      .append("Description: ").append(getDescription() != null ? getDescription() : "No description").append("\n")
+                      .append("Project Lead: ").append(getProjectLead() != null ? getProjectLead().getUserID() : "No project lead").append("\n")
+                      .append("Activities:\n");
+
+        for (ProjectActivity activity : getAllActivities()) {
+            projectDetails.append("  - Activity Name: ").append(activity.getName()).append("\n")
+                          .append("    Allotted Time: ").append(activity.getAllottedTime()).append(" hours\n")
+                          .append("    Total Hours Spent: ").append(activity.getTotalHoursSpent()).append(" hours\n");
+        }
+
+        return projectDetails.toString();
+    }
+
 }

@@ -37,7 +37,7 @@ public class GetAvailableDevelopersSteps {
         int number = Integer.valueOf(numberOfUsers);
 
         for (int i = 0; i < number; i++) {
-            controller.createUser("user" + i);
+            controller.createUser("use" + (char) ('A' +i));
         }
 
     }

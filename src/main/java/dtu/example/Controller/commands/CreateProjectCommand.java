@@ -28,13 +28,7 @@ public class CreateProjectCommand implements CommandInterface<StatusMessage> {
         }
         String projectName = args[0];
 
-        // if (manager.getProject(projectName) != null) {
-        //     return new CommandResult<>(ReturnTypes.STRING, "Project " + projectName + " already exists.");
-            
-        // }
-
         StatusMessage result = controller.createProject(projectName);
         return CommandResult.statusMessageResult(result);
-        //return new CommandResult<>(ReturnTypes.STRING, "Project " + projectName + " successfully created.");
     }
 }

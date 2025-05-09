@@ -32,13 +32,13 @@ Kerem wrote this feature
     Then the user receives an empty list of available users
 
   Scenario: user with exactly 19 activities is available
-    Given there is a user with the name "dev1"
-    And user "dev1" has "19" activities assigned in week "12"
+    Given there is a user with the name "devA"
+    And user "devA" has "19" activities assigned in week "12"
     When the user requests the list of available users for week "12"
-    Then user "dev1" is included in the list of available users
+    Then user "devA" is included in the list of available users
 
   Scenario: user with exactly 20 activities is unavailable
-    Given there is a user with the name "dev2"
-    And user "dev2" has "20" activities assigned in week "12"
+    Given there is a user with the name "devB"
+    And user "devB" has "20" activities assigned in week "12"
     When the user requests the list of available users for week "12"
-    Then user "dev2" is not included in the list of available users
+    Then user "devB" is not included in the list of available users

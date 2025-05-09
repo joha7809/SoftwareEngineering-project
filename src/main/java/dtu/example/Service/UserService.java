@@ -17,6 +17,13 @@ public class UserService {
         if (userID.isBlank()){
             return new StatusMessage(false, "Error creating user. User ID cannot be empty.");
         }
+        // ENFORCE THAT WE ONLY HAVE 4 INIITIALS AND NO NUMBERS
+        if (userID.matches(".*\\d.*")) {
+            return new StatusMessage(false, "Error creating user. User ID cannot contain numbers.");
+        }
+        if (userID.length() != 4) {
+            return new StatusMessage(false, "Error creating user. User ID must be 4 characters long.");
+        }
 
         if (state.getUser(userID) != null) {
             return new StatusMessage(false, "Error creating user. User with ID: " + userID + " already exists.");

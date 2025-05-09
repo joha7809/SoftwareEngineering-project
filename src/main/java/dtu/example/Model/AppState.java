@@ -60,4 +60,9 @@ public class AppState {
     public void addProject(Project project) {
         this.projects.put(project.getProjectID(), project);
     }
+
+    // get all projects
+    public ArrayList<Project> getAllProjects() {
+        return new ArrayList<>(projects.values());
+    }
 } 

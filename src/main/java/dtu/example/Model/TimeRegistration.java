@@ -3,6 +3,7 @@ package dtu.example.model;
 
 public class TimeRegistration {
     private float hours;
+    
     public float getHours() {
         return hours;
     }
@@ -13,6 +14,14 @@ public class TimeRegistration {
         this.hours = hours;
         this.user = user;
         
+    }
+
+    @Override
+    public String toString() {
+        return "TimeRegistration{" +
+                "hours=" + hours +
+                ", user=" + user.getUserID() +
+                '}';
     }
 
     

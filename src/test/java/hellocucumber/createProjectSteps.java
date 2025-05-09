@@ -45,6 +45,7 @@ public class createProjectSteps {
 		// Initialize and add project to project_list in appManager.
 		System.out.println("Creating project with name: " + projectName);
 		result = controller.createProject(projectName);
+		sharedContext.setResult(result);
 		Project p = controller.getProject(projectName);
 		assertTrue(p != null);
 		sharedContext.setCurrentProject(p);
@@ -62,6 +63,7 @@ public class createProjectSteps {
 	@When("a project with the name {string} is created")
 	public void a_project_with_the_name_is_created(String projectName) {
 		result = controller.createProject(projectName); // sets outcome of function to class variable
+		sharedContext.setResult(result);
 		projectToBeAddedName = projectName;
 	}
 
@@ -75,6 +77,7 @@ public class createProjectSteps {
 	@Then("an error message is printed")
 	public void an_error_message_is_printed() {
 		// Write code here that turns the phrase above into concrete actions
+		result = sharedContext.getResult();
 		assertFalse(result.success);
 	}
 

@@ -31,7 +31,7 @@ public class ProjectService {
         }
 
         if (projectName.matches("\\d{5}")) {
-            return StatusMessage.error("Error: project name cannot be of same form as id: " + projectName);
+            return StatusMessage.error("Error: project name cannot be of same form as id");
         }
 
         if (state.getProjectByName(projectName) != null) {
@@ -50,12 +50,17 @@ public class ProjectService {
 
         //Returns a project either according to it's id or according to it's name
         public Project getProject(String projectInput) {
-        if (projectInput.matches("\\d{5}")) {
-            return state.getProjectById(projectInput);
-        } else {
-            return state.getProjectByName(projectInput);
+            try {
+                if (projectInput.matches("\\d{5}")) {
+                    return state.getProjectById(projectInput);
+                } else {
+                    return state.getProjectByName(projectInput);
+                }
+            } catch (Exception e) {
+                // TODO: handle exception
+                return null;
+            }
         }
-    }
 
     public StatusMessage getProjectStatus(Project project){
         // TODO: handle null project
@@ -85,6 +90,21 @@ public class ProjectService {
         String status = project.getProjectStatus();
         var result = StatusMessage.success(status);
         return result;
+    }
+
+    // get all projects
+    public ArrayList<Project> getAllProjects() {
+        return state.getAllProjects();
+    }
+
+    public String getAllProjectsSummary() {
+        StringBuilder allProjects = new StringBuilder("All projects:\n");
+        for (Project project : getAllProjects()) {
+            allProjects.append("- Name: ").append(project.getProjectName())
+                       .append(", ID: ").append(project.getProjectID())
+                       .append("\n");
+        }
+        return allProjects.toString();
     }
 
 }

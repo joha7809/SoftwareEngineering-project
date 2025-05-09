@@ -41,8 +41,8 @@ public class CreateProjectActivitySteps {
     @Given("the project has a project leader for {string}")
     public void the_project_has_a_project_leader_for(String projectName) {
         // Write code here that turns the phrase above into concrete actions
-        controller.createUser("ole");
-        controller.getProject(projectName).setProjectLead(controller.getUser("ole"));
+        controller.createUser("olee");
+        controller.getProject(projectName).setProjectLead(controller.getUser("olee"));
         assertTrue(!controller.getProject(projectName).getProjectLead().equals(null));
     }
 

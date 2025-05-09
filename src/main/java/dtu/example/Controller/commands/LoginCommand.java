@@ -25,14 +25,13 @@ public class LoginCommand implements CommandInterface<StatusMessage> { // TODO: 
 
     public CommandResult<StatusMessage> execute(String[] args) {
         if (args.length != 1) {
-            var msg = StatusMessage.error(("Invalid number of arguments. Usage: login <username>"));
-            return new CommandResult<>(ReturnTypes.STRING, msg);
+            var msg = StatusMessage.error("Invalid number of arguments. Usage: login <username>");
+            return CommandResult.statusMessageResult(msg);
         }
         String userName = args[0];
-        var msg = controller.setActiveUser(userName);
+        var result = controller.setActiveUser(userName);
 
-
-        return CommandResult.statusMessageResult(msg);
+        return CommandResult.statusMessageResult(result);
     }
 
 }
