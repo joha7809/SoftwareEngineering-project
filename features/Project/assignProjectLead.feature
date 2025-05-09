@@ -25,8 +25,8 @@ Feature: Assign project lead
   Scenario: Assigning project lead to project which already has project lead
     Given there is a project with the name "existingProject"
     And there is a user with the name "huba"
-    And there is a user with the name "kem"
-    And user "kem" is project lead on project "existingProject"
+    And there is a user with the name "keme"
+    And user "keme" is project lead on project "existingProject"
     When The user "huba" is assigned as project lead on project "existingProject"
-    Then the project lead "kem" is replaced with new project lead "huba"
+    Then the project lead "keme" is replaced with new project lead "huba"
 

@@ -3,6 +3,7 @@ package dtu.example.model;
 
 public class TimeRegistration {
     private float hours;
+    
     public float getHours() {
         return hours;
     }

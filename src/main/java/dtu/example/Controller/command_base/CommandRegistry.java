@@ -20,6 +20,8 @@ public class CommandRegistry {
         RegisterTimeCommand registerTime = new RegisterTimeCommand(controller);
         CreateFixedActivityCommand createFixedActivity = new CreateFixedActivityCommand(controller);
         EditActivityCommand editActivity = new EditActivityCommand(controller);
+        AssignDeveloperCommand assignDeveloper = new AssignDeveloperCommand(controller);
+        GetAvailableDevelopersCommand getAvailableUsers = new GetAvailableDevelopersCommand(controller);
 
         this.registerCommand(login);
         this.registerCommand(signup);
@@ -31,6 +33,9 @@ public class CommandRegistry {
         this.registerCommand(registerTime);
         this.registerCommand(createFixedActivity);
         this.registerCommand(editActivity);
+        this.registerCommand(assignDeveloper);
+        this.registerCommand(getAvailableUsers);
+        
     }
 
     public void registerCommand(CommandInterface<?> command) {

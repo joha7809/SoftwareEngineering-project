@@ -27,7 +27,9 @@ public class HelpCommand implements CommandInterface<String>{
         StringBuilder helpMessage = new StringBuilder("Available commands:\n");
 
         cmds.commands.forEach((name, command) -> {
+            // ADD LINE TO SEPERATE
             helpMessage.append("- ").append(name).append(": ").append(command.getDescription()).append("\n");
+            helpMessage.append("\n");
         });
 
         return new CommandResult<String>(ReturnTypes.STRING, helpMessage.toString());
