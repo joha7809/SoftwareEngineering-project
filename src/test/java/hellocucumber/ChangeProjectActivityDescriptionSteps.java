@@ -27,6 +27,7 @@ public class ChangeProjectActivityDescriptionSteps {
     @Given("there is an activity with the name {string} for project {string}")
         public void thereIsAnActivityWithTheName(String activityName, String projectName) {
             Project project = controller.getProject(projectName);
+            assertTrue(project != null);
             project.addActivity(new ProjectActivity(activityName));
             ProjectActivity act = controller.getProjectActivity(projectName, activityName);
 

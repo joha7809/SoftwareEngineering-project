@@ -182,7 +182,7 @@ public class AppController {
         return userService.getAllAvailableUsers(week);
     }
 
-    public ServiceResult<String> getProjectStatus(String projectName) {
+    public StatusMessage getProjectStatus(String projectName) {
         Project project = projectService.getProject(projectName);
         return projectService.getProjectStatus(project);
     }

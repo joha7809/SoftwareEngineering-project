@@ -57,26 +57,33 @@ public class ProjectService {
         }
     }
 
-    public ServiceResult<String> getProjectStatus(Project project){
+    public StatusMessage getProjectStatus(Project project){
         // TODO: handle null project
+        
         if (project == null) {
-            return ServiceResult.error("Project not found!");
+            return StatusMessage.error("Project not found!");
         }
 
         // TODO: handle user not logged in
         if (state.getActiveUser() == null) {
-            return ServiceResult.error("You are not logged in!");
+            return StatusMessage.error("You are not logged in!");
         }
 
         if(project.getProjectLead() == null){
-            return ServiceResult.error("Project lead access only. This project does not have a project lead.");
+            return StatusMessage.error("Project lead access only. This project does not have a project lead.");
         } else if(project.getProjectLead() != state.getActiveUser()){
-            return ServiceResult.error("You are not the project lead of this project!");
+            return StatusMessage.error("You are not the project lead of this project!");
         }
 
+        if(project.hasActivities() == false){
+            return StatusMessage.error("No activities has been created yet");
+        }
 
+        
+
+        
         String status = project.getProjectStatus();
-        var result = ServiceResult.success(status);
+        var result = StatusMessage.success(status);
         return result;
     }
 

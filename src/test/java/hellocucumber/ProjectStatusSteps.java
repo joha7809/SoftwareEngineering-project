@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import dtu.example.Controller.AppController;
+import dtu.example.Service.ServiceResult;
 import dtu.example.model.Project;
 import dtu.example.model.ProjectActivity;
 import io.cucumber.java.en.Given;
@@ -27,7 +28,7 @@ public class ProjectStatusSteps {
         Project project = sharedContext.getCurrentProject();
         ProjectActivity activity = sharedContext.getProjectActivity();
         controller.createTimeRegistration(project.getProjectName(), activity.getName(), "20");
-        assertTrue(project.hasTimeRegistrations());
+        assertTrue(project.hasTimeRegistrations().success);
     }
 
     @Given("the project has activities")
@@ -45,7 +46,7 @@ public class ProjectStatusSteps {
         
         //ProjectActivity activity = sharedContext.getProjectActivity();
         //controller.createTimeRegistration(project.getProjectName(), activity.getName(), "20");
-        assertFalse(project.hasTimeRegistrations());
+        assertFalse(project.hasTimeRegistrations().success);
     }
 
     @Given("the project has no activities")
@@ -61,27 +62,44 @@ public class ProjectStatusSteps {
     @When("the user gets the report")
     public void the_user_gets_the_report() {
         // Write code here that turns the phrase above into concrete actions
-        //Project project = sharedContext.getCurrentProject();
-        //assertTrue(project.getProjectStatus().length()>0);
+        Project project = sharedContext.getCurrentProject();
+        assertTrue(project.getProjectStatus().length() > 0);
+        var result = controller.getProjectStatus(project.getProjectName());
+        System.out.println("SSSS S SDA SD " + result.success);
+        System.out.println("SSSS S SDA SD " + result.message);
+        sharedContext.setResult(result);
     }
 
-    @Then("returns a string {string}")
-    public void returns_a_string(String s) {
+    @Then("{string} is returned")
+    public void is_returned(String s) {
+
         // Write code here that turns the phrase above into concrete actions
+        Project project = sharedContext.getCurrentProject();
+        var result = sharedContext.getResult();
+        
+        //getData provides a String
+        //assertTrue(result.success);
+
+        //It has to be || as there are different scenarios with different requirements
+        System.out.println("\n \n \n \n Result message " + result.message);
+        System.out.println(s + "Input \n \n \n \n");
+        assertTrue(!s.isBlank());
+        assertTrue(result.message.contains(s), "Got: " + result.message + " Expected: " + s);
     }
 
-    @Then("the sum of estimatedRemainingHours is printed")
-    public void the_sum_of_estimatedRemainingHours_is_printed() {
+    @Then("the sum of estimatedRemainingHours is returned")
+    public void the_sum_of_estimatedRemainingHours_is_returned() {
         // Write code here that turns the phrase above into concrete actions
+       /* Project project = sharedContext.getCurrentProject();
+        var result = sharedContext.getResult();
+        
+        //getData provides a String
+        assertTrue(result.success);
+        assertTrue(result.message.contains(""));*/
     }
 
-    @Then("{string} is printed")
-    public void is_printed(String s) {
-        // Write code here that turns the phrase above into concrete actions
-    }
-
-    @Then("the sum of timeRegistrations is printed")
-    public void the_sum_of_timeRegistrations_is_printed() {
+    @Then("the sum of timeRegistrations is returned")
+    public void the_sum_of_timeRegistrations_is_returned() {
         // Write code here that turns the phrase above into concrete actions
     }
 

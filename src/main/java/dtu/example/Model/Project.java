@@ -4,6 +4,8 @@ import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
+import dtu.example.Controller.command_returns.StatusMessage;
+
 
 public class Project {
     private String projectID;
@@ -42,40 +44,41 @@ public class Project {
         activities.add(activity);
     }
 
-    public List getAllActivities(){
+    public List<ProjectActivity> getAllActivities(){
         return activities;
     }
 
     //Adam wrote this. Determines whether the project has time registrations(it does exactly what it says on the tin)
     //Adam made an edit. Plz don't mess it up
-    public boolean hasTimeRegistrations(){
+    public StatusMessage hasTimeRegistrations(){
         if(hasActivities()){
             //if theyre undeclared, it's false, if they exist and hold a value, theyre true, otherwise if theyre declared, theyre false
-        for(int i = 0; i < activities.size(); i++){
+            for(int i = 0; i < activities.size(); i++){
             //if(activities.get(i).getRegistrations() == null){
-            if(activities.get(i) == null){
-                return false;
+            //System.out.println(activities.get(i));
+            if(activities.get(i).getRegistrations().isEmpty()){
+                return StatusMessage.error("No activities has been created yet");
+                //return StatusMessage.error("No time has been registred for activities related to this project");
             }else if(!activities.get(i).getRegistrations().isEmpty()){
-                return true;
+                return StatusMessage.success("The activity has timeregistraions");
             }
         }
         }
-        
-        return false;
+        //return StatusMessage.error("No time has been registred for activities related to this project");
+        return StatusMessage.error("No activities has been created yet");
     }
 
     //Adam wrote this. Determines whether the project has activities(it does exactly what it says on the tin)
     public boolean hasActivities(){
         if(activities == null){
             return false;
-        } else{
-            if(activities.isEmpty()){
+        } else if (activities.isEmpty()) {
                 return false;
             } else{
                 return true;
-            }
         }
     }
+    
 
     public void setProjectLead(User projectLead) {
         this.projectLead = projectLead;
@@ -98,12 +101,30 @@ public class Project {
     //Adam wrote this. Returns the status of all activities in the project
     public String getProjectStatus(){
         
-        StringBuilder sb = new StringBuilder();
-        sb.append("Projektets navn: " + projectName + "\nProjektets løbenummer: " + projectID);
-        for (ProjectActivity activity : activities){
-            sb.append("\nAktivitetens navn:" + activity.getName() + "\nBudgeteret tid: " + activity.getAllottedTime() + "\nAnvendt tid: " + activity.getTotalHoursSpent() + "\n");
+        //The purpose here is to determine whether there are any 
+        boolean thereAreTimeRegistrations = false;
+        for(ProjectActivity activity : this.getAllActivities()){
+            if(!activity.getRegistrations().isEmpty()){
+                thereAreTimeRegistrations = true;
+                System.out.println("Insdide loop"+ activity);
+            }
         }
+
+        
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("Project name: " + projectName + "\nProject ID: " + projectID);
+        if(!thereAreTimeRegistrations){
+            sb.append("\nNo time has been registred for activities related to this project");
+        }
+        for (ProjectActivity activity : activities){
+            if(activity != null){
+                sb.append("\nActivity name:" + activity.getName() + "\nTime budget: " + activity.getAllottedTime() + "\nTime spent: " + activity.getTotalHoursSpent() + "\n");
+            }
+            //there is some risk, that an all activities are undefined
+            
+        }
+        
         return sb.toString();
     }
-
 }

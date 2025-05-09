@@ -40,11 +40,14 @@ public class TimeRegistrationService {
         //TODO: Idk if works: 
         float hours = Float.valueOf(workHours);
 
+        System.out.println("CreateTimeRegistration's value hours: " + hours);
+
         if (hours % 0.5 != 0){
             return new StatusMessage(false, "Error: Hours not in half-hour interval.");
         }
 
         //TODO: Hvordan skal useren passes?
+        System.out.println(hours);
 
         TimeRegistration registration = new TimeRegistration(hours, user);
         activity.addRegistration(registration);

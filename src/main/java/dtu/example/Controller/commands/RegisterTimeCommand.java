@@ -79,7 +79,7 @@ public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
             //TODO: Loop bug når du ikke svarer nej eller ja spørger den om activity name bagefter
 
 
-            //controller.createTimeRegistration(project.getProjectName(), activity, Float.valueOf(time));
+            controller.createTimeRegistration(project.getProjectName(), activity, time);
             System.out.println("Time registered for activity: " + activity + " with time: " + time);
             System.out.println("Do you want to register more time? (yes/no)");
             String response = scanner.nextLine();

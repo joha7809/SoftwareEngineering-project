@@ -70,6 +70,7 @@ public class ProjectActivity {
         float sum = 0;
         for(TimeRegistration registration : registrations){
             sum += registration.getHours();
+            System.out.println("Sum: " + sum);
         }
         return sum;
     }
