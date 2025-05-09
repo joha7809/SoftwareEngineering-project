@@ -66,6 +66,14 @@ public class ProjectActivity {
         return registrations;
     }
 
+    public float getTotalHoursSpent(){
+        float sum = 0;
+        for(TimeRegistration registration : registrations){
+            sum += registration.getHours();
+        }
+        return sum;
+    }
+
     public void addRegistration(TimeRegistration registration){
         registrations.add(registration);
     }

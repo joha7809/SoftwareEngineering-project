@@ -48,6 +48,7 @@ public class ProjectService {
         return new StatusMessage(true, "Project with name " + projectName + " and id: " + ID + " was successfully created!");
     }
 
+        //Returns a project either according to it's id or according to it's name
         public Project getProject(String projectInput) {
         if (projectInput.matches("\\d{5}")) {
             return state.getProjectById(projectInput);
@@ -56,7 +57,28 @@ public class ProjectService {
         }
     }
 
+    public ServiceResult<String> getProjectStatus(Project project){
+        // TODO: handle null project
+        if (project == null) {
+            return ServiceResult.error("Project not found!");
+        }
 
+        // TODO: handle user not logged in
+        if (state.getActiveUser() == null) {
+            return ServiceResult.error("You are not logged in!");
+        }
+
+        if(project.getProjectLead() == null){
+            return ServiceResult.error("Project lead access only. This project does not have a project lead.");
+        } else if(project.getProjectLead() != state.getActiveUser()){
+            return ServiceResult.error("You are not the project lead of this project!");
+        }
+
+
+        String status = project.getProjectStatus();
+        var result = ServiceResult.success(status);
+        return result;
+    }
 
 }
 

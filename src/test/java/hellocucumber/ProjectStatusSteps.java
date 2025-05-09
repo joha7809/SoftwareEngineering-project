@@ -58,10 +58,11 @@ public class ProjectStatusSteps {
         assertFalse(project.hasActivities());
     }
 
-    @When("{string} is typed")
-    public void is_typed(String s) {
+    @When("the user gets the report")
+    public void the_user_gets_the_report() {
         // Write code here that turns the phrase above into concrete actions
-        
+        //Project project = sharedContext.getCurrentProject();
+        //assertTrue(project.getProjectStatus().length()>0);
     }
 
     @Then("returns a string {string}")
@@ -83,5 +84,7 @@ public class ProjectStatusSteps {
     public void the_sum_of_timeRegistrations_is_printed() {
         // Write code here that turns the phrase above into concrete actions
     }
+
+    
 
 }
