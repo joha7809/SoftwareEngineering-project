@@ -25,6 +25,8 @@ public class View {
             """
             Welcome! Please login by typing: login {username}
             If not registered use: signup {username}
+            To see all commands type: help
+            To exit the program type: exit
             """);
     }
 }

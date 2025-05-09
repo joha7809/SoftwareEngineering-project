@@ -146,9 +146,7 @@ public class Project {
                       .append("Activities:\n");
 
         for (ProjectActivity activity : getAllActivities()) {
-            projectDetails.append("  - Activity Name: ").append(activity.getName()).append("\n")
-                          .append("    Allotted Time: ").append(activity.getAllottedTime()).append(" hours\n")
-                          .append("    Total Hours Spent: ").append(activity.getTotalHoursSpent()).append(" hours\n");
+            projectDetails.append(activity.getName() + "\n");
         }
 
         return projectDetails.toString();

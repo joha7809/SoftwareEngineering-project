@@ -85,14 +85,12 @@ public class ProjectActivity {
 
     @Override
     public String toString() {
-        return "ProjectActivity{" +
-                "name='" + name + '\'' +
-                ", startWeek='" + startWeek + '\'' +
-                ", endWeek='" + endWeek + '\'' +
-                ", activityDescription='" + activityDescription + '\'' +
-                ", allottedTime=" + allottedTime +
-                ", registrations=" + registrations +
-                ", assignedUsers=" + assignedUsers +
-                '}';
+        return 
+                "name='" + name + '\n' +
+                " startWeek='" + startWeek + '\n' +
+                " endWeek='" + endWeek + '\n' +
+                " activityDescription='" + activityDescription + '\n' +
+                " allottedTime=" + allottedTime + '\n' +
+                " assignedUsers=" + assignedUsers;
     }
 }
