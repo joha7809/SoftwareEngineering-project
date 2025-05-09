@@ -27,12 +27,13 @@ public class FixedActivityService {
         //TODO: Maybe arraylist of possible fixed activity types
 
 
-        //String createFixedActivityCommand = "createFixedActivity";
+
         String createFixedActivityType = typeCause;
-        //boolean commandPass = command.equalsIgnoreCase(createFixedActivityCommand);
+        String[] fixedTypes = {"sick", "vacation", "other"};
+
         boolean startDatePass = DateHelper.isDateFormat(startDate);
         boolean endDatePass = DateHelper.isDateFormat(endDate);
-        //boolean typeCausePass = typeCause.equalsIgnoreCase(createFixedActivityType);
+
 
         if (!startDatePass && !endDatePass){
             return StatusMessage.error("Error: Neither dates are valid dates!");
@@ -45,6 +46,7 @@ public class FixedActivityService {
         if(!endDatePass){
             return StatusMessage.error("Error: End date is not a valid date!");
         }
+
 
         getFixedActivities().add(new FixedActivity(startDate, endDate, typeCause));
         return new StatusMessage(true, "Arguments accepted");

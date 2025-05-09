@@ -16,6 +16,14 @@ public class TimeRegistration {
         
     }
 
+    @Override
+    public String toString() {
+        return "TimeRegistration{" +
+                "hours=" + hours +
+                ", user=" + user.getUserID() +
+                '}';
+    }
+
     
 
 }

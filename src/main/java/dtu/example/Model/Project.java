@@ -42,7 +42,7 @@ public class Project {
         activities.add(activity);
     }
 
-    public List getAllActivities(){
+    public List<ProjectActivity> getAllActivities(){
         return activities;
     }
 
@@ -97,13 +97,22 @@ public class Project {
 
     //Adam wrote this. Returns the status of all activities in the project
     public String getProjectStatus(){
-        
         StringBuilder sb = new StringBuilder();
         sb.append("Projektets navn: " + projectName + "\nProjektets løbenummer: " + projectID);
         for (ProjectActivity activity : activities){
             sb.append("\nAktivitetens navn:" + activity.getName() + "\nBudgeteret tid: " + activity.getAllottedTime() + "\nAnvendt tid: " + activity.getTotalHoursSpent() + "\n");
         }
         return sb.toString();
+    }
+
+    public String toString(){
+        return "Project{" +
+                "projectID='" + projectID + '\'' +
+                ", projectName='" + projectName + '\'' +
+                ", description='" + description + '\'' +
+                ", projectLead=" + projectLead +
+                ", activities=" + activities +
+                '}';
     }
 
 }

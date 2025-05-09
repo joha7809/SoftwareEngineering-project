@@ -82,5 +82,16 @@ public class ProjectActivity {
         this.assignedUsers.add(user);
     }
 
-
+    @Override
+    public String toString() {
+        return "ProjectActivity{" +
+                "name='" + name + '\'' +
+                ", startWeek='" + startWeek + '\'' +
+                ", endWeek='" + endWeek + '\'' +
+                ", activityDescription='" + activityDescription + '\'' +
+                ", allottedTime=" + allottedTime +
+                ", registrations=" + registrations +
+                ", assignedUsers=" + assignedUsers +
+                '}';
+    }
 }

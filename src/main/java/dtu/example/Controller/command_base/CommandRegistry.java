@@ -22,6 +22,7 @@ public class CommandRegistry {
         EditActivityCommand editActivity = new EditActivityCommand(controller);
         AssignDeveloperCommand assignDeveloper = new AssignDeveloperCommand(controller);
         GetAvailableDevelopersCommand getAvailableUsers = new GetAvailableDevelopersCommand(controller);
+        ViewProjectCommand viewProject = new ViewProjectCommand(controller);
 
         this.registerCommand(login);
         this.registerCommand(signup);
@@ -35,6 +36,7 @@ public class CommandRegistry {
         this.registerCommand(editActivity);
         this.registerCommand(assignDeveloper);
         this.registerCommand(getAvailableUsers);
+        this.registerCommand(viewProject);
         
     }
 

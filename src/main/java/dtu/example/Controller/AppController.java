@@ -182,5 +182,9 @@ public class AppController {
         return projectService.getProjectStatus(project);
     }
 
+    // get all projects
+    public ArrayList<Project> getAllProjects() {
+        return projectService.getAllProjects();
+    }
 
 } 

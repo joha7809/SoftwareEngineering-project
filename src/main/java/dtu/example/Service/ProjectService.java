@@ -85,5 +85,10 @@ public class ProjectService {
         return result;
     }
 
+    // get all projects
+    public ArrayList<Project> getAllProjects() {
+        return state.getAllProjects();
+    }
+
 }
 
