@@ -52,9 +52,9 @@ public class AssignProjectLeadSteps {
         // Set user to project lead and check that the user is the project lead
         User user = controller.getUser(userID);
         System.out.println("TRYING TO GET USER" + user);
-        assertTrue(user != null);
+        assertTrue(user != null, "User is null");
         Project project = controller.getProject(projectName);
-        assertTrue(project != null);
+        assertTrue(project != null, "Project is null");
 
         project.setProjectLead(user);
         assertTrue(project.getProjectLead() == user);

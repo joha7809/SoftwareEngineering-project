@@ -45,7 +45,6 @@ public class RegisterUsedTimeSteps {
             assertTrue(result.success);
         }
 
-
 }
 
 
