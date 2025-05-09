@@ -34,3 +34,7 @@ Feature:Create Project
         Then the project with the name "test2" has id "25002"
         Then the project with the name "test3" has id "25003"
 
+    Scenario: Project is created with id-format instead of name
+        Given no projects exist
+        When a project with the name "25001" is created
+        Then the "Error: project name cannot be of same form as id" error message is given

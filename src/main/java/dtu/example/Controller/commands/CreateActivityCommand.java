@@ -27,10 +27,10 @@ public class CreateActivityCommand implements CommandInterface<StatusMessage> {
             var msg = StatusMessage.uneexpectedArguments(this.getDescription());
             return CommandResult.statusMessageResult(msg);
         }
-        
+
         String projectName = args[0];
         String activityName = args[1];
-        
+
         var result = controller.createProjectActivity(projectName, activityName);
         return CommandResult.statusMessageResult(result);
     }

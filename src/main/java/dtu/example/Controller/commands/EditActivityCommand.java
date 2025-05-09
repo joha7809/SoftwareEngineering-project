@@ -27,7 +27,7 @@ public class EditActivityCommand extends KeywordCommand<StatusMessage> {
     public String getDescription() {
         return "editactivity <projectname> <activityname> [attribute]=newvalue | Edit attributes of activity. \n"
                 + "Attributes: startweek, endweek, description, name. \n"
-                + "Example: editactivity project1 activity1 startweek=34";
+                + "Example: editactivity project1 activity1 startweek=34 endweek=36 description=New_Description_test";
     }
 
     @Override
@@ -59,7 +59,7 @@ public class EditActivityCommand extends KeywordCommand<StatusMessage> {
                     setEndWeek(activity, value);
                     break;
                 case "description":
-                    setDescription(activity, value);
+                    setDescription(activity, value.replace("_", " "));
                     break;
                 case "name":
                     setName(activity, value);
@@ -68,8 +68,7 @@ public class EditActivityCommand extends KeywordCommand<StatusMessage> {
                     return CommandResult.statusMessageResult(StatusMessage.error("Invalid attribute: " + attribute));
             }
         }
-        StatusMessage msg = StatusMessage.success("Activity updated: " + result.toString());
-        return CommandResult.statusMessageResult(msg);
+        return CommandResult.statusMessageResult(StatusMessage.success("Attributes updated successfully."));
     }
 
     private void setStartWeek(ProjectActivity activity, String startWeek) {

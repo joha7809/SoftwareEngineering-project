@@ -6,7 +6,7 @@ import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
 
-public class SignUpCommand implements CommandInterface<StatusMessage> {
+public class SignUpCommand implements CommandInterface<String> {
 
     private final AppController controller;
 
@@ -22,14 +22,14 @@ public class SignUpCommand implements CommandInterface<StatusMessage> {
         return "signup <username> | Create a new user in the system.";
     }
 
-    public CommandResult<StatusMessage> execute(String[] args) {
+    public CommandResult<String> execute(String[] args) {
         if (args.length != 1) {
             var msg = StatusMessage.uneexpectedArguments(this.getDescription());
-            return CommandResult.statusMessageResult(msg);
+            return new CommandResult<>(ReturnTypes.STRING, msg.message);
         }
 
         String userName = args[0];
         var result = controller.createUser(userName);
-        return CommandResult.statusMessageResult(result);
+        return new CommandResult<>(ReturnTypes.STRING, result.message);
     }
 }

@@ -42,3 +42,4 @@ Feature: Create Project Activity
     And the project has a project leader for "existingProject"
     When the user creates a project activity with the name "BuildABud"
     Then the "Error: No user is logged in." error message is given
+

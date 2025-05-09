@@ -23,8 +23,5 @@ Feature: Create fixed activity
     When the user creates a fixed activity with timeStart "03022025231" timeEnd "Banan" type "sick" 
     Then the "Error: Neither dates are valid dates!" error message is given
 
-#  Scenario: User enters invalid type
-#    Given there is a user with the name "hg"
-#    When the user creates a fixed activity with timeStart "03022025" timeEnd "04022025" type "Banan"
-#    Then the system displays an error message: "The entered data are invalid"
+
 

@@ -97,11 +97,6 @@ public class AppController {
         return activityService.addUserToActivity(activity, user);
     }
 
-    // public ArrayList<User> getAllAvailableUsers()
-    // {
-    //     return userService.getAllAvailableUsers();
-    // }
-
     public boolean isUserAvailable(String userID) {
         return userService.isAvailable(userID);
     }
