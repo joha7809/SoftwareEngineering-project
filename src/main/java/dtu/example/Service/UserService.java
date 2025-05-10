@@ -16,7 +16,7 @@ public class UserService {
     public StatusMessage createUser(String userID) {
         if (userID.isBlank()){
             return new StatusMessage(false, "Error creating user. User ID cannot be empty.");
-        }
+		}
         // ENFORCE THAT WE ONLY HAVE 4 INIITIALS AND NO NUMBERS
         if (userID.matches(".*\\d.*")) {
             return new StatusMessage(false, "Error creating user. User ID cannot contain numbers.");

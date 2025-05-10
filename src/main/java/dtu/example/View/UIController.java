@@ -47,8 +47,13 @@ public class UIController {
             command = registry.commands.get(cmd.name);
 
             if (command == null){
-                // TODO: implement error 
-                System.out.println("COMMAND NOT FOUND");
+                // Suggest the closest matching command
+                String suggestion = registry.suggestClosestCommand(cmd.name);
+                if (suggestion != null) {
+                    System.out.println("Command not found. Did you mean: " + suggestion + "?");
+                } else {
+                    System.out.println("Command not found.");
+                }
                 continue;
             }
             CommandResult<?> result;

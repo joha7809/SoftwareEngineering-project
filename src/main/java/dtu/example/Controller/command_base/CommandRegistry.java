@@ -3,6 +3,7 @@ import java.util.HashMap;
 
 import dtu.example.Controller.AppController;
 import dtu.example.Controller.commands.*;
+import dtu.example.View.Levenshtein;
 
 
 public class CommandRegistry {
@@ -52,4 +53,22 @@ public class CommandRegistry {
             this.commands.put(name, command);
         }
     }
+
+    // Find the closest matching command using Levenshtein distance
+    public String suggestClosestCommand(String input) {
+        Levenshtein levenshtein = new Levenshtein();
+        String closestCommand = null;
+        int minDistance = Integer.MAX_VALUE;
+
+        for (String commandName : commands.keySet()) {
+            int distance = levenshtein.distance(input, commandName);
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestCommand = commandName;
+            }
+        }
+
+        return closestCommand;
+    }
+    
 }
