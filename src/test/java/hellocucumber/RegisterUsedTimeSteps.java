@@ -31,9 +31,13 @@ public class RegisterUsedTimeSteps {
     @When("the user logs {string} hours on the activity")
         public void theUserLogsTheirTimeOnTheActivity(String hours) {
         User user = sharedContext.getCurrentUser();
-        Project project = sharedContext.getCurrentProject();
-        ProjectActivity activity = sharedContext.getProjectActivity();
-        result = controller.createTimeRegistration(project.getProjectName(), activity.getName(), hours);
+        String projectName = sharedContext.getProjectName();
+        String activityName = sharedContext.getActivityName();
+        String userName = user != null ? user.getUserID() : "null";
+        // handle null case
+    
+
+        result = controller.createTimeRegistration(projectName, activityName, hours, userName);
         sharedContext.setResult(result);
     }
 

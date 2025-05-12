@@ -59,10 +59,11 @@ public class AppController {
     }
     
 
-    public StatusMessage createTimeRegistration(String projectName, String activityName, String workHours){
+    public StatusMessage createTimeRegistration(String projectName, String activityName, String workHours, String userName){
         Project project = projectService.getProject(projectName);
         ProjectActivity activity = activityService.getProjectActivity(project, activityName);
-        StatusMessage result = registrationService.createTimeRegistration(project, activity, getActiveUser(), workHours);
+        User user = userService.getUser(userName);
+        StatusMessage result = registrationService.createTimeRegistration(project, activity, user, workHours);
         return result;
     }
 
@@ -96,9 +97,6 @@ public class AppController {
         return activityService.addUserToActivity(activity, user);
     }
 
-    public boolean isUserAvailable(String userID) {
-        return userService.isAvailable(userID);
-    }
 
     public StatusMessage createProjectActivity(String projectName, String activityName) {
         Project project = projectService.getProject(projectName);
@@ -123,13 +121,6 @@ public class AppController {
         StatusMessage result = fixedActivityService.createFixedActivity(startDate, endDate, typeCause);
         return result;
         }
-    
-    //Adam wrote this. Determines whether a fixed activity with given attributes exists
-    //Validation for fixedactivity exists:
-    public StatusMessage findFixedActivity(String type, String timeStart, String timeEnd){
-        return fixedActivityService.findFixedActivity(type, timeStart, timeEnd);
-    }
-
 
 
     public ArrayList<FixedActivity> getFixedActivities() {
@@ -181,10 +172,6 @@ public class AppController {
         return projectService.getProjectStatus(project);
     }
 
-    // get all projects
-    public ArrayList<Project> getAllProjects() {
-        return projectService.getAllProjects();
-    }
 
     public String getAllProjectsSummary() {
         return projectService.getAllProjectsSummary();

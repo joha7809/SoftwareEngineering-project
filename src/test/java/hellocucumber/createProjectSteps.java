@@ -78,7 +78,7 @@ public class createProjectSteps {
 	public void an_error_message_is_printed() {
 		// Write code here that turns the phrase above into concrete actions
 		result = sharedContext.getResult();
-		assertFalse(result.success);
+		assertFalse(result.success, result.message);
 	}
 
 	@Given("no projects exist")
@@ -93,6 +93,43 @@ public class createProjectSteps {
         assertTrue(controller.getProject(name).getProjectID().equals(id));
     }
 
+
+
+	@When("the project with the name {string} is edited to {string} with description {string}")
+    public void the_project_with_the_name_is_edited_to_with_description(String oldName, String newName, String description) {
+        Project project = controller.getProject(oldName);
+		assertTrue(project != null);
+		project.setName(newName);
+		project.setDescription(description);
+		sharedContext.setCurrentProject(project);
+    }
+
+	@Then("the project with the name {string} exists")
+    public void the_project_with_the_name_exists(String name) {
+        Project project = controller.getProject(name);
+        assertTrue(project != null);
+    }
+
+    @Then("the project with the name {string} does not exist")
+    public void the_project_with_the_name_does_not_exist(String name) {
+        Project project = controller.getProject(name);
+        assertTrue(project == null);
+    }
+
+    @Then("the project with the name {string} has description {string}")
+    public void the_project_with_the_name_has_description(String name, String description) {
+        Project project = controller.getProject(name);
+        assertTrue(project.getDescription().equals(description));
+    }
+
+    @When("the project with the name {string} is edited to {string}")
+    public void the_project_with_the_name_is_edited_to(String s, String s2) {
+        // Write code here that turns the phrase above into concrete actions
+		Project project = controller.getProject(s);
+		assertTrue(project != null);
+		project.setName(s2);
+		sharedContext.setCurrentProject(project);
+	}
     
 
 

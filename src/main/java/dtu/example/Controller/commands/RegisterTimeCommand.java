@@ -23,12 +23,12 @@ public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
     }
 
     public String getDescription() {
-        return "registertime <project> <activityname> | Used to register time on a project, user is prompted for activity, time";
+        return "registertime <project>  Used to register time on a project, user is prompted for activity, time";
     }
 
     public CommandResult<StatusMessage> execute(String[] args) {
         if (args.length != 1) {
-            var msg = StatusMessage.error("Invalid number of arguments. Usage: registertime <project> <activtyname>");
+            var msg = StatusMessage.error("Invalid number of arguments. Usage: registertime <project>");
             return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
         }
         String projectName = args[0];
@@ -76,10 +76,30 @@ public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
                 break;
             }
 
-            //TODO: Loop bug når du ikke svarer nej eller ja spørger den om activity name bagefter
+            System.out.println("Enter user to register time for. If none is provided, defaults to logged in.");
+            String userName = scanner.nextLine();
+            if (userName.equalsIgnoreCase("exit")) {
+                result = StatusMessage.success("Time registration cancelled.");
+                break;
+            }
+            if (userName.isEmpty()) {
+                var user = controller.getActiveUser();
+                if (user == null) {
+                    System.out.println("No active user. Please log in first.");
+                    continue;
+                }
+                userName = user.getUserID();
+            } else {
+                var user = controller.getUser(userName);
+                if (user == null) {
+                    System.out.println("User not found. Please try again.");
+                    continue;
+                }
+                userName = user.getUserID();
+            }
 
 
-            controller.createTimeRegistration(project.getProjectName(), activity, time);
+            controller.createTimeRegistration(project.getProjectName(), activity, time, userName);
             System.out.println("Time registered for activity: " + activity + " with time: " + time);
             System.out.println("Do you want to register more time? (yes/no)");
             String response = scanner.nextLine();

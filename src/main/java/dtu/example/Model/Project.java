@@ -49,22 +49,17 @@ public class Project {
 
     //Adam wrote this. Determines whether the project has time registrations(it does exactly what it says on the tin)
     //Adam made an edit. Plz don't mess it up
-    public StatusMessage hasTimeRegistrations(){
+    public boolean hasTimeRegistrations(){
         if(hasActivities()){
             //if theyre undeclared, it's false, if they exist and hold a value, theyre true, otherwise if theyre declared, theyre false
             for(int i = 0; i < activities.size(); i++){
-            //if(activities.get(i).getRegistrations() == null){
-            //System.out.println(activities.get(i));
-            if(activities.get(i).getRegistrations().isEmpty()){
-                return StatusMessage.error("No activities has been created yet");
-                //return StatusMessage.error("No time has been registred for activities related to this project");
-            }else if(!activities.get(i).getRegistrations().isEmpty()){
-                return StatusMessage.success("The activity has timeregistraions");
+                if(!activities.get(i).getRegistrations().isEmpty()){
+                    return true;
+                }
             }
         }
-        }
         //return StatusMessage.error("No time has been registred for activities related to this project");
-        return StatusMessage.error("No activities has been created yet");
+        return false;
     }
 
     //Adam wrote this. Determines whether the project has activities(it does exactly what it says on the tin)

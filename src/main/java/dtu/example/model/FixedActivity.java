@@ -4,7 +4,6 @@ public class FixedActivity {
     private String name;
     private String startDate;
     private String endDate;
-    private Boolean isActive;
     private String activityDescription;
     
     public FixedActivity(String startDate, String endDate, String type){
@@ -23,28 +22,25 @@ public class FixedActivity {
     public String getEndDate() {
         return endDate;
     }
-    public Boolean isActive() {
-        return null;
-    }
 
-    public void setName(String name) {
+    // public void setName(String name) {
         
-    }
-    public void setStartDate(String startDate) {
+    // }
+    // public void setStartDate(String startDate) {
         
-    }
+    // }
 
-    public void setActivtyDescription(String newDescription) {
-        this.activityDescription = newDescription;
-    }
+    // public void setActivtyDescription(String newDescription) {
+    //     this.activityDescription = newDescription;
+    // }
 
-    public String getActivityDescription(){
-        return this.activityDescription;
-    }
+    // public String getActivityDescription(){
+    //     return this.activityDescription;
+    // }
 
-    public void setEndDate(String endDate){
-        this.endDate = endDate;
-    }
+    // public void setEndDate(String endDate){
+    //     this.endDate = endDate;
+    // }
     
 
 

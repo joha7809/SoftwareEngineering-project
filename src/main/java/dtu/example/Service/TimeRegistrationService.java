@@ -19,9 +19,6 @@ import dtu.example.model.User;
 public class TimeRegistrationService {
     private final AppState state;
 
-    public TimeRegistrationService() {
-        this.state = new AppState();
-    }
 
     public TimeRegistrationService(AppState state) {
         this.state = state;
@@ -38,16 +35,21 @@ public class TimeRegistrationService {
         }
 
         //TODO: Idk if works: 
-        float hours = Float.valueOf(workHours);
+        float hours;
+        try {
+            hours = Float.parseFloat(workHours);
+        } catch (NumberFormatException e) {
+            return new StatusMessage(false, "Error: Work hours must be a valid number.");
+        }
 
-        System.out.println("CreateTimeRegistration's value hours: " + hours);
+        // Validate positive time
+        if (hours <= 0) {
+            return new StatusMessage(false, "Error: Work hours must be greater than zero.");
+        }
 
         if (hours % 0.5 != 0){
             return new StatusMessage(false, "Error: Hours not in half-hour interval.");
         }
-
-        //TODO: Hvordan skal useren passes?
-        System.out.println(hours);
 
         TimeRegistration registration = new TimeRegistration(hours, user);
         activity.addRegistration(registration);

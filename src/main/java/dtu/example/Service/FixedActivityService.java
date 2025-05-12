@@ -56,17 +56,6 @@ public class FixedActivityService {
         return state.getFixedActivities();
     }
 
-    //Adam wrote this. Determines whether a fixed activity with given attributes exists
-    public StatusMessage findFixedActivity(String type, String timeStart, String timeEnd){
-        for (int i = 0; i < getFixedActivities().size(); i++){
-            //if(getFixedActivities().get(i).getStartDate().equalsIgnoreCase(name)){//gets problematic once there are multiple fixed activities named the same e. g. sick
-            if(getFixedActivities().get(i).getName().equalsIgnoreCase(type) && getFixedActivities().get(i).getStartDate().equalsIgnoreCase(timeStart) && getFixedActivities().get(i).getEndDate().equalsIgnoreCase(timeEnd)){//gets problematic once there are multiple fixed activities named the same e. g. sick
-                    
-                return new StatusMessage(true, "Fixed Activity " + getFixedActivities().get(i).getName() + " Exists.");
-            }
-        }
-        return new StatusMessage(false, "Could not find fixed activity");
-    }
 
 
     

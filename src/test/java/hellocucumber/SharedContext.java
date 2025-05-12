@@ -17,6 +17,10 @@ public class SharedContext {
     private StatusMessage result;
     private ProjectActivity projectactivity;
     private TimeRegistration registration;
+    public String activityName;
+    public String projectName;
+
+    
 
     public SharedContext() {
         this.controller = new AppController();
@@ -62,6 +66,21 @@ public class SharedContext {
 
     public void setTimeRegistration(TimeRegistration registration){
         this.registration = registration;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
+    }
+
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+    public String getProjectName() {
+        return projectName;
     }
 
 }

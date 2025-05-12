@@ -69,13 +69,6 @@ public class UserService {
         return allAvailableUsers;
     }
 
-    public boolean isAvailable(String userID) {
-        User user = state.getUser(userID);
-        if (user != null) {
-            return user.getJoinedActivities().size() < 20;
-        }
-        return false;
-    }
 
     public void addUserToActivity(User user, ProjectActivity activity) {
         user.joinActivity(activity);

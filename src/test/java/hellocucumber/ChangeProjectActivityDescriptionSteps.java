@@ -37,6 +37,8 @@ public class ChangeProjectActivityDescriptionSteps {
             // Share the created project with context
             sharedContext.setProjectActivity(act);
             sharedContext.setCurrentProject(project);
+            sharedContext.setActivityName(activityName);
+            sharedContext.setProjectName(projectName);
     }
 
     @Given("the activity description is {string}")

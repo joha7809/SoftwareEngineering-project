@@ -59,6 +59,8 @@ public class ChangeEndWeekOfActivitySteps {
         ProjectActivity act = controller.getProjectActivity(projectName, activityName);
         sharedContext.setProjectActivity(act);
         sharedContext.setCurrentProject(project);
+        sharedContext.setActivityName(activityName);
+        sharedContext.setProjectName(projectName);
         assertTrue(project != null, "Project " + projectName + " does not exist");
         assertTrue(act == null, "Activity with the name " + activityName + " already exists in project " + projectName);
     }

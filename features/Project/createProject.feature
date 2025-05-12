@@ -4,19 +4,16 @@ Feature:Create Project
     August wrote this feature
 
     Scenario: create a project with a name
-        Given a user is logged in
-        And there is no project with the name "newProject"
+        Given there is no project with the name "newProject"
         When a project with the name "newProject" is created
         Then the project is added to the list of projects
 
     Scenario: fail in creating a project with a name
-        Given a user is logged in
-        And there is a project with the name "newProject"
+        Given there is a project with the name "newProject"
         When a project with the name "newProject" is created
         Then an error message is printed
 
     Scenario: fail in creating a project with no name
-        Given a user is logged in
         When a project with the name "" is created
         Then an error message is printed
     
@@ -38,3 +35,17 @@ Feature:Create Project
         Given no projects exist
         When a project with the name "25001" is created
         Then the "Error: project name cannot be of same form as id" error message is given
+
+    
+    Scenario: Project name is edited
+        Given there is a project with the name "test"
+        When the project with the name "test" is edited to "test2"
+        Then the project with the name "test2" exists
+        And the project with the name "test" does not exist
+
+    Scenario: Project description is edited
+        Given there is a project with the name "test"
+        When the project with the name "test" is edited to "test2" with description "test description"
+        Then the project with the name "test2" exists
+        And the project with the name "test" does not exist
+        And the project with the name "test2" has description "test description"

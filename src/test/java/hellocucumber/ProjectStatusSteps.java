@@ -26,8 +26,9 @@ public class ProjectStatusSteps {
         //assertFalse(project.hasTimeRegistrations());
         Project project = sharedContext.getCurrentProject();
         ProjectActivity activity = sharedContext.getProjectActivity();
-        controller.createTimeRegistration(project.getProjectName(), activity.getName(), "20");
-        assertTrue(project.hasTimeRegistrations().success);
+        String userID = controller.getActiveUser().getUserID();
+        controller.createTimeRegistration(project.getProjectName(), activity.getName(), "20", userID);
+        assertTrue(project.hasTimeRegistrations());
     }
 
     @Given("the project has activities")
@@ -45,7 +46,7 @@ public class ProjectStatusSteps {
         
         //ProjectActivity activity = sharedContext.getProjectActivity();
         //controller.createTimeRegistration(project.getProjectName(), activity.getName(), "20");
-        assertFalse(project.hasTimeRegistrations().success);
+        assertFalse(project.hasTimeRegistrations());
     }
 
     @Given("the project has no activities")
