@@ -1,4 +1,4 @@
-package dtu.example.Commands;
+package dtu.example.WhiteboxTests;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;

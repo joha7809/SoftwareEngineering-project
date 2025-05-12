@@ -36,7 +36,7 @@ public class EditActivityCommand extends KeywordCommand<StatusMessage> {
             return CommandResult.statusMessageResult(StatusMessage.error("Invalid number of arguments. Usage: editactivity <projectname> <activityname> [attribute]=newvalue"));
         }
         String projectName = args[0];
-        String activityName = args[1];
+        String activityName = args[1].replace("_", " ");
 
         Project project = controller.getProject(projectName);
         if (project == null) {
@@ -64,11 +64,14 @@ public class EditActivityCommand extends KeywordCommand<StatusMessage> {
                 case "name":
                     setName(activity, value);
                     break;
+                case "time":
+                    setAllottedTime(activity, value);
+                    break;
                 default:
                     return CommandResult.statusMessageResult(StatusMessage.error("Invalid attribute: " + attribute));
             }
         }
-        return CommandResult.statusMessageResult(StatusMessage.success("Attributes updated successfully."));
+        return CommandResult.statusMessageResult(StatusMessage.success("Attributes updated successfully. " + activity.toString()));
     }
 
     private void setStartWeek(ProjectActivity activity, String startWeek) {
@@ -89,6 +92,16 @@ public class EditActivityCommand extends KeywordCommand<StatusMessage> {
     private void setName(ProjectActivity activity, String name) {
         activity.setName(name);
         this.result.append("Name set to ").append(name).append(". ");
+    }
+
+    private void setAllottedTime(ProjectActivity activity, String time) {
+        try {
+            float allottedTime = Float.parseFloat(time);
+            activity.setAllottedTime(allottedTime);
+            this.result.append("Allotted time set to ").append(allottedTime).append(". ");
+        } catch (NumberFormatException e) {
+            this.result.append("Invalid allotted time: ").append(time).append(". ");
+        }
     }
     
 }
