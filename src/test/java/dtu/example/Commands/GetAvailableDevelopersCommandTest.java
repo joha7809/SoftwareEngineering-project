@@ -13,7 +13,7 @@ import dtu.example.model.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-//Adam
+//Nikolaj
 public class GetAvailableDevelopersCommandTest {
 
     private AppController mockController;

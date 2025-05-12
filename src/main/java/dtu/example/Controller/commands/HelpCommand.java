@@ -5,6 +5,7 @@ import dtu.example.Controller.command_base.CommandRegistry;
 import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 
+//Johannes
 public class HelpCommand implements CommandInterface<String>{
     private final CommandRegistry cmds;
 

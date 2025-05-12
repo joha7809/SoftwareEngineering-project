@@ -5,7 +5,7 @@ import dtu.example.Controller.AppController;
 import dtu.example.Controller.commands.*;
 import dtu.example.View.Levenshtein;
 
-//Johannes
+//August
 public class CommandRegistry {
     public HashMap<String, CommandInterface<?>> commands = new HashMap<>();
 

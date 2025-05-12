@@ -6,7 +6,7 @@ import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
 
-//Nikolaj
+//Kerem
 public class SignUpCommand implements CommandInterface<String> {
 
     private final AppController controller;

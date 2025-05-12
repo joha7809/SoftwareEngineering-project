@@ -8,6 +8,7 @@ import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
 
+//August
 public class EditProjectCommand extends KeywordCommand<StatusMessage> {
     private final AppController controller;
     private StringBuilder result;

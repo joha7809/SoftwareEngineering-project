@@ -13,6 +13,7 @@ import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
 import dtu.example.model.ProjectActivity;
 
+//August
 public class ViewProjectSteps {
 
     private final SharedContext sharedContext;

@@ -10,6 +10,7 @@ import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
 
+//Adam
 public class GetReportCommand implements CommandInterface<StatusMessage>{
     
     private final AppController controller;

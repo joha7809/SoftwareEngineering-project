@@ -10,6 +10,7 @@ import dtu.example.model.User;
 import dtu.example.model.ProjectActivity;
 import dtu.example.model.TimeRegistration;
 
+//Johannes
 public class SharedContext {
     private final AppController controller;
     private Project currentProject;

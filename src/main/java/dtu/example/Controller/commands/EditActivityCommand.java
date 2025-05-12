@@ -10,6 +10,7 @@ import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.Project;
 import dtu.example.model.ProjectActivity;
 
+//Johannes
 public class EditActivityCommand extends KeywordCommand<StatusMessage> {
     private final AppController controller;
     private StringBuilder result;

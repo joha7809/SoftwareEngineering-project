@@ -1,4 +1,5 @@
 Feature: Change expected time for activity
+Kerem
 
   Scenario: A project lead updates the expected time, in hours, for a activity with no expected time
     Given there is a project with the name "Ikea"

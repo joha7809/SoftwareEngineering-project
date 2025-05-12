@@ -1,5 +1,6 @@
 @change
 Feature: Change start week of activity
+August
 
   Background:
     Given a user is logged in

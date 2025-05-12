@@ -7,6 +7,7 @@ import dtu.example.Controller.command_base.CommandInterface;
 import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.StatusMessage;
 
+//Adam
 public class CreateFixedActivityCommand implements CommandInterface<StatusMessage> {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
     private String type;

@@ -10,6 +10,7 @@ import dtu.example.model.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+//Adam
 public class CreateFixedActivitySteps {
     private final SharedContext sharedContext;
     private final AppController controller;
