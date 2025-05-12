@@ -8,24 +8,28 @@ import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.*;
 
-
+//August
 public class AssignDeveloperCommand implements CommandInterface<StatusMessage> {
 
     private final AppController controller;
     private Scanner scanner = new Scanner(System.in); // Scanner for user input
 
+    //August
     public AssignDeveloperCommand(AppController controller) {
         this.controller = controller;
     }
 
+    //August
     public String getName() {
         return "assigndeveloper";
     }
 
+    //August
     public String getDescription() {
         return "assigndeveloper <project> <activity> | Used to assign a developer to an activity, user is prompted for userIDs";
     }
 
+    //August
     public CommandResult<StatusMessage> execute(String[] args) {
         if (args.length != 2) {
             var msg = StatusMessage.error("Invalid number of arguments. Usage: assigndeveloper <project> <activity>");
@@ -61,6 +65,7 @@ public class AssignDeveloperCommand implements CommandInterface<StatusMessage> {
         return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, status);
     }
 
+    //August
     private StatusMessage loop(Project project, ProjectActivity activity) {
         System.out.println("Assigning user to activity " + activity + "...");
         StatusMessage result;

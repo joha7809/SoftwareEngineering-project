@@ -11,6 +11,8 @@ import java.io.ObjectInputFilter.Status;
  * 
  * @author Johannes
  */
+
+ //Johannes
 public class CommandResult<T> {
 
     ReturnTypes type;
@@ -22,6 +24,8 @@ public class CommandResult<T> {
      * @param type  The type of the result.
      * @param value The value returned by the command.
      */
+
+     //Johannes
     public CommandResult(ReturnTypes type, T value) {
         this.type = type;
         this.value = value;
@@ -32,6 +36,8 @@ public class CommandResult<T> {
      * The type comes from the ReturnTypes enum, and is used for handling in the View Clas.
      * @return The type of the result as a {@link ReturnTypes} enum
      */
+
+     //Johannes
     public ReturnTypes getType() {
         return this.type;
     }
@@ -42,12 +48,14 @@ public class CommandResult<T> {
      * 
      * @return The value of the result as a generic type {@code T}
      */
+    //Johannes
     public T getValue() {
         return this.value;
     }
 
     // Static factories for easier returns
 
+    //Johannes
     public static CommandResult<StatusMessage> statusMessageResult(StatusMessage msg){
         return new CommandResult<StatusMessage>(ReturnTypes.STATUS_MESSAGE, msg);
     }

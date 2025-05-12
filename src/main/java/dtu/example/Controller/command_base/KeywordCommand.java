@@ -16,6 +16,7 @@ import dtu.example.Controller.command_returns.ReturnTypes;
  */
 public abstract class KeywordCommand<T> implements CommandInterface<T>{
     
+    //Johannes
     // Override normal command and pass arguments correctly
     @Override
     public CommandResult<T> execute(String[] input) throws IllegalArgumentException{
@@ -29,10 +30,11 @@ public abstract class KeywordCommand<T> implements CommandInterface<T>{
         return execute(positionalArgs, kwargs);
     }
 
+    //Johannes
     // The command that is to be implemented
     public abstract CommandResult<T> execute(String[] args, Map<String, String> kwargs);
 
-
+    //Johannes
     // Helper function for automatically parsing PositionalArgument from input
     // This happens after the input is validated for correct format (first positional then keyword arguments)
     private String[] filterPositionalArguments(String[] input){
@@ -41,6 +43,7 @@ public abstract class KeywordCommand<T> implements CommandInterface<T>{
         return posArgs;
     }
 
+    //Johannes
     private Map<String, String> parseKwargs(String[] input){
         Map<String, String> kwargs = new HashMap<>();
         for (String token : input) {
@@ -57,7 +60,7 @@ public abstract class KeywordCommand<T> implements CommandInterface<T>{
         return kwargs;
     }
 
-
+    //Johannes
     private boolean isKwarg(String string){
         if (string.contains("=")) {
             return true;
@@ -66,6 +69,7 @@ public abstract class KeywordCommand<T> implements CommandInterface<T>{
         }
     }
 
+    //Johannes
     // Validates the input -- If kwarg is found before a positional Argument
     // or a positional argument is found after a kwarg, the input is invalid
     // and should throw an error

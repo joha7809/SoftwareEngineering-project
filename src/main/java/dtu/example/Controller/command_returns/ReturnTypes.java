@@ -17,7 +17,7 @@ package dtu.example.Controller.command_returns;
 
 // Written by Johannes
 
-
+//Johannes
 public enum ReturnTypes {
     STRING,
     STATUS_MESSAGE,

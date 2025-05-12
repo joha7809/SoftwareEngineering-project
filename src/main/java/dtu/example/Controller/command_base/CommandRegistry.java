@@ -5,10 +5,11 @@ import dtu.example.Controller.AppController;
 import dtu.example.Controller.commands.*;
 import dtu.example.View.Levenshtein;
 
-
+//Johannes
 public class CommandRegistry {
     public HashMap<String, CommandInterface<?>> commands = new HashMap<>();
 
+    //Mobprogrammed this
     public CommandRegistry(AppController controller) {
         // Init all commands
         LoginCommand login = new LoginCommand(controller);
@@ -44,16 +45,19 @@ public class CommandRegistry {
         this.registerCommand(getReport);
     }
 
+    //Johannes
     public void registerCommand(CommandInterface<?> command) {
         this.commands.put(command.getName(), command);
     }
 
+    //Johannes
     public void registerCommand(CommandInterface<?> command, String[] names) {
         for (String name : names) {
             this.commands.put(name, command);
         }
     }
 
+    //Johannes
     // Find the closest matching command using Levenshtein distance
     public String suggestClosestCommand(String input) {
         Levenshtein levenshtein = new Levenshtein();

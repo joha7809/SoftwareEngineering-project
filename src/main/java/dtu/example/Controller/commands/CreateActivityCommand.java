@@ -6,6 +6,7 @@ import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.Controller.command_base.CommandInterface;
 
+
 public class CreateActivityCommand implements CommandInterface<StatusMessage> {
     
     private final AppController controller;

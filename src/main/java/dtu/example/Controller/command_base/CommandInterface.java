@@ -15,6 +15,8 @@ import dtu.example.Controller.command_returns.CommandResult;
  * @param <T> The type of the result produced by the command execution. This allows
  *            commands to return different types of results while maintaining type safety.
  */
+
+ //Johannes wrote this
 public interface CommandInterface<T> {
 
     String getName(); // Mame of the function: used to match input string to function name
