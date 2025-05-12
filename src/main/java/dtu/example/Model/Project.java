@@ -49,6 +49,15 @@ public class Project {
 
     //Adam wrote this. Determines whether the project has time registrations(it does exactly what it says on the tin)
     //Adam made an edit. Plz don't mess it up
+	/***
+	 *
+	 * 
+	 * @return true if at least one activity has one or more time registrations
+	 *         false otherwise
+	 *
+	 * @pre activites != null && all getRegistrations != null
+	 * @post result == true if at least one activity has one or more time
+	 ***/
     public boolean hasTimeRegistrations(){
         if(hasActivities()){
             //if theyre undeclared, it's false, if they exist and hold a value, theyre true, otherwise if theyre declared, theyre false

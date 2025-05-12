@@ -13,6 +13,14 @@ public class UserService {
         this.state = state;
     }
 
+	/***
+	 * @pre no pre conditions
+	 * @post User is successfully created if and only if:
+	 *       - string is not empty AND
+	 *       - string does not contain numbers AND
+	 *       - no user with same name already exists AND
+	 *       - user string.length <= 4
+	 */
     public StatusMessage createUser(String userID) {
         if (userID.isBlank()){
             return new StatusMessage(false, "Error creating user. User ID cannot be empty.");
