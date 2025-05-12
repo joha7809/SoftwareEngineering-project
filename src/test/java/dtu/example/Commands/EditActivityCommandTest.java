@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
 
+//Kerem
 public class EditActivityCommandTest {
 
     private AppController mockController;

@@ -22,7 +22,7 @@ import dtu.example.model.ProjectActivity;
 import dtu.example.model.TimeRegistration;
 import dtu.example.model.User;
 
-
+//Johannes
 class getProjectStatusTests {
     // A unit test from white box testing, tests the method from ProjectService, that handles retrieving the report of a given project.
 

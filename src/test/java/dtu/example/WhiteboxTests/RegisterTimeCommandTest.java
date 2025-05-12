@@ -22,6 +22,7 @@ import dtu.example.model.User;
 
 import org.junit.jupiter.api.Test;
 
+//Johannes
 public class RegisterTimeCommandTest {
     // This is the unit tests for whitebox tests for the RegisterTimeCommand
     private RegisterTimeCommand command;

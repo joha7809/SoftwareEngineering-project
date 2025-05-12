@@ -17,6 +17,7 @@ import dtu.example.Service.ProjectService;
 import dtu.example.Service.TimeRegistrationService;
 import dtu.example.Service.UserService;
 
+//August
 public class AppController {
     private final AppState state;
     private final ActivityService activityService;

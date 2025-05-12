@@ -6,6 +6,7 @@ import java.util.HashMap;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.*;
 
+//Nikolaj
 public class UserService {
     private final AppState state;
 

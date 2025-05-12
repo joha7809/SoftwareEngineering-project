@@ -14,6 +14,7 @@ import dtu.example.Service.UserService;
 import dtu.example.model.AppState;
 import dtu.example.model.User;
 
+//Nikolaj
 public class createUserTest {
     // This is a test from our white box tests, regarding the createUser method from userService.
     private AppState mockState;

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+//Adam
 public class DateHelper {
     //Adam wrote this. Helps determine whether a date is of the date format
     public static boolean isDateFormat(String dateString){

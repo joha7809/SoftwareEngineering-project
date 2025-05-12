@@ -1,5 +1,6 @@
 package dtu.example.model;
 
+//Adam
 public class FixedActivity {
     private String name;
     private String startDate;

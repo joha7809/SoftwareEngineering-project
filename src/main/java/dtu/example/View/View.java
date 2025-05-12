@@ -3,6 +3,7 @@ package dtu.example.View;
 import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.StatusMessage;
 
+//Nikolaj
 public class View {
     public <T> void render(CommandResult<?> result){
         switch (result.getType()){

@@ -1,7 +1,7 @@
 package dtu.example.model;
 
 import java.util.ArrayList;
-
+//Nikolaj
 public class User {
 
     private String userID;

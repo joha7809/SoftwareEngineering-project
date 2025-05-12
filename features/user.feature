@@ -1,5 +1,7 @@
 Feature: User Creation
 
+  Kerem wrote this
+
   Scenario: Successfully create a user
     When a user with the ID "ABCD" is created
     Then the user with the ID "ABCD" exists

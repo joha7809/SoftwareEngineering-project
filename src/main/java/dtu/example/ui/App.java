@@ -21,6 +21,8 @@ import dtu.example.model.User;
 /**
  * JavaFX App
  */
+
+ //August
 public class App extends Application {
 
 	private static Scene scene;

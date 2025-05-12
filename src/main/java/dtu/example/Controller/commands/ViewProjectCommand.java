@@ -5,6 +5,7 @@ import dtu.example.Controller.command_returns.CommandResult;
 import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.AppController;
 
+//Nikolaj
 public class ViewProjectCommand implements CommandInterface<String> {
     private final AppController controller;
 

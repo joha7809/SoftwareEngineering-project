@@ -11,7 +11,7 @@ import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.commands.LoginCommand;
 import dtu.example.model.User;
 
-
+//Nikolaj
 public class UIController {
     private AppController controller;
     private CommandRegistry registry;

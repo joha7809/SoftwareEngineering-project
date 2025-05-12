@@ -12,6 +12,7 @@ import dtu.example.Controller.commands.ProjectLeadCommand;
 import dtu.example.model.Project;
 import dtu.example.model.User;
 
+//August
 public class ProjectLeadTest {
     // This is a test from tbe white box testing of the ProjectLead class
     private AppController mockController;

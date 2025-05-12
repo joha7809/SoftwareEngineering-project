@@ -11,6 +11,7 @@ import dtu.example.Controller.commands.LoginCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//August
 public class LoginCommandTest {
 
     private AppController mockController;

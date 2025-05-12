@@ -20,6 +20,7 @@ import dtu.example.model.ProjectActivity;
 import dtu.example.model.TimeRegistration;
 import dtu.example.model.User;
 
+//Adam
 public class hasRegistrationsTest {
     // A unit test from our whitebox testing involving a method from the project class. The method returns a boolean depending on
     // whether the project has any registrations or not. 

@@ -16,6 +16,7 @@ import dtu.example.model.ProjectActivity;
 import dtu.example.model.TimeRegistration;
 import dtu.example.model.User;
 
+//Kerem
 public class TimeRegistrationService {
     private final AppState state;
 

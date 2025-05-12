@@ -7,6 +7,7 @@ import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.User;
 
+//Kerem wrote this
 public class LoginCommand implements CommandInterface<StatusMessage> { // TODO: USE GENERICS AND RESULT WRAPPER
 
     private final AppController controller;

@@ -1,6 +1,6 @@
 package dtu.example.model;
 
-
+//Kerem
 public class TimeRegistration {
     private float hours;
     

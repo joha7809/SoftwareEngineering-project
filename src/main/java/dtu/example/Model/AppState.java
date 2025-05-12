@@ -3,6 +3,7 @@ package dtu.example.model;
 import java.util.HashMap;
 import java.util.ArrayList;
 
+//Adam
 public class AppState {
     private final HashMap<String, Project> projects;
     private final HashMap<String, User> users;

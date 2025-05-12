@@ -14,6 +14,7 @@ import dtu.example.model.AppState;
 import dtu.example.model.Project;
 import dtu.example.model.ProjectActivity;
 
+//Kerem
 public class ProjectService {
     private final AppState state;
 

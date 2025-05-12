@@ -12,6 +12,7 @@ import dtu.example.Controller.commands.CreateActivityCommand;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//Kerem
 public class CreateActivityCommandTest {
 
     private AppController mockController;

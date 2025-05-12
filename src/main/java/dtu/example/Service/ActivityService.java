@@ -6,6 +6,7 @@ import dtu.example.model.Project;
 import dtu.example.model.ProjectActivity;
 import dtu.example.model.User;
 
+//August
 public class ActivityService {
     private final AppState state;
 

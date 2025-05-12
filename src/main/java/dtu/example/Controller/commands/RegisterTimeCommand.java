@@ -8,7 +8,7 @@ import dtu.example.Controller.command_returns.ReturnTypes;
 import dtu.example.Controller.command_returns.StatusMessage;
 import dtu.example.model.*;
 
-
+//Adam
 public class RegisterTimeCommand implements CommandInterface<StatusMessage> {
 
     private final AppController controller;
