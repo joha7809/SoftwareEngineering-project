@@ -1,7 +1,7 @@
 @projectActivity
 Feature: Create Project Activity
-
-
+  #Nikolaj wrote this feature
+  
   Scenario: Project leader creates activity for project
     Given there is a project with the name "existingProject"
     And there is a user with the name "hgaa"
@@ -9,7 +9,7 @@ Feature: Create Project Activity
     And user "hgaa" is project lead on project "existingProject"
     When the user creates a project activity with the name "BuildABud"
     Then a new activity is added to the project with the name
-
+ 
   Scenario: User creates activity for leader less project
     Given there is a project with the name "existingProject"
     And there is a user with the name "hgaa"

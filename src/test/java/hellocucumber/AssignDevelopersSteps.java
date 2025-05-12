@@ -13,24 +13,24 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.lu.a;
-
+//Nikolaj
 public class AssignDevelopersSteps {
 
     private final SharedContext sharedContext;
     private final AppController controller;
     private StatusMessage result;
-
+    //Nikolaj
     public AssignDevelopersSteps(SharedContext sharedContext) {
         this.sharedContext = sharedContext;
         this.controller = sharedContext.getController();
     }
-
+    //Nikolaj
     @Given("user {string} is available in week {string}")
     public void userIsAvailable(String userID, String weekNumber){
         User user = controller.getUser(userID);
         assertTrue(controller.getAvailableUsers(weekNumber).contains(user));
     }
-
+    //Nikoalj
     @Given("the activity {string} starts in week {string} and ends in week {string}")
     public void theActivityStartsInWeekAndEndsInWeek(String activityName, String startWeek, String endWeek){
 
@@ -49,7 +49,7 @@ public class AssignDevelopersSteps {
         assertTrue(controller.getProjectActivity(projectName, activityName).getEndWeek().equals(endWeek));
 
     }
-
+    //Nikolaj
     @When("project leader assigns {string} to the activity {string}")
     public void projectLeaderAssignsToTheActivity(String userID, String activityName){
         //TODO: Lidt cursed men det virker forhåbentligt
@@ -59,92 +59,11 @@ public class AssignDevelopersSteps {
         result = controller.addUserToActivity(projectName, activityName, userID);
         sharedContext.setResult(result);
     }
-
+    //Nikolaj
     @Then("{string} is assigned to the activity")
     public void isAssignedToTheActivity(String userID){
         assertTrue(result.success);
     }
 
-    }
-
-//     private String activityName = "Metting";
-//     private Project project;
-//     private User user;
-//     private ProjectActivity activity;
-
-//     @Given("user {string} is unavailable")
-//     public void isUnavailable(String userInitials) {
-//         // Write code here that turns the phrase above into concrete actions
-//         project = sharedContext.getCurrentProject();
-
-//         for(int j = 0; j < 25; j++){
-//             // Manually create activities for the project
-//             // This is to skip login validation etc.
-//             ProjectActivity activity = new ProjectActivity(activityName + "" + j);
-//             project.addActivity(activity);
-
-
-//             controller.addUserToActivity(controller.getProjectActivity(project.getProjectName(),
-//             project.getActivity(activityName + "" + j).getName() + "" + j), controller.getUser(userInitials));
-//         }
-//         Boolean isAvailable = false;
-//         for (User user : controller.getAllAvailableUsers()) {
-//             if(user.getUserID().equals(userInitials)){
-//                 isAvailable = true;
-//             }
-//         }
-//         assertFalse(isAvailable);
-
-//     }
-
-//     @Given("user {string} is available")
-//     public void is_available(String userInitials) {
-//         // Write code here that turns the phrase above into concrete actions
-//         Boolean userAvailable = false;
-//         for (User user : controller.getAllAvailableUsers()) {
-//             if(user.getUserID().equals(userInitials)){
-//                 userAvailable = true;
-//             }
-            
-//         }
-//         assertTrue(controller.isUserAvailable(userInitials));
-//         assertTrue(userAvailable);
-//         //assertTrue(controller.getUser(userInitials).isAvailable());
-//     }
-    
-//     @When("project leader assigns {string} to an activity")
-//     public void projectLeaderAssignsToAnActivity(String userInitials) {
-//         // Write code here that turns the phrase above into concrete actions
-//         Boolean isAssign = false;
-//         User us = controller.getUser(userInitials);
-//         activity = sharedContext.getProjectActivity();
-//         controller.addUserToActivity(activity, us);
-//         for(ProjectActivity activity : controller.getUser(userInitials).getJoinedActivities()) {
-//             if(activity.getName().equals(activityName)){
-//                 isAssign = true;
-//             }
-//         }
-//         assertTrue(isAssign);
-//     }
-
-//     @Then("{string} is assigned to the activity")
-//     public void is_assigned_to_the_activity(String userInitals) {
-//         // Write code here that turns the phrase above into concrete actions
-//         for (ProjectActivity activity : controller.getUser(user.getUserID()).getJoinedActivities()) {
-//             assertTrue(activity.getName().equals(activityName));
-//         }
-//     }
-
-
-
-//     @Then("{string} is not assigned to the activity")
-//     public void is_not_assigned_to_the_activity(String userInitials) {
-//         // Write code here that turns the phrase above into concrete actions
-//         for (ProjectActivity activity : controller.getUser(user.getUserID()).getJoinedActivities()) {
-//             assertFalse(activity.getName().equals(activityName));
-//         }
-//     }
-
-    
-// }
+}
 

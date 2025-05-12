@@ -1,7 +1,7 @@
 package dtu.example.model;
 
 import java.util.ArrayList;
-
+//Nikolaj
 public class ProjectActivity {
 	private String name;
 	private String startWeek;
@@ -10,24 +10,24 @@ public class ProjectActivity {
 	private float allottedTime;
 	private ArrayList<TimeRegistration> registrations = new ArrayList<>();
 	private ArrayList<User> assignedUsers = new ArrayList<>();
-
+//Nikolaj
 	public ProjectActivity(String activityName) {
 		this.name = activityName;
 
 	}
-
+//Nikolaj
 	public String getName() {
 		return this.name;
 	}
-
+//Nikolaj
 	public String getStartWeek() {
 		return this.startWeek;
 	}
-
+//Nikolaj
 	public String getEndWeek() {
 		return this.endWeek;
 	}
-
+//Nikolaj
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -39,19 +39,19 @@ public class ProjectActivity {
 	public void setActivtyDescription(String newDescription) {
 		this.activityDescription = newDescription;
 	}
-
+//Nikolah
 	public String getActivityDescription() {
 		return this.activityDescription;
 	}
-
+//Nikolaj
 	public void setEndWeek(String endDate) {
 		this.endWeek = endDate;
 	}
-
+//Nikolaj
 	public void setAllottedTime(float allottedTime) {
 		this.allottedTime = allottedTime;
 	}
-
+//Nikolaj
 	public float getAllottedTime() {
 		return this.allottedTime;
 	}
@@ -71,7 +71,7 @@ public class ProjectActivity {
 	public void addRegistration(TimeRegistration registration) {
 		registrations.add(registration);
 	}
-
+//Nikolaj
 	public void addUser(User user) {
 		this.assignedUsers.add(user);
 	}

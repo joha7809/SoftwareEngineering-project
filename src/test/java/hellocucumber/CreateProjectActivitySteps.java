@@ -12,7 +12,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.java.lu.a;
-
+//Nikolaj
 public class CreateProjectActivitySteps {
 
     private final SharedContext sharedContext;
@@ -20,12 +20,12 @@ public class CreateProjectActivitySteps {
     private StatusMessage result;
     private String activityName;
     
-    
+    //Nikolaj
     public CreateProjectActivitySteps(SharedContext sharedContext) {
         this.sharedContext = sharedContext;
         this.controller = sharedContext.getController();
     }
-
+    //Nikolaj
     @Given("user {string} is not project leader for {string}")
     public void user_is_not_project_leader_for(String userID, String projectName) {
         // Write code here that turns the phrase above into concrete actions
@@ -37,7 +37,7 @@ public class CreateProjectActivitySteps {
         assertFalse(project.getProjectLead() == (user));
     }
    
-
+    //Nikolaj
     @Given("the project has a project leader for {string}")
     public void the_project_has_a_project_leader_for(String projectName) {
         // Write code here that turns the phrase above into concrete actions
@@ -45,14 +45,14 @@ public class CreateProjectActivitySteps {
         controller.getProject(projectName).setProjectLead(controller.getUser("olee"));
         assertTrue(!controller.getProject(projectName).getProjectLead().equals(null));
     }
-
+    //Nikoalj
     @Given("project {string} has no project lead")
     public void project_has_no_project_lead(String projectName) {
         // Write code here that turns the phrase above into concrete actions
         Project p = controller.getProject(projectName);
         assertTrue(p.getProjectLead() == null);
     }
-
+    //Nikolaj
     @Given("user {string} is logged in")
     public void user_is_logged_in(String userID) {
         User user = controller.getUser(userID);
@@ -61,7 +61,7 @@ public class CreateProjectActivitySteps {
         assertTrue(result.success);
         assertTrue(controller.getActiveUser().equals(user));
     }
-
+    //Nikolaj
     @When("the user creates a project activity with the name {string}")
     public void the_user_creates_a_project_activity_with_the_name(String activityName) {
         // Write code here that turns the phrase above into concrete actions
@@ -70,14 +70,14 @@ public class CreateProjectActivitySteps {
         result = controller.createProjectActivity(projectName, activityName);
         sharedContext.setResult(result);
     }
-
+    //Nikoalj
     @Then("a new activity is added to the project with the name")
     public void a_new_activity_is_added_to_the_project_with_the_name() {
         // Write code here that turns the phrase above into concrete actions
         Project project = sharedContext.getCurrentProject();
         assertTrue(project.getActivity(this.activityName) != null);
     }
-
+    //Nikolaj
     @Given("no user is logged in")
     public void no_user_is_logged_in() {
         // Write code here that turns the phrase above into concrete actions

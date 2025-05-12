@@ -22,7 +22,7 @@ public class User {
     public void joinActivity(ProjectActivity activity){
         joinedActivities.add(activity);
     }
-    
+    //Nikolaj
     public ArrayList<ProjectActivity> getJoinedActivities(){
         return joinedActivities;
     }
