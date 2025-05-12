@@ -65,15 +65,15 @@ public class App extends Application {
 
 		// Initialize projects
 		ArrayList<Project> projects = new ArrayList<>(Arrays.asList(
-				new Project("Project Alpha", "10001"),
-				new Project("Project Beta", "10002"),
-				new Project("Project Gamma", "10003")));
+				new Project("ProjectAlpha", "10001"),
+				new Project("ProjectBeta", "10002"),
+				new Project("ProjectGamma", "10003")));
 
 		// Initialize activities for each project
 		for (Project project : projects) {
-			project.addActivity(new ProjectActivity("Design Phase"));
-			project.addActivity(new ProjectActivity("Development Phase"));
-			project.addActivity(new ProjectActivity("Testing Phase"));
+			project.addActivity(new ProjectActivity("Design_Phase"));
+			project.addActivity(new ProjectActivity("Development_Phase"));
+			project.addActivity(new ProjectActivity("Testing_Phase"));
 		}
 
 		// Initialize AppState
