@@ -40,9 +40,9 @@ public class ProjectLeadCommand implements CommandInterface<StatusMessage> {
             return CommandResult.statusMessageResult(StatusMessage.error("User does not exist."));
         }
 
-        if (project.getProjectLead() != null) {
-            return CommandResult.statusMessageResult(StatusMessage.error("Project already has a project lead."));
-        }
+        // if (project.getProjectLead() != null) {
+        //     return CommandResult.statusMessageResult(StatusMessage.error("Project already has a project lead."));
+        // }
 
         project.setProjectLead(controller.getUser(userName));
         return CommandResult.statusMessageResult(StatusMessage.success("Project lead set successfully."));
