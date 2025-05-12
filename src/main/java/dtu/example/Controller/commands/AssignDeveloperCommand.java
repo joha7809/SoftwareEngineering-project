@@ -11,8 +11,8 @@ import dtu.example.model.*;
 //August
 public class AssignDeveloperCommand implements CommandInterface<StatusMessage> {
 
-    private final AppController controller;
-    private Scanner scanner = new Scanner(System.in); // Scanner for user input
+	private final AppController controller;
+	private Scanner scanner = new Scanner(System.in); // Scanner for user input
 
     //August
     public AssignDeveloperCommand(AppController controller) {
@@ -38,32 +38,32 @@ public class AssignDeveloperCommand implements CommandInterface<StatusMessage> {
         String projectName = args[0];
         User user = controller.getActiveUser();
 
-        if (user == null) {
-            var msg = StatusMessage.error("No active user. Please log in first.");
-            return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
-        }
-        Project project = controller.getProject(projectName);
-        if (project == null) {
-            var msg = StatusMessage.PROJECT_NOT_FOUND;
-            return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
-        }
+		if (user == null) {
+			var msg = StatusMessage.error("No active user. Please log in first.");
+			return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
+		}
+		Project project = controller.getProject(projectName);
+		if (project == null) {
+			var msg = StatusMessage.PROJECT_NOT_FOUND;
+			return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
+		}
 
-        // check if activities exist for project.
-        if (project.getAllActivities() == null || project.getAllActivities().isEmpty()) {
-            var msg = StatusMessage.ACTIVITY_NOT_FOUND;
-            return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
-        }
+		// check if activities exist for project.
+		if (project.getAllActivities() == null || project.getAllActivities().isEmpty()) {
+			var msg = StatusMessage.ACTIVITY_NOT_FOUND;
+			return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
+		}
 
-        String activityName = args[1];
-        ProjectActivity activity = controller.getProjectActivity(projectName, activityName);
-        if (activity == null) {
-            var msg = StatusMessage.USER_NOT_FOUND;
-            return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
-        }
+		String activityName = args[1];
+		ProjectActivity activity = controller.getProjectActivity(projectName, activityName);
+		if (activity == null) {
+			var msg = StatusMessage.ACTIVITY_NOT_FOUND;
+			return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, msg);
+		}
 
-        StatusMessage status = loop(project, activity);
-        return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, status);
-    }
+		StatusMessage status = loop(project, activity);
+		return new CommandResult<>(ReturnTypes.STATUS_MESSAGE, status);
+	}
 
     //August
     private StatusMessage loop(Project project, ProjectActivity activity) {
@@ -90,9 +90,10 @@ public class AssignDeveloperCommand implements CommandInterface<StatusMessage> {
             System.out.println("User: " + developerID + " assigned to project activity " + activity.getName());
         }
 
-        //NOTE: Hvis man udkommenterer nedenstående sætning så crasher den hvis man svarer nej
-        //scanner.close();
-        return result;
-    }
+		// NOTE: Hvis man udkommenterer nedenstående sætning så crasher den hvis man
+		// svarer nej
+		// scanner.close();
+		return result;
+	}
 
 }
